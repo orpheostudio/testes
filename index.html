@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="description" content="CICI - Assistente digital inteligente da AmplaAI. Tecnologia avançada com interface moderna.">
+    <meta name="keywords" content="CICI, AmplaAI, chatbot, IA, assistente virtual, tecnologia">
+    <meta name="author" content="AmplaAI">
+    <meta name="google-adsense-account" content="ca-pub-5941203056187445">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="CICI">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="CICI - AmplaAI">
+    <meta property="og:description" content="Sua assistente digital inteligente">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://i.imgur.com/5watJQF.png">
+
+    <!-- Icons -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/ZvPvBtR.png">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/ZvPvBtR.png">
+
+    <title>CICI - AmplaAI | Assistente Digital Inteligente</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "tlya8thx8r");
+    </script>
+</head>
+<body class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 dark:from-indigo-950 dark:via-purple-950 dark:to-pink-950 transition-colors duration-300">
+
+<!-- Install Prompt -->
+<div id="installPrompt" class="install-prompt glass-effect shadow-2xl">
+    <div class="p-4 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                <span class="text-2xl">🤖</span>
+            </div>
+            <div>
+                <p class="font-bold text-gray-900 dark:text-white">Instalar CICI</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Acesso rápido e offline</p>
+            </div>
+        </div>
+        <div class="flex gap-2">
+            <button onclick="dismissInstall()" class="px-4 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                Agora não
+            </button>
+            <button onclick="installApp()" class="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all font-medium">
+                Instalar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Welcome Screen -->
+<div id="welcomeScreen" class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-2xl w-full glass-effect rounded-3xl shadow-2xl p-6 sm:p-8 my-4 welcome-card">
+        <div class="text-center mb-6 sm:mb-8">
+            <div class="flex items-center justify-center mb-4 sm:mb-6">
+                <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-2xl avatar-glow animate-float">
+                    <span class="text-6xl sm:text-7xl">🤖</span>
+                </div>
+            </div>
+            <h1 class="text-5xl sm:text-6xl font-black mb-2 sm:mb-3">
+                <span class="gradient-text">CICI</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-100 dark:text-gray-200 mb-3 sm:mb-4 font-light" id="welcomeTagline">Sua assistente digital inteligente</p>
+            <p class="text-sm sm:text-base text-gray-200 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed px-2" id="welcomeDescription">Olá! Eu sou a CICI, sua assistente com IA avançada. Estou aqui para tornar seu dia mais produtivo e organizado. Vamos começar?</p>
+        </div>
+
+        <div class="glass-effect-inner rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6 border border-white/20">
+            <h2 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
+                ✨ Recursos Principais
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
+                    <span class="text-lg sm:text-xl flex-shrink-0">💬</span>
+                    <span>Conversação natural e inteligente</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
+                    <span class="text-lg sm:text-xl flex-shrink-0">🎯</span>
+                    <span>Respostas precisas e rápidas</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
+                    <span class="text-lg sm:text-xl flex-shrink-0">🎨</span>
+                    <span>Interface moderna e elegante</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
+                    <span class="text-lg sm:text-xl flex-shrink-0">🌙</span>
+                    <span>Modo claro e escuro</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
+                    <span class="text-lg sm:text-xl flex-shrink-0">⭐</span>
+                    <span>Sistema de favoritos</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
+                    <span class="text-lg sm:text-xl flex-shrink-0">📊</span>
+                    <span>Estatísticas detalhadas</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
+                    <span class="text-lg sm:text-xl flex-shrink-0">🗣️</span>
+                    <span>Entrada por voz</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
+                    <span class="text-lg sm:text-xl flex-shrink-0">♿</span>
+                    <span>Acessibilidade completa</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-effect-warning rounded-2xl p-4 sm:p-5 mb-4 sm:mb-6">
+            <p class="text-xs sm:text-sm text-gray-800 dark:text-gray-200 flex items-start gap-2">
+                <span class="text-lg sm:text-xl flex-shrink-0">⚠️</span>
+                <span><strong>Aviso:</strong> Sou uma inteligência artificial e posso cometer erros. Sempre verifique informações importantes em fontes confiáveis.</span>
+            </p>
+        </div>
+
+        <div class="mb-4 sm:mb-6">
+            <label class="flex items-start gap-2 sm:gap-3 cursor-pointer group">
+                <input type="checkbox" id="termsCheckbox" class="mt-1 w-4 h-4 sm:w-5 sm:h-5 text-indigo-500 rounded focus:ring-2 focus:ring-indigo-400 cursor-pointer flex-shrink-0">
+                <span class="text-xs sm:text-sm text-gray-100 dark:text-gray-200 group-hover:text-white transition-colors">
+                    Ao usar, eu concordo com os <a href="https://termos.orpheostudio.com.br" target="_blank" class="text-white font-medium underline hover:text-gray-200">Termos de Uso</a> e <a href="https://politicas.orpheostudio.com.br" target="_blank" class="text-white font-medium underline hover:text-gray-200">Políticas de Privacidade</a> da AmplaAI.
+                </span>
+            </label>
+        </div>
+
+        <button onclick="startChat()" id="startButton" disabled
+                class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 sm:py-5 rounded-2xl transition-all transform hover:scale-105 disabled:hover:scale-100 shadow-lg text-base sm:text-lg">
+            Começar conversa 🚀
+        </button>
+
+        <p class="text-center text-xs text-gray-200 dark:text-gray-300 mt-4 sm:mt-6">
+            Desenvolvido com 💜 por <strong>AmplaAI</strong>
+        </p>
+    </div>
+</div>
+
+<!-- Main Chat Interface -->
+<div id="chatInterface" class="hidden flex flex-col h-screen">
+    <!-- Header -->
+    <div class="glass-effect text-white shadow-lg p-3 sm:p-4 flex-shrink-0">
+        <div class="max-w-4xl mx-auto flex justify-between items-center gap-2">
+            <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg cursor-pointer flex-shrink-0 avatar-glow" id="ciciAvatarContainer" onclick="showAboutModal()">
+                    <span class="text-xl sm:text-2xl">🤖</span>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <h1 class="text-lg sm:text-xl font-bold truncate">CICI</h1>
+                    <p class="text-xs flex items-center gap-1">
+                        <span id="statusIndicator" class="w-2 h-2 bg-green-400 rounded-full pulse-dot flex-shrink-0"></span>
+                        <span id="statusText" class="truncate">Online agora</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex gap-1 sm:gap-2 flex-shrink-0">
+                <button onclick="toggleHistory()" class="p-2 rounded-xl glass-effect-inner hover:bg-white/20 transition-all icon-bounce" title="Histórico">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </button>
+
+                <button onclick="toggleFavorites()" class="p-2 rounded-xl glass-effect-inner hover:bg-white/20 transition-all icon-bounce" title="Favoritos">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                    </svg>
+                </button>
+
+                <button onclick="toggleDarkMode()" class="p-2 rounded-xl glass-effect-inner hover:bg-white/20 transition-all icon-bounce" title="Tema">
+                    <svg id="darkModeIcon" class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                </button>
+
+                <button onclick="toggleVoiceMode()" id="voiceToggle" class="hidden sm:block p-2 rounded-xl glass-effect-inner hover:bg-white/20 transition-all icon-bounce" title="Modo de voz">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                    </svg>
+                </button>
+
+                <button onclick="showMenu()" class="p-2 rounded-xl glass-effect-inner hover:bg-white/20 transition-all icon-bounce" title="Menu">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Messages Container -->
+    <div id="messagesContainer" class="flex-1 overflow-y-auto custom-scrollbar">
+        <div class="max-w-4xl mx-auto space-y-1 p-3 sm:p-4" id="messagesList">
+            <!-- Messages will be added here -->
+        </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="glass-effect border-t border-white/10 p-3 sm:p-4 flex-shrink-0">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex gap-2 items-end">
+                <button onclick="startVoiceInput()" id="micButton" class="p-2.5 sm:p-3 rounded-2xl glass-effect-inner hover:bg-white/20 transition-all flex-shrink-0 icon-bounce">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                    </svg>
+                </button>
+
+                <textarea id="messageInput" rows="1" placeholder="Digite sua mensagem..." 
+                       class="flex-1 glass-effect-inner text-white placeholder-white/60 rounded-2xl px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-600 transition-all resize-none max-h-32"
+                       onkeydown="handleKeyPress(event)" oninput="autoResize(this)"></textarea>
+
+                <button onclick="sendMessage()" id="sendButton" class="p-2.5 sm:p-3 rounded-2xl btn-primary disabled:opacity-50 disabled:cursor-not-allowed text-white transition-all flex-shrink-0 shadow-lg">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="voiceIndicator" class="hidden mt-3 sm:mt-4 flex items-center justify-center gap-3 glass-effect-inner rounded-2xl p-2.5 sm:p-3">
+                <div class="flex items-center gap-1">
+                    <div class="w-1 h-6 sm:h-8 bg-indigo-500 rounded voice-wave"></div>
+                    <div class="w-1 h-8 sm:h-10 bg-indigo-500 rounded voice-wave" style="animation-delay: 0.1s"></div>
+                    <div class="w-1 h-6 sm:h-8 bg-indigo-500 rounded voice-wave" style="animation-delay: 0.2s"></div>
+                </div>
+                <span class="text-xs sm:text-sm font-medium text-indigo-300" id="listeningText">Ouvindo...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- History Sidebar -->
+<div id="historySidebar" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50" onclick="toggleHistory()">
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md glass-effect shadow-2xl overflow-y-auto animate-slideIn" onclick="event.stopPropagation()">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">📚 Histórico</h2>
+                <button onclick="toggleHistory()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                    <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="space-y-3" id="historyList">
+                <!-- History items will be populated here -->
+            </div>
+
+            <button onclick="clearAllHistory()" class="w-full mt-6 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-medium py-3 rounded-xl hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors">
+                Limpar todo o histórico
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Favorites Sidebar -->
+<div id="favoritesSidebar" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50" onclick="toggleFavorites()">
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md glass-effect shadow-2xl overflow-y-auto animate-slideIn" onclick="event.stopPropagation()">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">⭐ Favoritos</h2>
+                <button onclick="toggleFavorites()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                    <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="space-y-3" id="favoritesList">
+                <!-- Favorites will be populated here -->
+            </div>
+
+            <div class="mt-6 text-center text-gray-500 dark:text-gray-400 text-sm" id="emptyFavoritesMessage">
+                Nenhuma mensagem favoritada ainda
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Menu Modal -->
+<div id="menuModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 p-4" onclick="closeMenu()">
+    <div class="glass-effect rounded-t-3xl sm:rounded-3xl shadow-2xl p-6 w-full max-w-md modal-enter" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Menu</h2>
+            <button onclick="closeMenu()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="space-y-2">
+            <button onclick="toggleHistory()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
+                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                    <div class="font-medium text-gray-900 dark:text-white">Histórico</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Ver conversas anteriores</div>
+                </div>
+            </button>
+
+            <button onclick="toggleFavorites()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
+                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                </svg>
+                <div>
+                    <div class="font-medium text-gray-900 dark:text-white">Favoritos</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Mensagens salvas</div>
+                </div>
+            </button>
+
+            <button onclick="showStatistics()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
+                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                <div>
+                    <div class="font-medium text-gray-900 dark:text-white">Estatísticas</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Ver dados de uso</div>
+                </div>
+            </button>
+
+            <button onclick="showAccessibilitySettings()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
+                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                </svg>
+                <div>
+                    <div class="font-medium text-gray-900 dark:text-white">Acessibilidade</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Configurar acessibilidade</div>
+                </div>
+            </button>
+
+            <button onclick="clearChat()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
+                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                </svg>
+                <div>
+                    <div class="font-medium text-gray-900 dark:text-white">Limpar conversa</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Apagar histórico de mensagens</div>
+                </div>
+            </button>
+
+            <button onclick="exportChat()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
+                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                <div>
+                    <div class="font-medium text-gray-900 dark:text-white">Exportar conversa</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Salvar como arquivo de texto</div>
+                </div>
+            </button>
+
+            <button onclick="showAboutModal()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
+                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                    <div class="font-medium text-gray-900 dark:text-white">Sobre CICI</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Informações e contato</div>
+                </div>
+            </button>
+
+            <button onclick="showShortcuts()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
+                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                </svg>
+                <div>
+                    <div class="font-medium text-gray-900 dark:text-white">Atalhos de teclado</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Ver comandos rápidos</div>
+                </div>
+            </button>
+
+            <button onclick="reportBug()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
+                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                <div>
+                    <div class="font-medium text-gray-900 dark:text-white">Reportar problema</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">Enviar feedback</div>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- About Modal -->
+<div id="aboutModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onclick="closeAboutModal()">
+    <div class="glass-effect rounded-3xl shadow-2xl p-8 max-w-md w-full modal-enter" onclick="event.stopPropagation()">
+        <div class="text-center mb-6">
+            <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mb-4 shadow-xl avatar-glow">
+                <span class="text-5xl">🤖</span>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Sobre a CICI</h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">v4.0 - Edição Moderna</p>
+        </div>
+
+        <div class="space-y-4 text-sm text-gray-700 dark:text-gray-300">
+            <div class="glass-effect-inner rounded-2xl p-4">
+                <p class="font-semibold mb-2">🤖 Nome Técnico</p>
+                <p>CICI - Cognitive Interactive Conversational Intelligence</p>
+            </div>
+
+            <div class="glass-effect-inner rounded-2xl p-4">
+                <p class="font-semibold mb-2">🚀 Desenvolvido por</p>
+                <p class="mb-2">AmplaAI - Startup brasileira de tecnologia e inovação</p>
+                <a href="https://studio.orpheostudio.com.br" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline">orpheostudio.com.br</a>
+            </div>
+
+            <div class="glass-effect-inner rounded-2xl p-4">
+                <p class="font-semibold mb-2">💜 Contato e Suporte</p>
+                <p class="mb-2">Email: <span class="font-mono text-xs">sac.studiotsukiyo@outlook.com</span></p>
+                <p class="text-xs text-gray-600 dark:text-gray-400">Instagram: @ampla.ai</p>
+            </div>
+        </div>
+
+        <button onclick="closeAboutModal()" class="w-full mt-6 btn-primary text-white font-semibold py-3 rounded-2xl transition-all">
+            Fechar
+        </button>
+    </div>
+</div>
+
+<!-- Accessibility Settings Modal -->
+<div id="accessibilityModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onclick="closeAccessibility()">
+    <div class="glass-effect rounded-3xl shadow-2xl p-8 max-w-md w-full modal-enter" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">♿ Acessibilidade</h2>
+            <button onclick="closeAccessibility()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="space-y-6">
+            <div>
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Tamanho do texto</h3>
+                <div class="flex gap-2">
+                    <button onclick="setTextSize('small')" id="textSmall" class="flex-1 py-2 glass-effect-inner text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-white/20">
+                        Pequeno
+                    </button>
+                    <button onclick="setTextSize('normal')" id="textNormal" class="flex-1 py-2 btn-primary text-white rounded-lg font-medium">
+                        Normal
+                    </button>
+                    <button onclick="setTextSize('large')" id="textLarge" class="flex-1 py-2 glass-effect-inner text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-white/20">
+                        Grande
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Contraste</h3>
+                <div class="flex gap-2">
+                    <button onclick="setContrast('normal')" id="contrastNormal" class="flex-1 py-2 btn-primary text-white rounded-lg font-medium">
+                        Normal
+                    </button>
+                    <button onclick="setContrast('high')" id="contrastHigh" class="flex-1 py-2 glass-effect-inner text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-white/20">
+                        Alto
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Animações</h3>
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-700 dark:text-gray-300">Reduzir movimento</span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="reduceMotion" class="sr-only peer" onchange="toggleReducedMotion()">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="glass-effect-warning rounded-xl p-4">
+                <p class="text-sm text-gray-800 dark:text-gray-200">
+                    <strong>Dica:</strong> As configurações de acessibilidade são salvas automaticamente no seu navegador.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Modal -->
+<div id="statisticsModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onclick="closeStatistics()">
+    <div class="glass-effect rounded-3xl shadow-2xl p-8 max-w-2xl w-full modal-enter" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">📊 Estatísticas</h2>
+            <button onclick="closeStatistics()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="glass-effect-inner rounded-2xl p-4 text-center">
+                <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="totalMessages">0</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Mensagens</div>
+            </div>
+            <div class="glass-effect-inner rounded-2xl p-4 text-center">
+                <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="favoritesCount">0</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Favoritos</div>
+            </div>
+            <div class="glass-effect-inner rounded-2xl p-4 text-center">
+                <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="voiceMessages">0</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Mensagens de voz</div>
+            </div>
+            <div class="glass-effect-inner rounded-2xl p-4 text-center">
+                <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="sessionsCount">0</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Sessões</div>
+            </div>
+        </div>
+
+        <div class="glass-effect-inner rounded-2xl p-4">
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Atividade por hora</h3>
+            <div class="h-32 flex items-end gap-1" id="activityChart">
+                <!-- Activity bars will be generated here -->
+            </div>
+        </div>
+
+        <div class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+            Dados desde: <span id="statsSince">-</span>
+        </div>
+    </div>
+</div>
+
+<!-- Shortcuts Modal -->
+<div id="shortcutsModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onclick="closeShortcuts()">
+    <div class="glass-effect rounded-3xl shadow-2xl p-8 max-w-md w-full modal-enter" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">⌨️ Atalhos de Teclado</h2>
+            <button onclick="closeShortcuts()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="space-y-3 text-sm">
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 dark:text-gray-400">Focar no input</span>
+                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + K</kbd>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 dark:text-gray-400">Ativar voz</span>
+                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + M</kbd>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 dark:text-gray-400">Modo escuro</span>
+                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + D</kbd>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 dark:text-gray-400">Enviar mensagem</span>
+                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Enter</kbd>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 dark:text-gray-400">Nova linha</span>
+                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Shift + Enter</kbd>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 dark:text-gray-400">Limpar conversa</span>
+                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + L</kbd>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 dark:text-gray-400">Abrir histórico</span>
+                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + H</kbd>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 dark:text-gray-400">Abrir favoritos</span>
+                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + F</kbd>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Donate Reminder -->
+<div id="sion-donation-banner" style="display:none;">
+  <div class="sion-banner-content">
+    <p>🤖 <strong>CICI:</strong> Manter uma IA ativa é caro... considere fazer uma doação para me manter online 💙</p>
+    <div class="sion-banner-actions">
+      <a href="https://nubank.com.br/cobrar/ftet6/690dfa92-b7c5-4679-83ff-6d64e4b35c83" target="_blank" class="sion-donate-btn">Doar</a>
+      <button id="sion-banner-close" aria-label="Fechar">✕</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* 🔹 Estilo geral do banner de doação */
+  #sion-donation-banner {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 350px;
+    background: rgba(99, 102, 241, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 16px 18px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    z-index: 9999;
+    animation: sionFadeIn 0.6s ease forwards;
+  }
+
+  .sion-banner-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sion-banner-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sion-donate-btn {
+    background: #fff;
+    color: #6366f1;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .sion-donate-btn:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+  }
+
+  #sion-banner-close {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  #sion-banner-close:hover {
+    color: #fff;
+  }
+
+  @keyframes sionFadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  // 🕒 Mostra o lembrete 15 segundos depois
+  setTimeout(() => {
+    const banner = document.getElementById("sion-donation-banner");
+    if (banner) banner.style.display = "block";
+  }, 15000);
+
+  // ❌ Botão de fechar
+  document.addEventListener("click", (e) => {
+    if (e.target && e.target.id === "sion-banner-close") {
+      const banner = document.getElementById("sion-donation-banner");
+      if (banner) {
+        banner.style.opacity = "0";
+        banner.style.transform = "translateY(10px)";
+        setTimeout(() => banner.remove(), 400);
+      }
+    }
+  });
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
