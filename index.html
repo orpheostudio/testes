@@ -2,686 +2,2802 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#6366f1">
-    <meta name="description" content="CICI - Assistente digital inteligente da AmplaAI. Tecnologia avançada com interface moderna.">
-    <meta name="keywords" content="CICI, AmplaAI, chatbot, IA, assistente virtual, tecnologia">
-    <meta name="author" content="AmplaAI">
-    <meta name="google-adsense-account" content="ca-pub-5941203056187445">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Cici AI - Assistente Multifuncional</title>
     
-    <!-- PWA Meta Tags -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="CICI">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="CICI - AmplaAI">
-    <meta property="og:description" content="Sua assistente digital inteligente">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://i.imgur.com/5watJQF.png">
-
-    <!-- Icons -->
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="https://i.imgur.com/ZvPvBtR.png">
-    <link rel="apple-touch-icon" href="https://i.imgur.com/ZvPvBtR.png">
+    <meta name="theme-color" content="#6c5ce7">
+    <meta name="description" content="Assistente AI multifuncional com chat, análise de documentos, geração de imagens, código e muito mais">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4712/4712027.png">
 
-    <title>CICI - AmplaAI | Assistente Digital Inteligente</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     
-    <!-- Microsoft Clarity -->
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "tlya8thx8r");
+        })(window, document, "clarity", "script", "SEU_ID_DO_CLARITY"); 
     </script>
+
+    <style>
+        :root {
+            --primary: #6c5ce7; 
+            --primary-dark: #4834d4;
+            --primary-light: #a29bfe;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+            --info: #0984e3;
+            --bg-app: #f5f6fa;
+            --bg-chat: #ffffff;
+            --bg-card: #ffffff;
+            --text-main: #2d3436;
+            --text-secondary: #636e72;
+            --cici-bubble: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            --cici-text: #ffffff;
+            --user-bubble: #fab1a0;
+            --user-text: #2d3436;
+            --border-color: #dfe6e9;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+            --menu-bg: rgba(255, 255, 255, 0.98);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.alto-contraste {
+            --primary: #000000;
+            --primary-dark: #333;
+            --bg-app: #000000;
+            --bg-chat: #000000;
+            --bg-card: #1a1a1a;
+            --text-main: #ffff00;
+            --text-secondary: #ffff00;
+            --cici-bubble: #333333;
+            --cici-text: #ffff00;
+            --user-bubble: #ffff00;
+            --user-text: #000000;
+            --menu-bg: #1a1a1a;
+            --border-color: #ffff00;
+            --shadow-sm: 0 0 0 2px #ffff00;
+            --shadow-md: 0 0 0 2px #ffff00;
+            --shadow-lg: 0 0 0 3px #ffff00;
+        }
+
+        body.tema-escuro:not(.alto-contraste) {
+            --primary: #a29bfe;
+            --primary-dark: #6c5ce7;
+            --bg-app: #1e1e1e;
+            --bg-chat: #2d2d2d;
+            --bg-card: #2d2d2d;
+            --text-main: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --cici-bubble: linear-gradient(135deg, #6c5ce7 0%, #4834d4 100%);
+            --user-bubble: #fab1a0;
+            --border-color: #444;
+            --menu-bg: rgba(45, 45, 45, 0.98);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-size: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+        .skip-link:focus { top: 0; }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Markdown Styling */
+        .mensagem p { margin: 8px 0; line-height: 1.6; }
+        .mensagem p:first-child { margin-top: 0; }
+        .mensagem p:last-child { margin-bottom: 0; }
+        .mensagem ul, .mensagem ol { margin: 10px 0; padding-left: 24px; line-height: 1.8; }
+        .mensagem li { margin: 6px 0; }
+        .mensagem strong { font-weight: 800; color: var(--primary); }
+        .mensagem em { font-style: italic; opacity: 0.9; }
+        .mensagem code:not(.hljs) { 
+            background: rgba(0,0,0,0.1); 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .mensagem pre {
+            background: #1e1e1e;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 12px 0;
+            position: relative;
+        }
+        .mensagem pre code {
+            background: none;
+            padding: 0;
+            color: #e0e0e0;
+        }
+        .mensagem a { 
+            color: var(--primary); 
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .mensagem h1, .mensagem h2, .mensagem h3 {
+            margin: 16px 0 8px 0;
+            font-weight: 800;
+        }
+        .mensagem blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 16px;
+            margin: 12px 0;
+            opacity: 0.9;
+        }
+        .mensagem table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0;
+        }
+        .mensagem table th,
+        .mensagem table td {
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .mensagem table th {
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            min-height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: var(--shadow-md);
+            z-index: 20;
+            position: relative;
+        }
+
+        .menu-btn, .header-action {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 1.3em;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .menu-btn:hover, .header-action:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
+        .logo-area {
+            font-size: 1.4em;
+            font-weight: 800;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Menu Lateral */
+        #overlay-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 25;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(2px);
+        }
+        #overlay-menu.aberto {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        #side-menu {
+            position: fixed;
+            top: 0;
+            left: -340px;
+            width: 320px;
+            height: 100%;
+            background: var(--menu-bg);
+            z-index: 30;
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.3);
+            backdrop-filter: blur(20px);
+            overflow-y: auto;
+        }
+        #side-menu.aberto { left: 0; }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .menu-close {
+            background: var(--danger);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .menu-item {
+            background: none;
+            border: 2px solid transparent;
+            color: var(--text-main);
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 0.95em;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+        .menu-item:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .menu-titulo {
+            font-size: 0.85em;
+            font-weight: bold;
+            margin: 16px 0 8px 0;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: var(--border-color);
+            margin: 12px 0;
+            opacity: 0.5;
+        }
+
+        .toggle-switch {
+            width: 48px;
+            height: 26px;
+            background: var(--border-color);
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: auto;
+        }
+        .toggle-switch.ativo {
+            background: var(--success);
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: var(--transition);
+        }
+        .toggle-switch.ativo::after {
+            left: 25px;
+        }
+
+        /* Chat Area */
+        #chat-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background: var(--bg-chat);
+            scroll-behavior: smooth;
+        }
+
+        #chat-container::-webkit-scrollbar { width: 8px; }
+        #chat-container::-webkit-scrollbar-track { background: transparent; }
+        #chat-container::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .mensagem-wrapper {
+            display: flex;
+            flex-direction: column;
+            max-width: 85%;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cici-wrapper { align-self: flex-start; }
+        .usuario-wrapper { align-self: flex-end; align-items: flex-end; }
+
+        .mensagem {
+            padding: 16px 20px;
+            border-radius: 18px;
+            line-height: 1.6;
+            box-shadow: var(--shadow-sm);
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        .cici {
+            background: var(--cici-bubble);
+            color: var(--cici-text);
+            border-bottom-left-radius: 4px;
+        }
+
+        .usuario {
+            background-color: var(--user-bubble);
+            color: var(--user-text);
+            border-bottom-right-radius: 4px;
+        }
+
+        .mensagem-hora {
+            font-size: 0.75em;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+
+        .mensagem-acoes {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-acao {
+            background: rgba(0,0,0,0.05);
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.85em;
+            cursor: pointer;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+        .btn-acao:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 16px 20px;
+        }
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--cici-text);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { opacity: 0.3; transform: scale(0.8); }
+            30% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Anexos e Cards Especiais */
+        .file-attachment {
+            background: rgba(0,0,0,0.05);
+            padding: 12px;
+            border-radius: 10px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px dashed var(--border-color);
+        }
+
+        .file-icon {
+            font-size: 2em;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .file-size {
+            font-size: 0.85em;
+            opacity: 0.7;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            border-radius: 12px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .image-preview:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Capabilities Cards */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .capability-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .capability-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .capability-icon {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+        }
+
+        .capability-title {
+            font-weight: 700;
+            font-size: 0.9em;
+            color: var(--text-main);
+        }
+
+        /* Sugestões */
+        .sugestoes-container {
+            padding: 12px 20px;
+            background: var(--bg-chat);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .sugestoes-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: thin;
+        }
+
+        .chip {
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+        .chip:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Footer / Input */
+        footer {
+            background: var(--bg-chat);
+            padding: 16px 20px 20px;
+            border-top: 1px solid var(--border-color);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+        }
+
+        .input-tools {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .tool-btn {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .tool-btn:hover, .tool-btn.ativo {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .input-container {
+            flex: 1;
+            position: relative;
+        }
+
+        #entradaUsuario {
+            width: 100%;
+            padding: 14px 50px 14px 18px;
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 1em;
+            outline: none;
+            font-family: inherit;
+            background: var(--bg-card);
+            color: var(--text-main);
+            transition: var(--transition);
+            resize: none;
+            min-height: 52px;
+            max-height: 120px;
+        }
+        #entradaUsuario:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+        }
+
+        .input-contador {
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+            font-size: 0.75em;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        #btn-mic, #btn-attach {
+            background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+            color: white;
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.3em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        #btn-attach {
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+        }
+
+        #btn-mic:hover, #btn-attach:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        #btn-mic.ouvindo {
+            background: linear-gradient(135deg, var(--success) 0%, #00b894 100%);
+            animation: pulse 1.5s infinite;
+        }
+
+        .btn-send {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 0 28px;
+            height: 52px;
+            border-radius: 26px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            font-size: 1em;
+            white-space: nowrap;
+        }
+        .btn-send:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .btn-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .card-aviso {
+            background: rgba(255,255,255,0.15);
+            padding: 40px 32px;
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            max-width: 500px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card-aviso h1 { font-size: 2.5em; margin: 16px 0; }
+        .card-aviso p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin: 12px 0;
+        }
+
+        .btn-grande {
+            background: white;
+            color: var(--primary);
+            padding: 16px 48px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+        .btn-grande:hover { transform: scale(1.05); }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 250px;
+            max-width: 90%;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--border-color);
+        }
+        .toast.mostrar {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast.sucesso { border-color: var(--success); }
+        .toast.erro { border-color: var(--danger); }
+        .toast.aviso { border-color: var(--warning); }
+
+        .oculto { display: none !important; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .mensagem-wrapper { max-width: 90%; }
+            .capabilities-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 0 12px; }
+            #chat-container { padding: 12px; }
+            footer { padding: 12px; }
+        }
+
+        body.leitura-facilitada {
+            font-size: 20px;
+        }
+        body.leitura-facilitada .mensagem {
+            line-height: 2;
+            letter-spacing: 0.5px;
+        }
+
+        /* File Input Hidden */
+        #fileInput {
+            display: none;
+        }
+
+        /* Code Copy Button */
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2d2d2d;
+            padding: 8px 12px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: -12px;
+        }
+
+        .code-language {
+            color: #aaa;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .code-copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .code-copy-btn:hover {
+            background: var(--primary-dark);
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 dark:from-indigo-950 dark:via-purple-950 dark:to-pink-950 transition-colors duration-300">
+<body>
+    <a href="#chat-container" class="skip-link">Pular para o chat</a>
 
-<!-- Install Prompt -->
-<div id="installPrompt" class="install-prompt glass-effect shadow-2xl">
-    <div class="p-4 flex items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                <span class="text-2xl">🤖</span>
-            </div>
-            <div>
-                <p class="font-bold text-gray-900 dark:text-white">Instalar CICI</p>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Acesso rápido e offline</p>
-            </div>
-        </div>
-        <div class="flex gap-2">
-            <button onclick="dismissInstall()" class="px-4 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                Agora não
-            </button>
-            <button onclick="installApp()" class="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all font-medium">
-                Instalar
-            </button>
-        </div>
-    </div>
-</div>
+    <div id="overlay-menu" onclick="fecharMenu()"></div>
 
-<!-- Welcome Screen -->
-<div id="welcomeScreen" class="min-h-screen flex items-center justify-center p-4">
-    <div class="max-w-2xl w-full glass-effect rounded-3xl shadow-2xl p-6 sm:p-8 my-4 welcome-card">
-        <div class="text-center mb-6 sm:mb-8">
-            <div class="flex items-center justify-center mb-4 sm:mb-6">
-                <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-2xl avatar-glow animate-float">
-                    <span class="text-6xl sm:text-7xl">🤖</span>
-                </div>
-            </div>
-            <h1 class="text-5xl sm:text-6xl font-black mb-2 sm:mb-3">
-                <span class="gradient-text">CICI</span>
-            </h1>
-            <p class="text-xl sm:text-2xl text-gray-100 dark:text-gray-200 mb-3 sm:mb-4 font-light" id="welcomeTagline">Sua assistente digital inteligente</p>
-            <p class="text-sm sm:text-base text-gray-200 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed px-2" id="welcomeDescription">Olá! Eu sou a CICI, sua assistente com IA avançada. Estou aqui para tornar seu dia mais produtivo e organizado. Vamos começar?</p>
+    <nav id="side-menu" role="navigation">
+        <div class="menu-header">
+            <h2 style="margin:0; font-size:1.3em;">⚙️ Configurações</h2>
+            <button class="menu-close" onclick="fecharMenu()">✕</button>
         </div>
 
-        <div class="glass-effect-inner rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6 border border-white/20">
-            <h2 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
-                ✨ Recursos Principais
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
-                    <span class="text-lg sm:text-xl flex-shrink-0">💬</span>
-                    <span>Conversação natural e inteligente</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
-                    <span class="text-lg sm:text-xl flex-shrink-0">🎯</span>
-                    <span>Respostas precisas e rápidas</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
-                    <span class="text-lg sm:text-xl flex-shrink-0">🎨</span>
-                    <span>Interface moderna e elegante</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
-                    <span class="text-lg sm:text-xl flex-shrink-0">🌙</span>
-                    <span>Modo claro e escuro</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
-                    <span class="text-lg sm:text-xl flex-shrink-0">⭐</span>
-                    <span>Sistema de favoritos</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
-                    <span class="text-lg sm:text-xl flex-shrink-0">📊</span>
-                    <span>Estatísticas detalhadas</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
-                    <span class="text-lg sm:text-xl flex-shrink-0">🗣️</span>
-                    <span>Entrada por voz</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-800 dark:text-gray-200 text-xs sm:text-sm feature-item">
-                    <span class="text-lg sm:text-xl flex-shrink-0">♿</span>
-                    <span>Acessibilidade completa</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="glass-effect-warning rounded-2xl p-4 sm:p-5 mb-4 sm:mb-6">
-            <p class="text-xs sm:text-sm text-gray-800 dark:text-gray-200 flex items-start gap-2">
-                <span class="text-lg sm:text-xl flex-shrink-0">⚠️</span>
-                <span><strong>Aviso:</strong> Sou uma inteligência artificial e posso cometer erros. Sempre verifique informações importantes em fontes confiáveis.</span>
-            </p>
-        </div>
-
-        <div class="mb-4 sm:mb-6">
-            <label class="flex items-start gap-2 sm:gap-3 cursor-pointer group">
-                <input type="checkbox" id="termsCheckbox" class="mt-1 w-4 h-4 sm:w-5 sm:h-5 text-indigo-500 rounded focus:ring-2 focus:ring-indigo-400 cursor-pointer flex-shrink-0">
-                <span class="text-xs sm:text-sm text-gray-100 dark:text-gray-200 group-hover:text-white transition-colors">
-                    Ao usar, eu concordo com os <a href="https://termos.orpheostudio.com.br" target="_blank" class="text-white font-medium underline hover:text-gray-200">Termos de Uso</a> e <a href="https://politicas.orpheostudio.com.br" target="_blank" class="text-white font-medium underline hover:text-gray-200">Políticas de Privacidade</a> da AmplaAI.
-                </span>
-            </label>
-        </div>
-
-        <button onclick="startChat()" id="startButton" disabled
-                class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 sm:py-5 rounded-2xl transition-all transform hover:scale-105 disabled:hover:scale-100 shadow-lg text-base sm:text-lg">
-            Começar conversa 🚀
+        <div class="menu-titulo">🎨 Aparência</div>
+        <button class="menu-item" onclick="alternarTemaEscuro()">
+            <span id="icone-tema">🌙</span>
+            <span id="texto-tema">Modo Escuro</span>
+            <div class="toggle-switch" id="toggle-tema"></div>
+        </button>
+        <button class="menu-item" onclick="alternarContraste()">
+            <span>🌓</span>
+            <span>Alto Contraste</span>
+            <div class="toggle-switch" id="toggle-contraste"></div>
+        </button>
+        <button class="menu-item" onclick="alternarLeituraFacilitada()">
+            <span>📖</span>
+            <span>Leitura Facilitada</span>
+            <div class="toggle-switch" id="toggle-leitura"></div>
         </button>
 
-        <p class="text-center text-xs text-gray-200 dark:text-gray-300 mt-4 sm:mt-6">
-            Desenvolvido com 💜 por <strong>AmplaAI</strong>
-        </p>
-    </div>
-</div>
+        <div class="menu-divider"></div>
 
-<!-- Main Chat Interface -->
-<div id="chatInterface" class="hidden flex flex-col h-screen">
-    <!-- Header -->
-    <div class="glass-effect text-white shadow-lg p-3 sm:p-4 flex-shrink-0">
-        <div class="max-w-4xl mx-auto flex justify-between items-center gap-2">
-            <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg cursor-pointer flex-shrink-0 avatar-glow" id="ciciAvatarContainer" onclick="showAboutModal()">
-                    <span class="text-xl sm:text-2xl">🤖</span>
-                </div>
-                <div class="min-w-0 flex-1">
-                    <h1 class="text-lg sm:text-xl font-bold truncate">CICI</h1>
-                    <p class="text-xs flex items-center gap-1">
-                        <span id="statusIndicator" class="w-2 h-2 bg-green-400 rounded-full pulse-dot flex-shrink-0"></span>
-                        <span id="statusText" class="truncate">Online agora</span>
-                    </p>
-                </div>
-            </div>
-
-            <div class="flex gap-1 sm:gap-2 flex-shrink-0">
-                <button onclick="toggleHistory()" class="p-2 rounded-xl glass-effect-inner hover:bg-white/20 transition-all icon-bounce" title="Histórico">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                </button>
-
-                <button onclick="toggleFavorites()" class="p-2 rounded-xl glass-effect-inner hover:bg-white/20 transition-all icon-bounce" title="Favoritos">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-                    </svg>
-                </button>
-
-                <button onclick="toggleDarkMode()" class="p-2 rounded-xl glass-effect-inner hover:bg-white/20 transition-all icon-bounce" title="Tema">
-                    <svg id="darkModeIcon" class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                    </svg>
-                </button>
-
-                <button onclick="toggleVoiceMode()" id="voiceToggle" class="hidden sm:block p-2 rounded-xl glass-effect-inner hover:bg-white/20 transition-all icon-bounce" title="Modo de voz">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
-                    </svg>
-                </button>
-
-                <button onclick="showMenu()" class="p-2 rounded-xl glass-effect-inner hover:bg-white/20 transition-all icon-bounce" title="Menu">
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Messages Container -->
-    <div id="messagesContainer" class="flex-1 overflow-y-auto custom-scrollbar">
-        <div class="max-w-4xl mx-auto space-y-1 p-3 sm:p-4" id="messagesList">
-            <!-- Messages will be added here -->
-        </div>
-    </div>
-
-    <!-- Input Area -->
-    <div class="glass-effect border-t border-white/10 p-3 sm:p-4 flex-shrink-0">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex gap-2 items-end">
-                <button onclick="startVoiceInput()" id="micButton" class="p-2.5 sm:p-3 rounded-2xl glass-effect-inner hover:bg-white/20 transition-all flex-shrink-0 icon-bounce">
-                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                    </svg>
-                </button>
-
-                <textarea id="messageInput" rows="1" placeholder="Digite sua mensagem..." 
-                       class="flex-1 glass-effect-inner text-white placeholder-white/60 rounded-2xl px-4 py-2.5 sm:px-5 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-600 transition-all resize-none max-h-32"
-                       onkeydown="handleKeyPress(event)" oninput="autoResize(this)"></textarea>
-
-                <button onclick="sendMessage()" id="sendButton" class="p-2.5 sm:p-3 rounded-2xl btn-primary disabled:opacity-50 disabled:cursor-not-allowed text-white transition-all flex-shrink-0 shadow-lg">
-                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                    </svg>
-                </button>
-            </div>
-
-            <div id="voiceIndicator" class="hidden mt-3 sm:mt-4 flex items-center justify-center gap-3 glass-effect-inner rounded-2xl p-2.5 sm:p-3">
-                <div class="flex items-center gap-1">
-                    <div class="w-1 h-6 sm:h-8 bg-indigo-500 rounded voice-wave"></div>
-                    <div class="w-1 h-8 sm:h-10 bg-indigo-500 rounded voice-wave" style="animation-delay: 0.1s"></div>
-                    <div class="w-1 h-6 sm:h-8 bg-indigo-500 rounded voice-wave" style="animation-delay: 0.2s"></div>
-                </div>
-                <span class="text-xs sm:text-sm font-medium text-indigo-300" id="listeningText">Ouvindo...</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- History Sidebar -->
-<div id="historySidebar" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50" onclick="toggleHistory()">
-    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md glass-effect shadow-2xl overflow-y-auto animate-slideIn" onclick="event.stopPropagation()">
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">📚 Histórico</h2>
-                <button onclick="toggleHistory()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                    <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="space-y-3" id="historyList">
-                <!-- History items will be populated here -->
-            </div>
-
-            <button onclick="clearAllHistory()" class="w-full mt-6 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-medium py-3 rounded-xl hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors">
-                Limpar todo o histórico
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- Favorites Sidebar -->
-<div id="favoritesSidebar" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50" onclick="toggleFavorites()">
-    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md glass-effect shadow-2xl overflow-y-auto animate-slideIn" onclick="event.stopPropagation()">
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">⭐ Favoritos</h2>
-                <button onclick="toggleFavorites()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                    <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="space-y-3" id="favoritesList">
-                <!-- Favorites will be populated here -->
-            </div>
-
-            <div class="mt-6 text-center text-gray-500 dark:text-gray-400 text-sm" id="emptyFavoritesMessage">
-                Nenhuma mensagem favoritada ainda
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Menu Modal -->
-<div id="menuModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 p-4" onclick="closeMenu()">
-    <div class="glass-effect rounded-t-3xl sm:rounded-3xl shadow-2xl p-6 w-full max-w-md modal-enter" onclick="event.stopPropagation()">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Menu</h2>
-            <button onclick="closeMenu()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-            </button>
-        </div>
-
-        <div class="space-y-2">
-            <button onclick="toggleHistory()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
-                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                <div>
-                    <div class="font-medium text-gray-900 dark:text-white">Histórico</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Ver conversas anteriores</div>
-                </div>
-            </button>
-
-            <button onclick="toggleFavorites()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
-                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-                </svg>
-                <div>
-                    <div class="font-medium text-gray-900 dark:text-white">Favoritos</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Mensagens salvas</div>
-                </div>
-            </button>
-
-            <button onclick="showStatistics()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
-                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                </svg>
-                <div>
-                    <div class="font-medium text-gray-900 dark:text-white">Estatísticas</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Ver dados de uso</div>
-                </div>
-            </button>
-
-            <button onclick="showAccessibilitySettings()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
-                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
-                </svg>
-                <div>
-                    <div class="font-medium text-gray-900 dark:text-white">Acessibilidade</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Configurar acessibilidade</div>
-                </div>
-            </button>
-
-            <button onclick="clearChat()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
-                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                </svg>
-                <div>
-                    <div class="font-medium text-gray-900 dark:text-white">Limpar conversa</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Apagar histórico de mensagens</div>
-                </div>
-            </button>
-
-            <button onclick="exportChat()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
-                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                </svg>
-                <div>
-                    <div class="font-medium text-gray-900 dark:text-white">Exportar conversa</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Salvar como arquivo de texto</div>
-                </div>
-            </button>
-
-            <button onclick="showAboutModal()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
-                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                <div>
-                    <div class="font-medium text-gray-900 dark:text-white">Sobre CICI</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Informações e contato</div>
-                </div>
-            </button>
-
-            <button onclick="showShortcuts()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
-                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
-                </svg>
-                <div>
-                    <div class="font-medium text-gray-900 dark:text-white">Atalhos de teclado</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Ver comandos rápidos</div>
-                </div>
-            </button>
-
-            <button onclick="reportBug()" class="w-full flex items-center gap-3 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-colors text-left">
-                <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                </svg>
-                <div>
-                    <div class="font-medium text-gray-900 dark:text-white">Reportar problema</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">Enviar feedback</div>
-                </div>
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- About Modal -->
-<div id="aboutModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onclick="closeAboutModal()">
-    <div class="glass-effect rounded-3xl shadow-2xl p-8 max-w-md w-full modal-enter" onclick="event.stopPropagation()">
-        <div class="text-center mb-6">
-            <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mb-4 shadow-xl avatar-glow">
-                <span class="text-5xl">🤖</span>
-            </div>
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Sobre a CICI</h2>
-            <p class="text-sm text-gray-600 dark:text-gray-400">v4.0 - Edição Moderna</p>
-        </div>
-
-        <div class="space-y-4 text-sm text-gray-700 dark:text-gray-300">
-            <div class="glass-effect-inner rounded-2xl p-4">
-                <p class="font-semibold mb-2">🤖 Nome Técnico</p>
-                <p>CICI - Cognitive Interactive Conversational Intelligence</p>
-            </div>
-
-            <div class="glass-effect-inner rounded-2xl p-4">
-                <p class="font-semibold mb-2">🚀 Desenvolvido por</p>
-                <p class="mb-2">AmplaAI - Startup brasileira de tecnologia e inovação</p>
-                <a href="https://studio.orpheostudio.com.br" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline">orpheostudio.com.br</a>
-            </div>
-
-            <div class="glass-effect-inner rounded-2xl p-4">
-                <p class="font-semibold mb-2">💜 Contato e Suporte</p>
-                <p class="mb-2">Email: <span class="font-mono text-xs">sac.studiotsukiyo@outlook.com</span></p>
-                <p class="text-xs text-gray-600 dark:text-gray-400">Instagram: @ampla.ai</p>
-            </div>
-        </div>
-
-        <button onclick="closeAboutModal()" class="w-full mt-6 btn-primary text-white font-semibold py-3 rounded-2xl transition-all">
-            Fechar
+        <div class="menu-titulo">🔤 Tamanho do Texto</div>
+        <button class="menu-item" onclick="ajustarFonte(2)">
+            <span>🔍</span>
+            <span>Aumentar Letra</span>
         </button>
-    </div>
-</div>
+        <button class="menu-item" onclick="ajustarFonte(-2)">
+            <span>🔎</span>
+            <span>Diminuir Letra</span>
+        </button>
+        <button class="menu-item" onclick="resetarFonte()">
+            <span>↩️</span>
+            <span>Tamanho Padrão</span>
+        </button>
 
-<!-- Accessibility Settings Modal -->
-<div id="accessibilityModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onclick="closeAccessibility()">
-    <div class="glass-effect rounded-3xl shadow-2xl p-8 max-w-md w-full modal-enter" onclick="event.stopPropagation()">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">♿ Acessibilidade</h2>
-            <button onclick="closeAccessibility()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
+        <div class="menu-divider"></div>
+
+        <div class="menu-titulo">🔊 Áudio</div>
+        <button class="menu-item" onclick="alternarSom()">
+            <span id="icone-som">🔇</span>
+            <span id="texto-som">Ativar Voz</span>
+            <div class="toggle-switch" id="toggle-som"></div>
+        </button>
+        <button class="menu-item" onclick="ajustarVelocidadeVoz(-0.2)">
+            <span>🐢</span>
+            <span>Voz Mais Lenta</span>
+        </button>
+        <button class="menu-item" onclick="ajustarVelocidadeVoz(0.2)">
+            <span>🐇</span>
+            <span>Voz Mais Rápida</span>
+        </button>
+
+        <div class="menu-divider"></div>
+
+        <div class="menu-titulo">📂 Ações</div>
+        <button class="menu-item" onclick="exportarConversa()">
+            <span>💾</span>
+            <span>Salvar Conversa</span>
+        </button>
+        <button class="menu-item" onclick="compartilharConversa()">
+            <span>📤</span>
+            <span>Compartilhar</span>
+        </button>
+        <button class="menu-item" onclick="imprimirConversa()">
+            <span>🖨️</span>
+            <span>Imprimir</span>
+        </button>
+        <button class="menu-item" onclick="limparChat()" style="color: var(--danger);">
+            <span>🗑️</span>
+            <span>Limpar Conversa</span>
+        </button>
+
+        <div class="menu-divider"></div>
+
+        <div class="menu-titulo">❓ Ajuda</div>
+        <button class="menu-item" onclick="mostrarAjuda()">
+            <span>📚</span>
+            <span>Como Usar</span>
+        </button>
+        <button class="menu-item" onclick="mostrarCapacidades()">
+            <span>🚀</span>
+            <span>O que posso fazer?</span>
+        </button>
+        <button class="menu-item" onclick="mostrarAtalhos()">
+            <span>⌨️</span>
+            <span>Atalhos de Teclado</span>
+        </button>
+    </nav>
+
+    <!-- Tela de Boas-Vindas -->
+    <div id="tela-boas-vindas" class="modal-overlay">
+        <div class="card-aviso">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" 
+                 width="100" 
+                 alt="Logo Cici"
+                 style="margin-bottom:20px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));">
+            <h1>🤖 Cici AI</h1>
+            <p style="font-size: 1.3em; font-weight: 700;">Assistente Multifuncional</p>
+            <p>Chat • Análise • Código • Imagens • Documentos</p>
+            <button class="btn-grande" onclick="irParaAviso()">Começar Agora</button>
+        </div>
+    </div>
+
+    <!-- Tela de Avisos -->
+    <div id="tela-aviso" class="modal-overlay oculto">
+        <div class="card-aviso">
+            <h2 style="font-size: 2em; margin-bottom: 20px;">⚠️ Informações Importantes</h2>
+            <div style="text-align: left; margin: 20px 0;">
+                <p><strong>✓</strong> Sou uma assistente IA avançada e multifuncional</p>
+                <p><strong>✓</strong> Posso cometer erros - verifique informações críticas</p>
+                <p><strong>✓</strong> Não compartilhe senhas ou dados bancários</p>
+                <p><strong>✓</strong> Suas conversas são salvas localmente</p>
+                <p><strong>✓</strong> Posso analisar documentos, gerar código e muito mais</p>
+            </div>
+            <button class="btn-grande" onclick="irParaChat()">Entendi e Aceito</button>
+            <div style="margin-top: 24px; font-size: 0.9em; opacity: 0.9;">
+                <a href="https://termos.orpheostudio.com.br" style="color:white" target="_blank">Termos de Uso</a> | 
+                <a href="https://politicas.orpheostudio.com.br" style="color:white" target="_blank">Política de Privacidade</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aplicação Principal -->
+    <div id="tela-app" class="oculto" style="display:flex; flex-direction:column; height:100%">
+        <header>
+            <button class="menu-btn" onclick="abrirMenu()" aria-label="Abrir menu">☰</button>
+            <div class="logo-area">
+                <span>🤖 Cici AI</span>
+                <span class="status-indicator" aria-label="Online"></span>
+            </div>
+            <button class="header-action" onclick="novaConversa()" aria-label="Nova conversa" title="Nova conversa">
+                ➕
             </button>
+        </header>
+
+        <div id="chat-container" role="main" aria-live="polite" aria-label="Área de conversa"></div>
+
+        <div class="sugestoes-container">
+            <div class="sugestoes-scroll" id="chips-sugestoes">
+                <button class="chip" onclick="usarChip('Explique de forma simples:')">
+                    <span>🎯</span> Explicação Simples
+                </button>
+                <button class="chip" onclick="usarChip('Crie um código em Python para:')">
+                    <span>💻</span> Gerar Código
+                </button>
+                <button class="chip" onclick="usarChip('Analise este documento:')">
+                    <span>📄</span> Analisar Documento
+                </button>
+                <button class="chip" onclick="usarChip('Resuma em tópicos:')">
+                    <span>📝</span> Resumir
+                </button>
+                <button class="chip" onclick="usarChip('Traduza para o inglês:')">
+                    <span>🌍</span> Traduzir
+                </button>
+                <button class="chip" onclick="usarChip('Me ajude com matemática:')">
+                    <span>🔢</span> Matemática
+                </button>
+            </div>
         </div>
 
-        <div class="space-y-6">
-            <div>
-                <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Tamanho do texto</h3>
-                <div class="flex gap-2">
-                    <button onclick="setTextSize('small')" id="textSmall" class="flex-1 py-2 glass-effect-inner text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-white/20">
-                        Pequeno
-                    </button>
-                    <button onclick="setTextSize('normal')" id="textNormal" class="flex-1 py-2 btn-primary text-white rounded-lg font-medium">
-                        Normal
-                    </button>
-                    <button onclick="setTextSize('large')" id="textLarge" class="flex-1 py-2 glass-effect-inner text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-white/20">
-                        Grande
-                    </button>
+        <footer>
+            <div class="input-tools" id="toolsBar">
+                <button class="tool-btn" onclick="ativarModoContexto('criativo')" title="Modo criativo">
+                    <span>✨</span> Criativo
+                </button>
+                <button class="tool-btn" onclick="ativarModoContexto('preciso')" title="Modo preciso">
+                    <span>🎯</span> Preciso
+                </button>
+                <button class="tool-btn" onclick="ativarModoContexto('codigo')" title="Especialista em código">
+                    <span>💻</span> Código
+                </button>
+                <button class="tool-btn" onclick="ativarModoContexto('ensino')" title="Modo professor">
+                    <span>🎓</span> Ensino
+                </button>
+                <button class="tool-btn" onclick="ativarModoContexto('analise')" title="Análise profunda">
+                    <span>🔬</span> Análise
+                </button>
+            </div>
+
+            <div class="input-wrapper">
+                <div class="input-actions">
+                    <button id="btn-mic" onclick="ativarMicrofone()" aria-label="Ativar microfone" title="Falar">🎤</button>
+                    <button id="btn-attach" onclick="anexarArquivo()" aria-label="Anexar arquivo" title="Anexar">📎</button>
                 </div>
-            </div>
-
-            <div>
-                <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Contraste</h3>
-                <div class="flex gap-2">
-                    <button onclick="setContrast('normal')" id="contrastNormal" class="flex-1 py-2 btn-primary text-white rounded-lg font-medium">
-                        Normal
-                    </button>
-                    <button onclick="setContrast('high')" id="contrastHigh" class="flex-1 py-2 glass-effect-inner text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-white/20">
-                        Alto
-                    </button>
+                
+                <div class="input-container">
+                    <textarea id="entradaUsuario" 
+                           placeholder="Digite sua mensagem... (Shift+Enter para nova linha)" 
+                           aria-label="Campo de mensagem"
+                           rows="1"></textarea>
+                    <span class="input-contador" id="contador-chars">0/4000</span>
                 </div>
+                
+                <button class="btn-send" 
+                        onclick="enviarMensagem()" 
+                        id="btn-enviar"
+                        aria-label="Enviar mensagem">
+                    Enviar
+                </button>
             </div>
+        </footer>
+    </div>
 
-            <div>
-                <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Animações</h3>
-                <div class="flex items-center justify-between">
-                    <span class="text-gray-700 dark:text-gray-300">Reduzir movimento</span>
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="reduceMotion" class="sr-only peer" onchange="toggleReducedMotion()">
-                        <div class="w-11 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
-                    </label>
+    <input type="file" id="fileInput" accept=".txt,.pdf,.doc,.docx,.jpg,.jpeg,.png,.gif" multiple>
+    <div id="toast-container"></div>
+
+    <script>
+        // ===== CONFIGURAÇÕES =====
+        const CONFIG = {
+            MISTRAL_API_KEY: 'SUA_CHAVE_API_MISTRAL_AQUI',
+            SUPABASE_URL: 'SUA_URL_SUPABASE_AQUI',
+            SUPABASE_KEY: 'SUA_CHAVE_ANON_SUPABASE_AQUI',
+            MAX_HISTORICO: 15,
+            MAX_CHARS: 4000,
+            VELOCIDADE_VOZ_PADRAO: 1.0,
+            MODELOS_DISPONIVEIS: ['mistral-tiny', 'mistral-small', 'mistral-medium']
+        };
+
+        let estado = {
+            somAtivado: false,
+            velocidadeVoz: CONFIG.VELOCIDADE_VOZ_PADRAO,
+            tamanhoFonte: 16,
+            temaEscuro: false,
+            altoContraste: false,
+            leituraFacilitada: false,
+            conversaAtual: [],
+            aguardandoResposta: false,
+            modoContexto: 'normal',
+            arquivosAnexados: []
+        };
+
+        let supabase = null;
+        if (CONFIG.SUPABASE_URL !== 'SUA_URL_SUPABASE_AQUI') {
+            supabase = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_KEY);
+        }
+
+        marked.setOptions({ 
+            breaks: true,
+            highlight: function(code, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    return hljs.highlight(code, { language: lang }).value;
+                }
+                return hljs.highlightAuto(code).value;
+            }
+        });
+
+        // ===== INICIALIZAÇÃO =====
+        window.onload = () => {
+            carregarConfiguracoes();
+            carregarHistorico();
+            configurarEventos();
+            aplicarConfiguracoes();
+            verificarSuporteFuncionalidades();
+        };
+
+        function carregarConfiguracoes() {
+            const configs = JSON.parse(localStorage.getItem('ciciConfigs') || '{}');
+            estado = { ...estado, ...configs };
+            if (localStorage.getItem('altoContraste') === 'true') {
+                estado.altoContraste = true;
+            }
+        }
+
+        function salvarConfiguracoes() {
+            localStorage.setItem('ciciConfigs', JSON.stringify(estado));
+        }
+
+        function aplicarConfiguracoes() {
+            if (estado.temaEscuro) {
+                document.body.classList.add('tema-escuro');
+                document.getElementById('toggle-tema').classList.add('ativo');
+                document.getElementById('icone-tema').textContent = '☀️';
+                document.getElementById('texto-tema').textContent = 'Modo Claro';
+            }
+            if (estado.altoContraste) {
+                document.body.classList.add('alto-contraste');
+                document.getElementById('toggle-contraste').classList.add('ativo');
+            }
+            if (estado.leituraFacilitada) {
+                document.body.classList.add('leitura-facilitada');
+                document.getElementById('toggle-leitura').classList.add('ativo');
+            }
+            if (estado.somAtivado) {
+                document.getElementById('toggle-som').classList.add('ativo');
+                document.getElementById('icone-som').textContent = '🔊';
+                document.getElementById('texto-som').textContent = 'Desativar Voz';
+            }
+            document.documentElement.style.fontSize = estado.tamanhoFonte + 'px';
+        }
+
+        function configurarEventos() {
+            const input = document.getElementById('entradaUsuario');
+            
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    enviarMensagem();
+                }
+            });
+            
+            input.addEventListener('input', () => {
+                autoResizeTextarea(input);
+                const contador = document.getElementById('contador-chars');
+                contador.textContent = `${input.value.length}/${CONFIG.MAX_CHARS}`;
+                if (input.value.length > CONFIG.MAX_CHARS * 0.9) {
+                    contador.style.color = 'var(--danger)';
+                } else {
+                    contador.style.color = 'var(--text-secondary)';
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    input.focus();
+                }
+                if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
+                    e.preventDefault();
+                    limparChat();
+                }
+                if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                    e.preventDefault();
+                    exportarConversa();
+                }
+                if (e.key === 'Escape') {
+                    fecharMenu();
+                }
+            });
+
+            document.getElementById('fileInput').addEventListener('change', processarArquivos);
+        }
+
+        function autoResizeTextarea(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+        }
+
+        function verificarSuporteFuncionalidades() {
+            const temReconhecimentoVoz = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
+            if (!temReconhecimentoVoz) {
+                document.getElementById('btn-mic').style.display = 'none';
+            }
+        }
+
+        // ===== NAVEGAÇÃO =====
+        function irParaAviso() {
+            document.getElementById('tela-boas-vindas').classList.add('oculto');
+            document.getElementById('tela-aviso').classList.remove('oculto');
+        }
+
+        function irParaChat() {
+            document.getElementById('tela-aviso').classList.add('oculto');
+            document.getElementById('tela-app').classList.remove('oculto');
+            
+            const chat = document.getElementById('chat-container');
+            if (chat.children.length === 0) {
+                setTimeout(() => mostrarMensagemBoasVindas(), 300);
+            }
+        }
+
+        function mostrarMensagemBoasVindas() {
+            const mensagem = `# 🚀 Olá! Eu sou a **Cici AI**
+
+Sou uma assistente multifuncional avançada. Veja o que posso fazer:
+
+**💬 Conversação Natural**
+- Respondo perguntas complexas
+- Mantenho contexto da conversa
+- Explico conceitos de forma clara
+
+**💻 Programação**
+- Gero código em várias linguagens
+- Explico e depuro código
+- Crio algoritmos e soluções
+
+**📄 Documentos**
+- Analiso PDFs, textos e imagens
+- Resumo conteúdos
+- Extraio informações importantes
+
+**🎨 Criatividade**
+- Escrevo histórias e poemas
+- Crio roteiros e ideias
+- Ajudo com brainstorming
+
+**🔬 Análise**
+- Faço análises profundas
+- Comparo informações
+- Resolvo problemas complexos
+
+**🌍 Multilíngue**
+- Traduzo textos
+- Ensino idiomas
+- Explico gramática
+
+Como posso ajudar você hoje?`;
+
+            adicionarMensagem(mensagem, 'cici', false);
+        }
+
+        function abrirMenu() {
+            document.getElementById('side-menu').classList.add('aberto');
+            document.getElementById('overlay-menu').classList.add('aberto');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharMenu() {
+            document.getElementById('side-menu').classList.remove('aberto');
+            document.getElementById('overlay-menu').classList.remove('aberto');
+            document.body.style.overflow = '';
+        }
+
+        function novaConversa() {
+            if (estado.conversaAtual.length === 0) {
+                mostrarToast('Já está em uma conversa nova', 'info');
+                return;
+            }
+            if (confirm('Deseja iniciar uma nova conversa? A conversa atual será salva.')) {
+                const timestamp = Date.now();
+                localStorage.setItem(`ciciChat_${timestamp}`, JSON.stringify(estado.conversaAtual));
+                limparChat();
+                setTimeout(() => mostrarMensagemBoasVindas(), 300);
+                mostrarToast('Nova conversa iniciada!', 'sucesso');
+            }
+        }
+
+        // ===== APARÊNCIA =====
+        function alternarTemaEscuro() {
+            estado.temaEscuro = !estado.temaEscuro;
+            document.body.classList.toggle('tema-escuro');
+            const toggle = document.getElementById('toggle-tema');
+            const icone = document.getElementById('icone-tema');
+            const texto = document.getElementById('texto-tema');
+            if (estado.temaEscuro) {
+                toggle.classList.add('ativo');
+                icone.textContent = '☀️';
+                texto.textContent = 'Modo Claro';
+            } else {
+                toggle.classList.remove('ativo');
+                icone.textContent = '🌙';
+                texto.textContent = 'Modo Escuro';
+            }
+            salvarConfiguracoes();
+            mostrarToast('Tema alterado!', 'sucesso');
+        }
+
+        function alternarContraste() {
+            estado.altoContraste = !estado.altoContraste;
+            document.body.classList.toggle('alto-contraste');
+            document.getElementById('toggle-contraste').classList.toggle('ativo');
+            localStorage.setItem('altoContraste', estado.altoContraste);
+            salvarConfiguracoes();
+            mostrarToast('Alto contraste ' + (estado.altoContraste ? 'ativado' : 'desativado'), 'sucesso');
+        }
+
+        function alternarLeituraFacilitada() {
+            estado.leituraFacilitada = !estado.leituraFacilitada;
+            document.body.classList.toggle('leitura-facilitada');
+            document.getElementById('toggle-leitura').classList.toggle('ativo');
+            salvarConfiguracoes();
+            mostrarToast('Leitura facilitada ' + (estado.leituraFacilitada ? 'ativada' : 'desativada'), 'sucesso');
+        }
+
+        function ajustarFonte(incremento) {
+            estado.tamanhoFonte = Math.max(12, Math.min(28, estado.tamanhoFonte + incremento));
+            document.documentElement.style.fontSize = estado.tamanhoFonte + 'px';
+            salvarConfiguracoes();
+            mostrarToast(`Tamanho: ${estado.tamanhoFonte}px`, 'sucesso');
+        }
+
+        function resetarFonte() {
+            estado.tamanhoFonte = 16;
+            document.documentElement.style.fontSize = '16px';
+            salvarConfiguracoes();
+            mostrarToast('Tamanho padrão restaurado', 'sucesso');
+        }
+
+        // ===== ÁUDIO =====
+        function alternarSom() {
+            estado.somAtivado = !estado.somAtivado;
+            const toggle = document.getElementById('toggle-som');
+            const icone = document.getElementById('icone-som');
+            const texto = document.getElementById('texto-som');
+            if (estado.somAtivado) {
+                toggle.classList.add('ativo');
+                icone.textContent = '🔊';
+                texto.textContent = 'Desativar Voz';
+                falar('Voz ativada com sucesso!');
+            } else {
+                toggle.classList.remove('ativo');
+                icone.textContent = '🔇';
+                texto.textContent = 'Ativar Voz';
+                window.speechSynthesis.cancel();
+            }
+            salvarConfiguracoes();
+        }
+
+        function ajustarVelocidadeVoz(incremento) {
+            estado.velocidadeVoz = Math.max(0.5, Math.min(2.0, estado.velocidadeVoz + incremento));
+            salvarConfiguracoes();
+            const velocidadeTexto = estado.velocidadeVoz === 1.0 ? 'normal' : 
+                                   estado.velocidadeVoz < 1.0 ? 'lenta' : 'rápida';
+            mostrarToast(`Velocidade da voz: ${velocidadeTexto}`, 'sucesso');
+            falar('Teste de velocidade da voz');
+        }
+
+        function falar(texto) {
+            if (!estado.somAtivado || !('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const textoLimpo = texto.replace(/[*_#`]/g, '').replace(/<[^>]*>/g, '').replace(/\n+/g, '. ');
+            const utterance = new SpeechSynthesisUtterance(textoLimpo);
+            utterance.lang = 'pt-BR';
+            utterance.rate = estado.velocidadeVoz;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function ativarMicrofone() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                mostrarToast('Seu navegador não suporta reconhecimento de voz', 'erro');
+                return;
+            }
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'pt-BR';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            const btnMic = document.getElementById('btn-mic');
+            recognition.onstart = () => {
+                btnMic.classList.add('ouvindo');
+                mostrarToast('🎤 Estou ouvindo...', 'aviso');
+            };
+            recognition.onend = () => {
+                btnMic.classList.remove('ouvindo');
+            };
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('entradaUsuario').value = transcript;
+                document.getElementById('entradaUsuario').focus();
+                autoResizeTextarea(document.getElementById('entradaUsuario'));
+                mostrarToast('✓ Texto capturado!', 'sucesso');
+            };
+            recognition.onerror = (event) => {
+                btnMic.classList.remove('ouvindo');
+                let mensagem = 'Erro ao capturar voz';
+                if (event.error === 'no-speech') mensagem = 'Nenhuma fala detectada';
+                else if (event.error === 'not-allowed') mensagem = 'Permissão de microfone negada';
+                mostrarToast(mensagem, 'erro');
+            };
+            try {
+                recognition.start();
+            } catch (e) {
+                mostrarToast('Erro ao iniciar microfone', 'erro');
+            }
+        }
+
+        // ===== MODOS DE CONTEXTO =====
+        function ativarModoContexto(modo) {
+            document.querySelectorAll('.tool-btn').forEach(btn => btn.classList.remove('ativo'));
+            event.target.closest('.tool-btn').classList.add('ativo');
+            estado.modoContexto = modo;
+            
+            const modos = {
+                criativo: '✨ Modo Criativo ativado - Respostas mais imaginativas',
+                preciso: '🎯 Modo Preciso ativado - Respostas mais factuais',
+                codigo: '💻 Modo Código ativado - Especialista em programação',
+                ensino: '🎓 Modo Ensino ativado - Explicações didáticas',
+                analise: '🔬 Modo Análise ativado - Análises profundas'
+            };
+            
+            mostrarToast(modos[modo], 'sucesso');
+        }
+
+        // ===== ANEXAR ARQUIVOS =====
+        function anexarArquivo() {
+            document.getElementById('fileInput').click();
+        }
+
+        async function processarArquivos(event) {
+            const files = Array.from(event.target.files);
+            if (files.length === 0) return;
+            
+            for (const file of files) {
+                if (file.size > 10 * 1024 * 1024) {
+                    mostrarToast(`Arquivo ${file.name} muito grande (máx 10MB)`, 'erro');
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const conteudo = e.target.result;
+                    const tipoArquivo = file.type.startsWith('image/') ? 'imagem' : 'documento';
+                    
+                    estado.arquivosAnexados.push({
+                        nome: file.name,
+                        tipo: tipoArquivo,
+                        tamanho: file.size,
+                        conteudo: conteudo
+                    });
+                    
+                    mostrarArquivoAnexado(file.name, file.size, tipoArquivo);
+                    mostrarToast(`✓ ${file.name} anexado!`, 'sucesso');
+                };
+                
+                if (file.type.startsWith('image/')) {
+                    reader.readAsDataURL(file);
+                } else {
+                    reader.readAsText(file);
+                }
+            }
+            
+            event.target.value = '';
+        }
+
+        function mostrarArquivoAnexado(nome, tamanho, tipo) {
+            const chat = document.getElementById('chat-container');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'mensagem-wrapper usuario-wrapper';
+            
+            const icones = {
+                'imagem': '🖼️',
+                'documento': '📄'
+            };
+            
+            wrapper.innerHTML = `
+                <div class="mensagem usuario">
+                    <div class="file-attachment">
+                        <div class="file-icon">${icones[tipo]}</div>
+                        <div class="file-info">
+                            <div class="file-name">${nome}</div>
+                            <div class="file-size">${formatarTamanho(tamanho)}</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            `;
+            
+            chat.appendChild(wrapper);
+            chat.scrollTop = chat.scrollHeight;
+        }
 
-            <div class="glass-effect-warning rounded-xl p-4">
-                <p class="text-sm text-gray-800 dark:text-gray-200">
-                    <strong>Dica:</strong> As configurações de acessibilidade são salvas automaticamente no seu navegador.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+        function formatarTamanho(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
 
-<!-- Statistics Modal -->
-<div id="statisticsModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onclick="closeStatistics()">
-    <div class="glass-effect rounded-3xl shadow-2xl p-8 max-w-2xl w-full modal-enter" onclick="event.stopPropagation()">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">📊 Estatísticas</h2>
-            <button onclick="closeStatistics()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-            </button>
-        </div>
+        // ===== ENVIAR MENSAGEM =====
+        function usarChip(texto) {
+            document.getElementById('entradaUsuario').value = texto + ' ';
+            document.getElementById('entradaUsuario').focus();
+            autoResizeTextarea(document.getElementById('entradaUsuario'));
+        }
 
-        <div class="grid grid-cols-2 gap-4 mb-6">
-            <div class="glass-effect-inner rounded-2xl p-4 text-center">
-                <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="totalMessages">0</div>
-                <div class="text-sm text-gray-600 dark:text-gray-400">Mensagens</div>
-            </div>
-            <div class="glass-effect-inner rounded-2xl p-4 text-center">
-                <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="favoritesCount">0</div>
-                <div class="text-sm text-gray-600 dark:text-gray-400">Favoritos</div>
-            </div>
-            <div class="glass-effect-inner rounded-2xl p-4 text-center">
-                <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="voiceMessages">0</div>
-                <div class="text-sm text-gray-600 dark:text-gray-400">Mensagens de voz</div>
-            </div>
-            <div class="glass-effect-inner rounded-2xl p-4 text-center">
-                <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="sessionsCount">0</div>
-                <div class="text-sm text-gray-600 dark:text-gray-400">Sessões</div>
-            </div>
-        </div>
-
-        <div class="glass-effect-inner rounded-2xl p-4">
-            <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Atividade por hora</h3>
-            <div class="h-32 flex items-end gap-1" id="activityChart">
-                <!-- Activity bars will be generated here -->
-            </div>
-        </div>
-
-        <div class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
-            Dados desde: <span id="statsSince">-</span>
-        </div>
-    </div>
-</div>
-
-<!-- Shortcuts Modal -->
-<div id="shortcutsModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onclick="closeShortcuts()">
-    <div class="glass-effect rounded-3xl shadow-2xl p-8 max-w-md w-full modal-enter" onclick="event.stopPropagation()">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">⌨️ Atalhos de Teclado</h2>
-            <button onclick="closeShortcuts()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-            </button>
-        </div>
-
-        <div class="space-y-3 text-sm">
-            <div class="flex justify-between items-center">
-                <span class="text-gray-600 dark:text-gray-400">Focar no input</span>
-                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + K</kbd>
-            </div>
-            <div class="flex justify-between items-center">
-                <span class="text-gray-600 dark:text-gray-400">Ativar voz</span>
-                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + M</kbd>
-            </div>
-            <div class="flex justify-between items-center">
-                <span class="text-gray-600 dark:text-gray-400">Modo escuro</span>
-                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + D</kbd>
-            </div>
-            <div class="flex justify-between items-center">
-                <span class="text-gray-600 dark:text-gray-400">Enviar mensagem</span>
-                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Enter</kbd>
-            </div>
-            <div class="flex justify-between items-center">
-                <span class="text-gray-600 dark:text-gray-400">Nova linha</span>
-                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Shift + Enter</kbd>
-            </div>
-            <div class="flex justify-between items-center">
-                <span class="text-gray-600 dark:text-gray-400">Limpar conversa</span>
-                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + L</kbd>
-            </div>
-            <div class="flex justify-between items-center">
-                <span class="text-gray-600 dark:text-gray-400">Abrir histórico</span>
-                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + H</kbd>
-            </div>
-            <div class="flex justify-between items-center">
-                <span class="text-gray-600 dark:text-gray-400">Abrir favoritos</span>
-                <kbd class="px-3 py-1 glass-effect-inner rounded-lg font-mono text-xs">Ctrl + F</kbd>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Donate Reminder -->
-<div id="sion-donation-banner" style="display:none;">
-  <div class="sion-banner-content">
-    <p>🤖 <strong>CICI:</strong> Manter uma IA ativa é caro... considere fazer uma doação para me manter online 💙</p>
-    <div class="sion-banner-actions">
-      <a href="https://nubank.com.br/cobrar/ftet6/690dfa92-b7c5-4679-83ff-6d64e4b35c83" target="_blank" class="sion-donate-btn">Doar</a>
-      <button id="sion-banner-close" aria-label="Fechar">✕</button>
-    </div>
-  </div>
-</div>
-
-<style>
-  /* 🔹 Estilo geral do banner de doação */
-  #sion-donation-banner {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    max-width: 350px;
-    background: rgba(99, 102, 241, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    padding: 16px 18px;
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    z-index: 9999;
-    animation: sionFadeIn 0.6s ease forwards;
-  }
-
-  .sion-banner-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .sion-banner-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .sion-donate-btn {
-    background: #fff;
-    color: #6366f1;
-    padding: 6px 14px;
-    border-radius: 8px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .sion-donate-btn:hover {
-    background: #f0f0f0;
-    transform: scale(1.05);
-  }
-
-  #sion-banner-close {
-    background: transparent;
-    border: none;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: color 0.2s ease;
-  }
-
-  #sion-banner-close:hover {
-    color: #fff;
-  }
-
-  @keyframes sionFadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
-
-<script>
-  // 🕒 Mostra o lembrete 15 segundos depois
-  setTimeout(() => {
-    const banner = document.getElementById("sion-donation-banner");
-    if (banner) banner.style.display = "block";
-  }, 15000);
-
-  // ❌ Botão de fechar
-  document.addEventListener("click", (e) => {
-    if (e.target && e.target.id === "sion-banner-close") {
-      const banner = document.getElementById("sion-donation-banner");
-      if (banner) {
-        banner.style.opacity = "0";
-        banner.style.transform = "translateY(10px)";
-        setTimeout(() => banner.remove(), 400);
-      }
+        async function enviarMensagem() {
+            const input = document.getElementById('entradaUsuario');
+            const texto = input.value.trim();
+            
+            if (!texto && estado.arquivosAnexados.length === 0) return;
+            if (estado.aguardandoResposta) return;
+            
+            let mensagemCompleta = texto;
+            
+            // ===== ENVIAR MENSAGEM =====
+async function enviarMensagem() {
+    const input = document.getElementById('entradaUsuario');
+    const texto = input.value.trim();
+    
+    if (!texto && estado.arquivosAnexados.length === 0) {
+        mostrarToast('Digite uma mensagem ou anexe um arquivo', 'aviso');
+        return;
     }
-  });
-</script>
+    
+    if (estado.aguardandoResposta) {
+        mostrarToast('Aguarde a resposta atual', 'aviso');
+        return;
+    }
+    
+    let mensagemCompleta = texto;
+    
+    // Adicionar informações dos arquivos anexados
+    if (estado.arquivosAnexados.length > 0) {
+        mensagemCompleta += "\n\n📎 **Arquivos anexados:**";
+        estado.arquivosAnexados.forEach(arquivo => {
+            mensagemCompleta += `\n- ${arquivo.nome} (${arquivo.tipo})`;
+            
+            // Para arquivos de texto, incluir o conteúdo
+            if (arquivo.tipo === 'documento' && arquivo.conteudo) {
+                mensagemCompleta += `\n  Conteúdo: ${arquivo.conteudo.substring(0, 500)}...`;
+            }
+        });
+    }
 
-<script src="script.js"></script>
-</body>
-</html>
+    // Adicionar mensagem do usuário ao chat
+    adicionarMensagem(mensagemCompleta, 'usuario');
+    estado.conversaAtual.push({ role: 'user', content: mensagemCompleta });
+
+    // Limpar input e arquivos
+    input.value = '';
+    input.style.height = 'auto';
+    estado.arquivosAnexados = [];
+    document.getElementById('contador-chars').textContent = '0/4000';
+    estado.aguardandoResposta = true;
+
+    // Mostrar indicador de digitação
+    mostrarDigitando();
+
+    try {
+        const resposta = await gerarRespostaIA(mensagemCompleta);
+        
+        // Remover indicador de digitação
+        removerDigitando();
+        
+        // Adicionar resposta ao chat
+        adicionarMensagem(resposta, 'cici', true);
+        estado.conversaAtual.push({ role: 'assistant', content: resposta });
+        
+        // Falar resposta se áudio estiver ativado
+        falar(resposta);
+        
+    } catch (error) {
+        removerDigitando();
+        console.error('Erro na API:', error);
+        
+        let mensagemErro = "Desculpe, ocorreu um erro ao processar sua solicitação. ";
+        
+        if (error.message.includes('API key')) {
+            mensagemErro = "⚠️ **Configuração de API necessária**\n\nPara usar a Cici AI, configure:\n\n1. Sua chave da API Mistral em `CONFIG.MISTRAL_API_KEY`\n2. URL e chave do Supabase para armazenamento\n\nSem essas configurações, a aplicação não pode se conectar aos serviços de IA.";
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+            mensagemErro = "🌐 **Erro de conexão**\n\nVerifique sua conexão com a internet e tente novamente.";
+        } else if (error.message.includes('rate limit') || error.status === 429) {
+            mensagemErro = "⏳ **Limite de requisições**\n\nMuitas requisições em um curto período. Tente novamente em alguns instantes.";
+        } else if (error.status === 401) {
+            mensagemErro = "🔑 **Erro de autenticação**\n\nChave da API inválida ou expirada. Verifique suas credenciais.";
+        } else if (error.status >= 500) {
+            mensagemErro = "⚡ **Erro do servidor**\n\nO serviço de IA está temporariamente indisponível. Tente novamente em alguns minutos.";
+        }
+        
+        adicionarMensagem(mensagemErro, 'cici', true);
+        mostrarToast('Erro na comunicação com a IA', 'erro');
+    }
+
+    estado.aguardandoResposta = false;
+}
+
+async function gerarRespostaIA(mensagem) {
+    // Verificar se a API key está configurada
+    if (CONFIG.MISTRAL_API_KEY === 'SUA_CHAVE_API_MISTRAL_AQUI') {
+        throw new Error('API key não configurada');
+    }
+
+    // Preparar histórico da conversa
+    const historico = estado.conversaAtual.slice(-CONFIG.MAX_HISTORICO);
+    
+    // Configurar parâmetros baseados no modo de contexto
+    let temperatura = 0.7; // padrão
+    let maxTokens = 2000;
+    
+    switch(estado.modoContexto) {
+        case 'preciso':
+            temperatura = 0.3;
+            break;
+        case 'criativo':
+            temperatura = 0.9;
+            break;
+        case 'codigo':
+            temperatura = 0.5;
+            maxTokens = 3000;
+            break;
+        case 'ensino':
+            temperatura = 0.6;
+            break;
+        case 'analise':
+            temperatura = 0.4;
+            maxTokens = 2500;
+            break;
+    }
+
+    const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${CONFIG.MISTRAL_API_KEY}`
+        },
+        body: JSON.stringify({
+            model: 'mistral-small', // ou mistral-medium para mais capacidade
+            messages: [
+                {
+                    role: 'system',
+                    content: `Você é a Cici AI, uma assistente multifuncional avançada. 
+                    Responda de forma clara, útil e detalhada. 
+                    Formate respostas usando Markdown quando apropriado.
+                    Seja direta e evite textos muito longos sem formatação.`
+                },
+                ...historico,
+                { role: 'user', content: mensagem }
+            ],
+            temperature: temperatura,
+            max_tokens: maxTokens,
+            top_p: 0.9,
+            stream: false
+        })
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(`HTTP ${response.status}: ${errorData.message || 'Erro na API'}`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+        throw new Error('Resposta da API inválida');
+    }
+
+    return data.choices[0].message.content;
+}
+
+// ===== FUNÇÕES DO CHAT =====
+function adicionarMensagem(texto, tipo, renderMarkdown = true) {
+    const chat = document.getElementById('chat-container');
+    const wrapper = document.createElement('div');
+    wrapper.className = `mensagem-wrapper ${tipo}-wrapper`;
+
+    const hora = new Date().toLocaleTimeString('pt-BR', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+    });
+
+    let conteudo = texto;
+    if (renderMarkdown && tipo === 'cici') {
+        try {
+            conteudo = marked.parse(texto);
+        } catch (e) {
+            console.error('Erro ao processar markdown:', e);
+            conteudo = texto.replace(/\n/g, '<br>');
+        }
+    } else {
+        conteudo = texto.replace(/\n/g, '<br>');
+    }
+
+    wrapper.innerHTML = `
+        <div class="mensagem ${tipo}">
+            ${conteudo}
+            <div class="mensagem-hora">${hora}</div>
+            ${tipo === 'cici' ? `
+            <div class="mensagem-acoes">
+                <button class="btn-acao" onclick="copiarTexto(this, '${escapeTexto(texto)}')">
+                    📋 Copiar
+                </button>
+                <button class="btn-acao" onclick="falar('${escapeTexto(texto)}')" ${!estado.somAtivado ? 'disabled' : ''}>
+                    🔊 Ouvir
+                </button>
+            </div>
+            ` : ''}
+        </div>
+    `;
+
+    chat.appendChild(wrapper);
+    chat.scrollTop = chat.scrollHeight;
+
+    // Aplicar syntax highlighting para código
+    wrapper.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block);
+        
+        // Adicionar botão de copiar para blocos de código
+        const pre = block.closest('pre');
+        if (pre && !pre.querySelector('.code-header')) {
+            const header = document.createElement('div');
+            header.className = 'code-header';
+            header.innerHTML = `
+                <span class="code-language">${block.className.replace('language-', '') || 'code'}</span>
+                <button class="code-copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+            `;
+            pre.insertBefore(header, pre.firstChild);
+        }
+    });
+}
+
+function escapeTexto(texto) {
+    return texto.replace(/'/g, "\\'").replace(/\n/g, '\\n');
+}
+
+// ===== MENSAGEM DE BOAS-VINDAS REAL =====
+function mostrarMensagemBoasVindas() {
+    const mensagem = `# 🚀 Olá! Eu sou a **Cici AI**
+
+Sou uma assistente multifuncional avançada conectada à API Mistral. 
+
+**🎯 Funcionalidades Disponíveis:**
+• 💬 Conversação natural e contextual
+• 💻 Geração e análise de código
+• 📄 Processamento de documentos anexados
+• 🎨 Conteúdo criativo e brainstorming
+• 🔬 Análise profunda de problemas
+• 🌍 Tradução e suporte multilíngue
+
+**⚡ Modos de Operação:**
+• \`Criativo\` - Respostas imaginativas
+• \`Preciso\` - Respostas factuais e diretas  
+• \`Código\` - Especialista em programação
+• \`Ensino\` - Explicações didáticas
+• \`Análise\` - Análises detalhadas
+
+**📎 Posso processar:** Textos, PDFs, imagens e outros documentos.
+
+Como posso ajudá-lo hoje?`;
+
+    adicionarMensagem(mensagem, 'cici', false);
+}
+
+// ===== CONFIGURAÇÃO DE API =====
+function verificarConfiguracaoAPI() {
+    if (CONFIG.MISTRAL_API_KEY === 'SUA_CHAVE_API_MISTRAL_AQUI') {
+        console.warn('⚠️ API Mistral não configurada');
+        return false;
+    }
+    return true;
+}
+
+// Modificar a função de inicialização para verificar a API
+window.onload = () => {
+    carregarConfiguracoes();
+    carregarHistorico();
+    configurarEventos();
+    aplicarConfiguracoes();
+    verificarSuporteFuncionalidades();
+    
+    if (!verificarConfiguracaoAPI()) {
+        console.log('Configure a API Mistral para uso completo');
+    }
+};
+
+// Adicionar verificação ao enviar primeira mensagem
+function irParaChat() {
+    document.getElementById('tela-aviso').classList.add('oculto');
+    document.getElementById('tela-app').classList.remove('oculto');
+    
+    const chat = document.getElementById('chat-container');
+    if (chat.children.length === 0) {
+        setTimeout(() => {
+            if (!verificarConfiguracaoAPI()) {
+                const avisoConfig = `# ⚠️ **Configuração Necessária**
+
+Para usar toda a funcionalidade da Cici AI, configure:
+
+1. **API Mistral**: Obtenha uma chave em https://mistral.ai
+2. **Supabase**: Para armazenamento de conversas (opcional)
+
+**Configuração atual:**
+• Mistral API: ${CONFIG.MISTRAL_API_KEY === 'SUA_CHAVE_API_MISTRAL_AQUI' ? '❌ Não configurada' : '✅ Configurada'}
+• Supabase: ${CONFIG.SUPABASE_URL === 'SUA_URL_SUPABASE_AQUI' ? '❌ Não configurado' : '✅ Configurado'}
+
+Enquanto isso, você pode testar a interface, mas as respostas da IA não estarão disponíveis.`;
+                adicionarMensagem(avisoConfig, 'cici', true);
+            } else {
+                mostrarMensagemBoasVindas();
+            }
+        }, 300);
+    }
+}
+// ===== CONFIGURAÇÕES =====
+const CONFIG = {
+    MISTRAL_API_KEY: 'SUA_CHAVE_API_MISTRAL_AQUI',
+    SUPABASE_URL: 'SUA_URL_SUPABASE_AQUI',
+    SUPABASE_KEY: 'SUA_CHAVE_ANON_SUPABASE_AQUI',
+    MAX_HISTORICO: 15,
+    MAX_CHARS: 4000,
+    VELOCIDADE_VOZ_PADRAO: 1.0,
+    MODELOS_DISPONIVEIS: ['mistral-tiny', 'mistral-small', 'mistral-medium']
+};
+
+let estado = {
+    somAtivado: false,
+    velocidadeVoz: CONFIG.VELOCIDADE_VOZ_PADRAO,
+    tamanhoFonte: 16,
+    temaEscuro: false,
+    altoContraste: false,
+    leituraFacilitada: false,
+    conversaAtual: [],
+    aguardandoResposta: false,
+    modoContexto: 'normal',
+    arquivosAnexados: []
+};
+
+let supabase = null;
+if (CONFIG.SUPABASE_URL !== 'SUA_URL_SUPABASE_AQUI' && CONFIG.SUPABASE_KEY !== 'SUA_CHAVE_ANON_SUPABASE_AQUI') {
+    supabase = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_KEY);
+}
+
+marked.setOptions({ 
+    breaks: true,
+    highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+    }
+});
+
+// ===== INICIALIZAÇÃO =====
+window.onload = () => {
+    carregarConfiguracoes();
+    carregarHistorico();
+    configurarEventos();
+    aplicarConfiguracoes();
+    verificarSuporteFuncionalidades();
+};
+
+function carregarConfiguracoes() {
+    const configs = JSON.parse(localStorage.getItem('ciciConfigs') || '{}');
+    estado = { ...estado, ...configs };
+    if (localStorage.getItem('altoContraste') === 'true') {
+        estado.altoContraste = true;
+    }
+}
+
+function salvarConfiguracoes() {
+    localStorage.setItem('ciciConfigs', JSON.stringify(estado));
+}
+
+function aplicarConfiguracoes() {
+    if (estado.temaEscuro) {
+        document.body.classList.add('tema-escuro');
+        document.getElementById('toggle-tema').classList.add('ativo');
+        document.getElementById('icone-tema').textContent = '☀️';
+        document.getElementById('texto-tema').textContent = 'Modo Claro';
+    }
+    if (estado.altoContraste) {
+        document.body.classList.add('alto-contraste');
+        document.getElementById('toggle-contraste').classList.add('ativo');
+    }
+    if (estado.leituraFacilitada) {
+        document.body.classList.add('leitura-facilitada');
+        document.getElementById('toggle-leitura').classList.add('ativo');
+    }
+    if (estado.somAtivado) {
+        document.getElementById('toggle-som').classList.add('ativo');
+        document.getElementById('icone-som').textContent = '🔊';
+        document.getElementById('texto-som').textContent = 'Desativar Voz';
+    }
+    document.documentElement.style.fontSize = estado.tamanhoFonte + 'px';
+}
+
+function configurarEventos() {
+    const input = document.getElementById('entradaUsuario');
+    
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            enviarMensagem();
+        }
+    });
+    
+    input.addEventListener('input', () => {
+        autoResizeTextarea(input);
+        const contador = document.getElementById('contador-chars');
+        contador.textContent = `${input.value.length}/${CONFIG.MAX_CHARS}`;
+        if (input.value.length > CONFIG.MAX_CHARS * 0.9) {
+            contador.style.color = 'var(--danger)';
+        } else {
+            contador.style.color = 'var(--text-secondary)';
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            input.focus();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
+            e.preventDefault();
+            limparChat();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault();
+            exportarConversa();
+        }
+        if (e.key === 'Escape') {
+            fecharMenu();
+        }
+    });
+
+    document.getElementById('fileInput').addEventListener('change', processarArquivos);
+}
+
+function autoResizeTextarea(textarea) {
+    textarea.style.height = 'auto';
+    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+}
+
+function verificarSuporteFuncionalidades() {
+    const temReconhecimentoVoz = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
+    if (!temReconhecimentoVoz) {
+        document.getElementById('btn-mic').style.display = 'none';
+    }
+}
+
+// ===== NAVEGAÇÃO =====
+function irParaAviso() {
+    document.getElementById('tela-boas-vindas').classList.add('oculto');
+    document.getElementById('tela-aviso').classList.remove('oculto');
+}
+
+function irParaChat() {
+    document.getElementById('tela-aviso').classList.add('oculto');
+    document.getElementById('tela-app').classList.remove('oculto');
+    
+    const chat = document.getElementById('chat-container');
+    if (chat.children.length === 0) {
+        setTimeout(() => mostrarMensagemBoasVindas(), 300);
+    }
+}
+
+function mostrarMensagemBoasVindas() {
+    const mensagem = `# 🚀 Olá! Eu sou a **Cici AI**
+
+Sou uma assistente multifuncional avançada. 
+
+**🎯 Funcionalidades Disponíveis:**
+• 💬 Conversação natural e contextual
+• 💻 Geração e análise de código  
+• 📄 Processamento de documentos
+• 🎨 Conteúdo criativo e brainstorming
+• 🔬 Análise profunda de problemas
+• 🌍 Tradução e suporte multilíngue
+
+**⚡ Modos de Operação:**
+• **Criativo** - Respostas imaginativas
+• **Preciso** - Respostas factuais
+• **Código** - Especialista em programação
+• **Ensino** - Explicações didáticas
+• **Análise** - Análises detalhadas
+
+Como posso ajudá-lo hoje?`;
+
+    adicionarMensagem(mensagem, 'cici', true);
+}
+
+function abrirMenu() {
+    document.getElementById('side-menu').classList.add('aberto');
+    document.getElementById('overlay-menu').classList.add('aberto');
+    document.body.style.overflow = 'hidden';
+}
+
+function fecharMenu() {
+    document.getElementById('side-menu').classList.remove('aberto');
+    document.getElementById('overlay-menu').classList.remove('aberto');
+    document.body.style.overflow = '';
+}
+
+function novaConversa() {
+    if (estado.conversaAtual.length === 0) {
+        mostrarToast('Já está em uma conversa nova', 'info');
+        return;
+    }
+    if (confirm('Deseja iniciar uma nova conversa? A conversa atual será salva.')) {
+        const timestamp = Date.now();
+        localStorage.setItem(`ciciChat_${timestamp}`, JSON.stringify(estado.conversaAtual));
+        limparChat();
+        setTimeout(() => mostrarMensagemBoasVindas(), 300);
+        mostrarToast('Nova conversa iniciada!', 'sucesso');
+    }
+}
+
+// ===== APARÊNCIA =====
+function alternarTemaEscuro() {
+    estado.temaEscuro = !estado.temaEscuro;
+    document.body.classList.toggle('tema-escuro');
+    const toggle = document.getElementById('toggle-tema');
+    const icone = document.getElementById('icone-tema');
+    const texto = document.getElementById('texto-tema');
+    if (estado.temaEscuro) {
+        toggle.classList.add('ativo');
+        icone.textContent = '☀️';
+        texto.textContent = 'Modo Claro';
+    } else {
+        toggle.classList.remove('ativo');
+        icone.textContent = '🌙';
+        texto.textContent = 'Modo Escuro';
+    }
+    salvarConfiguracoes();
+    mostrarToast('Tema alterado!', 'sucesso');
+}
+
+function alternarContraste() {
+    estado.altoContraste = !estado.altoContraste;
+    document.body.classList.toggle('alto-contraste');
+    document.getElementById('toggle-contraste').classList.toggle('ativo');
+    localStorage.setItem('altoContraste', estado.altoContraste);
+    salvarConfiguracoes();
+    mostrarToast('Alto contraste ' + (estado.altoContraste ? 'ativado' : 'desativado'), 'sucesso');
+}
+
+function alternarLeituraFacilitada() {
+    estado.leituraFacilitada = !estado.leituraFacilitada;
+    document.body.classList.toggle('leitura-facilitada');
+    document.getElementById('toggle-leitura').classList.toggle('ativo');
+    salvarConfiguracoes();
+    mostrarToast('Leitura facilitada ' + (estado.leituraFacilitada ? 'ativada' : 'desativada'), 'sucesso');
+}
+
+function ajustarFonte(incremento) {
+    estado.tamanhoFonte = Math.max(12, Math.min(28, estado.tamanhoFonte + incremento));
+    document.documentElement.style.fontSize = estado.tamanhoFonte + 'px';
+    salvarConfiguracoes();
+    mostrarToast(`Tamanho: ${estado.tamanhoFonte}px`, 'sucesso');
+}
+
+function resetarFonte() {
+    estado.tamanhoFonte = 16;
+    document.documentElement.style.fontSize = '16px';
+    salvarConfiguracoes();
+    mostrarToast('Tamanho padrão restaurado', 'sucesso');
+}
+
+// ===== ÁUDIO =====
+function alternarSom() {
+    estado.somAtivado = !estado.somAtivado;
+    const toggle = document.getElementById('toggle-som');
+    const icone = document.getElementById('icone-som');
+    const texto = document.getElementById('texto-som');
+    if (estado.somAtivado) {
+        toggle.classList.add('ativo');
+        icone.textContent = '🔊';
+        texto.textContent = 'Desativar Voz';
+        falar('Voz ativada com sucesso!');
+    } else {
+        toggle.classList.remove('ativo');
+        icone.textContent = '🔇';
+        texto.textContent = 'Ativar Voz';
+        window.speechSynthesis.cancel();
+    }
+    salvarConfiguracoes();
+}
+
+function ajustarVelocidadeVoz(incremento) {
+    estado.velocidadeVoz = Math.max(0.5, Math.min(2.0, estado.velocidadeVoz + incremento));
+    salvarConfiguracoes();
+    const velocidadeTexto = estado.velocidadeVoz === 1.0 ? 'normal' : 
+                           estado.velocidadeVoz < 1.0 ? 'lenta' : 'rápida';
+    mostrarToast(`Velocidade da voz: ${velocidadeTexto}`, 'sucesso');
+    if (estado.somAtivado) {
+        falar('Teste de velocidade da voz');
+    }
+}
+
+function falar(texto) {
+    if (!estado.somAtivado || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const textoLimpo = texto.replace(/[*_#`]/g, '').replace(/<[^>]*>/g, '').replace(/\n+/g, '. ');
+    const utterance = new SpeechSynthesisUtterance(textoLimpo);
+    utterance.lang = 'pt-BR';
+    utterance.rate = estado.velocidadeVoz;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    window.speechSynthesis.speak(utterance);
+}
+
+function ativarMicrofone() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        mostrarToast('Seu navegador não suporta reconhecimento de voz', 'erro');
+        return;
+    }
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'pt-BR';
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    const btnMic = document.getElementById('btn-mic');
+    recognition.onstart = () => {
+        btnMic.classList.add('ouvindo');
+        mostrarToast('🎤 Estou ouvindo...', 'aviso');
+    };
+    recognition.onend = () => {
+        btnMic.classList.remove('ouvindo');
+    };
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('entradaUsuario').value = transcript;
+        document.getElementById('entradaUsuario').focus();
+        autoResizeTextarea(document.getElementById('entradaUsuario'));
+        mostrarToast('✓ Texto capturado!', 'sucesso');
+    };
+    recognition.onerror = (event) => {
+        btnMic.classList.remove('ouvindo');
+        let mensagem = 'Erro ao capturar voz';
+        if (event.error === 'no-speech') mensagem = 'Nenhuma fala detectada';
+        else if (event.error === 'not-allowed') mensagem = 'Permissão de microfone negada';
+        mostrarToast(mensagem, 'erro');
+    };
+    try {
+        recognition.start();
+    } catch (e) {
+        mostrarToast('Erro ao iniciar microfone', 'erro');
+    }
+}
+
+// ===== MODOS DE CONTEXTO =====
+function ativarModoContexto(modo) {
+    document.querySelectorAll('.tool-btn').forEach(btn => btn.classList.remove('ativo'));
+    event.target.closest('.tool-btn').classList.add('ativo');
+    estado.modoContexto = modo;
+    
+    const modos = {
+        criativo: '✨ Modo Criativo ativado - Respostas mais imaginativas',
+        preciso: '🎯 Modo Preciso ativado - Respostas mais factuais',
+        codigo: '💻 Modo Código ativado - Especialista em programação',
+        ensino: '🎓 Modo Ensino ativado - Explicações didáticas',
+        analise: '🔬 Modo Análise ativado - Análises profundas'
+    };
+    
+    mostrarToast(modos[modo], 'sucesso');
+}
+
+// ===== ANEXAR ARQUIVOS =====
+function anexarArquivo() {
+    document.getElementById('fileInput').click();
+}
+
+async function processarArquivos(event) {
+    const files = Array.from(event.target.files);
+    if (files.length === 0) return;
+    
+    for (const file of files) {
+        if (file.size > 10 * 1024 * 1024) {
+            mostrarToast(`Arquivo ${file.name} muito grande (máx 10MB)`, 'erro');
+            continue;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            const conteudo = e.target.result;
+            const tipoArquivo = file.type.startsWith('image/') ? 'imagem' : 'documento';
+            
+            estado.arquivosAnexados.push({
+                nome: file.name,
+                tipo: tipoArquivo,
+                tamanho: file.size,
+                conteudo: conteudo
+            });
+            
+            mostrarArquivoAnexado(file.name, file.size, tipoArquivo);
+            mostrarToast(`✓ ${file.name} anexado!`, 'sucesso');
+        };
+        
+        if (file.type.startsWith('image/')) {
+            reader.readAsDataURL(file);
+        } else {
+            reader.readAsText(file);
+        }
+    }
+    
+    event.target.value = '';
+}
+
+function mostrarArquivoAnexado(nome, tamanho, tipo) {
+    const chat = document.getElementById('chat-container');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'mensagem-wrapper usuario-wrapper';
+    
+    const icones = {
+        'imagem': '🖼️',
+        'documento': '📄'
+    };
+    
+    wrapper.innerHTML = `
+        <div class="mensagem usuario">
+            <div class="file-attachment">
+                <div class="file-icon">${icones[tipo]}</div>
+                <div class="file-info">
+                    <div class="file-name">${nome}</div>
+                    <div class="file-size">${formatarTamanho(tamanho)}</div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    chat.appendChild(wrapper);
+    chat.scrollTop = chat.scrollHeight;
+}
+
+function formatarTamanho(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+
+// ===== ENVIAR MENSAGEM =====
+function usarChip(texto) {
+    document.getElementById('entradaUsuario').value = texto + ' ';
+    document.getElementById('entradaUsuario').focus();
+    autoResizeTextarea(document.getElementById('entradaUsuario'));
+}
+
+async function enviarMensagem() {
+    const input = document.getElementById('entradaUsuario');
+    const texto = input.value.trim();
+    
+    if (!texto && estado.arquivosAnexados.length === 0) {
+        mostrarToast('Digite uma mensagem ou anexe um arquivo', 'aviso');
+        return;
+    }
+    
+    if (estado.aguardandoResposta) {
+        mostrarToast('Aguarde a resposta atual', 'aviso');
+        return;
+    }
+    
+    let mensagemCompleta = texto;
+    
+    // Adicionar informações dos arquivos anexados
+    if (estado.arquivosAnexados.length > 0) {
+        mensagemCompleta += "\n\n📎 **Arquivos anexados:**";
+        estado.arquivosAnexados.forEach(arquivo => {
+            mensagemCompleta += `\n- ${arquivo.nome} (${arquivo.tipo})`;
+            
+            // Para arquivos de texto, incluir o conteúdo
+            if (arquivo.tipo === 'documento' && arquivo.conteudo) {
+                mensagemCompleta += `\n  Conteúdo: ${arquivo.conteudo.substring(0, 500)}...`;
+            }
+        });
+    }
+
+    // Adicionar mensagem do usuário ao chat
+    adicionarMensagem(mensagemCompleta, 'usuario');
+    estado.conversaAtual.push({ role: 'user', content: mensagemCompleta });
+
+    // Limpar input e arquivos
+    input.value = '';
+    input.style.height = 'auto';
+    estado.arquivosAnexados = [];
+    document.getElementById('contador-chars').textContent = '0/4000';
+    estado.aguardandoResposta = true;
+
+    // Mostrar indicador de digitação
+    mostrarDigitando();
+
+    try {
+        const resposta = await gerarRespostaIA(mensagemCompleta);
+        
+        // Remover indicador de digitação
+        removerDigitando();
+        
+        // Adicionar resposta ao chat
+        adicionarMensagem(resposta, 'cici', true);
+        estado.conversaAtual.push({ role: 'assistant', content: resposta });
+        
+        // Falar resposta se áudio estiver ativado
+        falar(resposta);
+        
+    } catch (error) {
+        removerDigitando();
+        console.error('Erro na API:', error);
+        
+        let mensagemErro = "Desculpe, ocorreu um erro ao processar sua solicitação. ";
+        
+        if (error.message.includes('API key')) {
+            mensagemErro = "⚠️ **Configuração de API necessária**\n\nPara usar a Cici AI, configure:\n\n1. Sua chave da API Mistral em `CONFIG.MISTRAL_API_KEY`\n2. URL e chave do Supabase para armazenamento\n\nSem essas configurações, a aplicação não pode se conectar aos serviços de IA.";
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+            mensagemErro = "🌐 **Erro de conexão**\n\nVerifique sua conexão com a internet e tente novamente.";
+        } else if (error.message.includes('rate limit') || error.status === 429) {
+            mensagemErro = "⏳ **Limite de requisições**\n\nMuitas requisições em um curto período. Tente novamente em alguns instantes.";
+        } else if (error.status === 401) {
+            mensagemErro = "🔑 **Erro de autenticação**\n\nChave da API inválida ou expirada. Verifique suas credenciais.";
+        } else if (error.status >= 500) {
+            mensagemErro = "⚡ **Erro do servidor**\n\nO serviço de IA está temporariamente indisponível. Tente novamente em alguns minutos.";
+        }
+        
+        adicionarMensagem(mensagemErro, 'cici', true);
+        mostrarToast('Erro na comunicação com a IA', 'erro');
+    }
+
+    estado.aguardandoResposta = false;
+}
+
+async function gerarRespostaIA(mensagem) {
+    // Verificar se a API key está configurada
+    if (CONFIG.MISTRAL_API_KEY === 'SUA_CHAVE_API_MISTRAL_AQUI') {
+        throw new Error('API key não configurada');
+    }
+
+    // Preparar histórico da conversa
+    const historico = estado.conversaAtual.slice(-CONFIG.MAX_HISTORICO);
+    
+    // Configurar parâmetros baseados no modo de contexto
+    let temperatura = 0.7; // padrão
+    let maxTokens = 2000;
+    
+    switch(estado.modoContexto) {
+        case 'preciso':
+            temperatura = 0.3;
+            break;
+        case 'criativo':
+            temperatura = 0.9;
+            break;
+        case 'codigo':
+            temperatura = 0.5;
+            maxTokens = 3000;
+            break;
+        case 'ensino':
+            temperatura = 0.6;
+            break;
+        case 'analise':
+            temperatura = 0.4;
+            maxTokens = 2500;
+            break;
+    }
+
+    const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${CONFIG.MISTRAL_API_KEY}`
+        },
+        body: JSON.stringify({
+            model: 'mistral-small',
+            messages: [
+                {
+                    role: 'system',
+                    content: `Você é a Cici AI, uma assistente multifuncional avançada. 
+                    Responda de forma clara, útil e detalhada. 
+                    Formate respostas usando Markdown quando apropriado.
+                    Seja direta e evite textos muito longos sem formatação.`
+                },
+                ...historico,
+                { role: 'user', content: mensagem }
+            ],
+            temperature: temperatura,
+            max_tokens: maxTokens,
+            top_p: 0.9,
+            stream: false
+        })
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(`HTTP ${response.status}: ${errorData.message || 'Erro na API'}`);
+    }
+
+    const data = await response.json();
+    
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+        throw new Error('Resposta da API inválida');
+    }
+
+    return data.choices[0].message.content;
+}
+
+// ===== FUNÇÕES DO CHAT =====
+function adicionarMensagem(texto, tipo, renderMarkdown = true) {
+    const chat = document.getElementById('chat-container');
+    const wrapper = document.createElement('div');
+    wrapper.className = `mensagem-wrapper ${tipo}-wrapper`;
+
+    const hora = new Date().toLocaleTimeString('pt-BR', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+    });
+
+    let conteudo = texto;
+    if (renderMarkdown && tipo === 'cici') {
+        try {
+            conteudo = marked.parse(texto);
+        } catch (e) {
+            console.error('Erro ao processar markdown:', e);
+            conteudo = texto.replace(/\n/g, '<br>');
+        }
+    } else {
+        conteudo = texto.replace(/\n/g, '<br>');
+    }
+
+    wrapper.innerHTML = `
+        <div class="mensagem ${tipo}">
+            ${conteudo}
+            <div class="mensagem-hora">${hora}</div>
+            ${tipo === 'cici' ? `
+            <div class="mensagem-acoes">
+                <button class="btn-acao" onclick="copiarTexto(this, '${escapeTexto(texto)}')">
+                    📋 Copiar
+                </button>
+                <button class="btn-acao" onclick="falar('${escapeTexto(texto)}')" ${!estado.somAtivado ? 'disabled' : ''}>
+                    🔊 Ouvir
+                </button>
+            </div>
+            ` : ''}
+        </div>
+    `;
+
+    chat.appendChild(wrapper);
+    chat.scrollTop = chat.scrollHeight;
+
+    // Aplicar syntax highlighting para código
+    wrapper.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block);
+        
+        // Adicionar botão de copiar para blocos de código
+        const pre = block.closest('pre');
+        if (pre && !pre.querySelector('.code-header')) {
+            const header = document.createElement('div');
+            header.className = 'code-header';
+            header.innerHTML = `
+                <span class="code-language">${block.className.replace('language-', '') || 'code'}</span>
+                <button class="code-copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+            `;
+            pre.insertBefore(header, pre.firstChild);
+        }
+    });
+}
+
+function escapeTexto(texto) {
+    return texto.replace(/'/g, "\\'").replace(/\n/g, '\\n').replace(/"/g, '\\"');
+}
+
+function mostrarDigitando() {
+    const chat = document.getElementById('chat-container');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'mensagem-wrapper cici-wrapper';
+    wrapper.id = 'digitando-indicator';
+    wrapper.innerHTML = `
+        <div class="mensagem cici">
+            <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+    `;
+    chat.appendChild(wrapper);
+    chat.scrollTop = chat.scrollHeight;
+}
+
+function removerDigitando() {
+    const indicator = document.getElementById('digitando-indicator');
+    if (indicator) {
+        indicator.remove();
+    }
+}
+
+// ===== AÇÕES DE MENSAGEM =====
+function copiarTexto(botao, texto) {
+    navigator.clipboard.writeText(texto).then(() => {
+        const original = botao.innerHTML;
+        botao.innerHTML = '✅ Copiado!';
+        botao.style.background = 'var(--success)';
+        setTimeout(() => {
+            botao.innerHTML = original;
+            botao.style.background = '';
+        }, 2000);
+    }).catch(err => {
+        mostrarToast('Erro ao copiar texto', 'erro');
+    });
+}
+
+function copiarCodigo(botao) {
+    const codeBlock = botao.closest('.code-header').nextElementSibling;
+    const texto = codeBlock.textContent;
+    copiarTexto(botao, texto);
+}
+
+// ===== GERENCIAMENTO DE CONVERSAS =====
+function carregarHistorico() {
+    // Carregar conversas salvas do localStorage
+    const chaves = Object.keys(localStorage).filter(key => key.startsWith('ciciChat_'));
+    if (chaves.length > 0) {
+        console.log(`${chaves.length} conversas salvas encontradas`);
+    }
+}
+
+function limparChat() {
+    if (confirm('Tem certeza que deseja limpar toda a conversa? Esta ação não pode ser desfeita.')) {
+        document.getElementById('chat-container').innerHTML = '';
+        estado.conversaAtual = [];
+        estado.arquivosAnexados = [];
+        mostrarToast('Conversa limpa', 'sucesso');
+        
+        // Mostrar mensagem de boas-vindas novamente
+        setTimeout(() => mostrarMensagemBoasVindas(), 500);
+    }
+}
+
+function exportarConversa() {
+    const mensagens = Array.from(document.querySelectorAll('.mensagem-wrapper'))
+        .map(wrapper => {
+            const mensagem = wrapper.querySelector('.mensagem');
+            const tipo = wrapper.classList.contains('usuario-wrapper') ? 'Usuário' : 'Cici AI';
+            const hora = wrapper.querySelector('.mensagem-hora')?.textContent || '';
+            const texto = mensagem.childNodes[0].textContent || mensagem.innerText;
+            return `[${hora}] ${tipo}: ${texto}`;
+        })
+        .join('\n\n');
+
+    const blob = new Blob([mensagens], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `cici-chat-${new Date().toISOString().split('T')[0]}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    mostrarToast('Conversa exportada!', 'sucesso');
+}
+
+function compartilharConversa() {
+    if (navigator.share) {
+        const texto = estado.conversaAtual
+            .map(msg => `${msg.role === 'user' ? '👤' : '🤖'} ${msg.content.substring(0, 100)}...`)
+            .join('\n');
+        
+        navigator.share({
+            title: 'Minha conversa com Cici AI',
+            text: texto,
+            url: window.location.href
+        }).then(() => {
+            mostrarToast('Conversa compartilhada!', 'sucesso');
+        }).catch(() => {
+            mostrarToast('Compartilhamento cancelado', 'info');
+        });
+    } else {
+        exportarConversa();
+    }
+}
+
+function imprimirConversa() {
+    const estilo = `
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; }
+            .mensagem { margin: 10px 0; padding: 10px; border-radius: 8px; }
+            .usuario { background: #e3f2fd; margin-left: 20px; }
+            .cici { background: #f5f5f5; margin-right: 20px; }
+            .hora { font-size: 0.8em; color: #666; text-align: right; }
+            @media print {
+                .no-print { display: none; }
+            }
+        </style>
+    `;
+
+    const conteudo = Array.from(document.querySelectorAll('.mensagem-wrapper'))
+        .map(wrapper => {
+            const mensagem = wrapper.querySelector('.mensagem');
+            const tipo = wrapper.classList.contains('usuario-wrapper') ? 'usuario' : 'cici';
+            const hora = wrapper.querySelector('.mensagem-hora')?.textContent || '';
+            const texto = mensagem.childNodes[0].textContent || mensagem.innerText;
+            
+            return `
+                <div class="mensagem ${tipo}">
+                    <div>${texto}</div>
+                    <div class="hora">${hora}</div>
+                </div>
+            `;
+        })
+        .join('');
+
+    const janela = window.open('', '_blank');
+    janela.document.write(`
+        <html>
+            <head>
+                <title>Conversa Cici AI</title>
+                ${estilo}
+            </head>
+            <body>
+                <h1>Conversa com Cici AI</h1>
+                <div>${conteudo}</div>
+                <script>
+                    window.onload = () => window.print();
+                </script>
+            </body>
+        </html>
+    `);
+}
+
+// ===== TOAST NOTIFICATIONS =====
+function mostrarToast(mensagem, tipo = 'info') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = `toast ${tipo}`;
+    toast.innerHTML = `
+        <span>${mensagem}</span>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add('mostrar');
+    }, 100);
+
+    setTimeout(() => {
+        toast.classList.remove('mostrar');
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.parentNode.removeChild(toast);
+            }
+        }, 400);
+    }, 4000);
+}
+
+// ===== AJUDA E TUTORIAIS =====
+function mostrarAjuda() {
+    fecharMenu();
+    const ajuda = `# 📚 **Como Usar a Cici AI**
+
+## 💬 **Conversação Básica**
+- Digite suas perguntas no campo de texto
+- Use **Shift+Enter** para nova linha
+- **Enter** para enviar a mensagem
+
+## 🎤 **Reconhecimento de Voz**
+- Clique no microfone para falar
+- Suporta português brasileiro
+- Converte fala em texto automaticamente
+
+## 📎 **Anexar Arquivos**
+- Suporta: PDF, TXT, DOC, imagens
+- Máximo: 10MB por arquivo
+- Análise de texto e conteúdo
+
+## 🎨 **Modos de Conversação**
+- **✨ Criativo**: Respostas imaginativas
+- **🎯 Preciso**: Respostas factuais
+- **💻 Código**: Especialista em programação
+- **🎓 Ensino**: Explicações didáticas
+- **🔬 Análise**: Análises profundas
+
+## ⌨️ **Atalhos de Teclado**
+- **Ctrl+K**: Focar no chat
+- **Ctrl+L**: Limpar conversa
+- **Ctrl+S**: Exportar conversa
+- **Esc**: Fechar menus
+
+Precisa de ajuda com algo específico?`;
+    adicionarMensagem(ajuda, 'cici', true);
+}
+
+function mostrarCapacidades() {
+    fecharMenu();
+    const capacidades = `# 🚀 **O que posso fazer?**
+
+## 💻 **Programação & Tecnologia**
+- Gerar código em Python, JavaScript, Java, C++, etc.
+- Debuggar e explicar código
+- Criar algoritmos e estruturas de dados
+- Explicar conceitos de programação
+- Revisar e otimizar código
+
+## 📚 **Educação & Aprendizado**
+- Explicar conceitos complexos de forma simples
+- Criar resumos e mapas mentais
+- Auxiliar em pesquisas acadêmicas
+- Ensinar idiomas e gramática
+- Preparar materiais de estudo
+
+## 📄 **Análise de Documentos**
+- Ler e resumir textos longos
+- Extrair informações principais
+- Analisar estrutura e conteúdo
+- Comparar documentos
+- Identificar pontos-chave
+
+## 🎨 **Criatividade & Conteúdo**
+- Escrever textos criativos
+- Gerar ideias e brainstorming
+- Criar roteiros e histórias
+- Escrever poemas e letras de música
+- Desenvolver conteúdo para redes sociais
+
+**Qual área gostaria de explorar?**`;
+    adicionarMensagem(capacidades, 'cici', true);
+}
+
+function mostrarAtalhos() {
+    fecharMenu();
+    const atalhos = `# ⌨️ **Atalhos de Teclado**
+
+## 🔧 **Navegação Geral**
+- **Ctrl + K** → Focar no campo de mensagem
+- **Ctrl + L** → Limpar conversa atual
+- **Ctrl + S** → Exportar conversa
+- **Esc** → Fechar menus/diálogos
+
+## 💬 **Campo de Mensagem**
+- **Enter** → Enviar mensagem
+- **Shift + Enter** → Nova linha
+
+## 🔊 **Acessibilidade**
+- **Ctrl + +** → Aumentar fonte
+- **Ctrl + -** → Diminuir fonte
+- **Ctrl + 0** → Fonte padrão
+
+*Dica: Muitas funções também estão acessíveis pelo menu de configurações!*`;
+    adicionarMensagem(atalhos, 'cici', true);
+}
+
+// ===== SERVICE WORKER (PWA) =====
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
+
+// Inicialização final
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Cici AI inicializada com sucesso!');
+    // Focar no input após carregamento
+    setTimeout(() => {
+        const input = document.getElementById('entradaUsuario');
+        if (input) input.focus();
+    }, 1000);
+});
