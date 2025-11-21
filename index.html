@@ -43,49 +43,47 @@
     --user-bubble: #fab1a0;
     --user-text: #2d3436;
     --border-color: #dfe6e9;
-    --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
-    --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
-    --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.12);
+    --shadow-lg: 0 4px 15px rgba(0,0,0,0.15);
     --menu-bg: rgba(255, 255, 255, 0.98);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Modo Alto Contraste */
+/* Tema Escuro para iPhone */
+@media (prefers-color-scheme: dark) {
+    body:not(.alto-contraste) {
+        --primary: #a29bfe;
+        --primary-dark: #6c5ce7;
+        --bg-app: #000000;
+        --bg-chat: #1c1c1e;
+        --bg-card: #2c2c2e;
+        --text-main: #ffffff;
+        --text-secondary: #98989f;
+        --cici-bubble: linear-gradient(135deg, #6c5ce7 0%, #4834d4 100%);
+        --user-bubble: #ff6b6b;
+        --border-color: #38383a;
+        --menu-bg: rgba(44, 44, 46, 0.95);
+    }
+}
+
+/* Alto Contraste */
 body.alto-contraste {
-    --primary: #000000;
-    --primary-dark: #333;
+    --primary: #ffffff;
+    --primary-dark: #cccccc;
     --bg-app: #000000;
     --bg-chat: #000000;
-    --bg-card: #1a1a1a;
+    --bg-card: #000000;
     --text-main: #ffff00;
     --text-secondary: #ffff00;
-    --cici-bubble: #333333;
-    --cici-text: #ffff00;
+    --cici-bubble: #ffff00;
+    --cici-text: #000000;
     --user-bubble: #ffff00;
     --user-text: #000000;
-    --menu-bg: #1a1a1a;
     --border-color: #ffff00;
-    --shadow-sm: 0 0 0 2px #ffff00;
-    --shadow-md: 0 0 0 2px #ffff00;
-    --shadow-lg: 0 0 0 3px #ffff00;
+    --shadow-sm: 0 0 0 1px #ffff00;
 }
 
-/* Tema Escuro */
-body.tema-escuro:not(.alto-contraste) {
-    --primary: #a29bfe;
-    --primary-dark: #6c5ce7;
-    --bg-app: #1e1e1e;
-    --bg-chat: #2d2d2d;
-    --bg-card: #2d2d2d;
-    --text-main: #e0e0e0;
-    --text-secondary: #b0b0b0;
-    --cici-bubble: linear-gradient(135deg, #6c5ce7 0%, #4834d4 100%);
-    --user-bubble: #fab1a0;
-    --border-color: #444;
-    --menu-bg: rgba(45, 45, 45, 0.98);
-}
-
-/* Reset e Configurações Base */
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
@@ -96,139 +94,82 @@ html, body {
     padding: 0;
     height: 100%;
     overflow: hidden;
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg-app);
     color: var(--text-main);
-    font-size: 16px;
-    transition: var(--transition);
+    font-size: 17px; /* Tamanho padrão iOS */
+    -webkit-text-size-adjust: 100%; /* Prevenir zoom automático */
 }
 
-/* Layout Principal Responsivo */
+/* Layout Principal - Otimizado para Safe Area */
 #tela-app {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    height: -webkit-fill-available;
     max-height: 100vh;
     width: 100%;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
-/* Acessibilidade */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--primary);
-    color: white;
-    padding: 8px;
-    text-decoration: none;
-    z-index: 1000;
-}
-.skip-link:focus { top: 0; }
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
-    border-width: 0;
-}
-
-/* Header Responsivo */
+/* Header iPhone */
 .app-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
-    background: rgba(20, 20, 26, 0.85);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 8px 12px;
+    background: rgba(20, 20, 26, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid rgba(255,255,255,0.1);
     flex-shrink: 0;
+    min-height: 44px; /* Tamanho mínimo touch iOS */
 }
 
-/* Menu Button */
-.menu-btn {
+/* Botões com tamanho touch ideal */
+.menu-btn, .header-action {
     background: transparent;
     border: none;
     padding: 8px;
+    min-width: 44px;
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: opacity 0.2s ease, transform 0.1s ease;
+    border-radius: 10px;
+    transition: var(--transition);
 }
 
-.menu-btn:hover {
-    opacity: 0.85;
-}
-
-.menu-btn:active {
+.menu-btn:active, .header-action:active {
+    background: rgba(255,255,255,0.1);
     transform: scale(0.95);
 }
 
-.icone-menu {
-    width: 24px;
-    height: 24px;
+.icone-menu, .icone-header {
+    width: 22px;
+    height: 22px;
     object-fit: contain;
-    opacity: 0.85;
-    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.menu-btn:hover .icone-menu {
-    opacity: 1;
-    transform: scale(1.08);
-}
-
-.menu-btn:active .icone-menu {
-    transform: scale(0.92);
-}
-
-/* Logo */
 .logo-area .logo {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.18));
 }
 
-/* Header Action */
-.header-action {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    transition: opacity 0.2s ease, transform 0.1s ease;
-}
-
-.header-action:hover {
-    opacity: 0.85;
-}
-
-.header-action:active {
-    transform: scale(0.95);
-}
-
-.icone-header {
-    width: 28px;
-    height: 28px;
-}
-
-/* Menu Lateral Responsivo */
+/* Menu Lateral iPhone */
 #overlay-menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 25;
+    background: rgba(0,0,0,0.4);
+    z-index: 1000;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s;
-    backdrop-filter: blur(2px);
+    transition: opacity 0.3s ease;
 }
 
 #overlay-menu.aberto {
@@ -240,18 +181,18 @@ html, body {
     position: fixed;
     top: 0;
     left: -100%;
-    width: 85%;
-    max-width: 320px;
+    width: 280px;
     height: 100%;
     background: var(--menu-bg);
-    z-index: 30;
-    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 20px;
+    z-index: 1001;
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 20px 16px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    box-shadow: 5px 0 20px rgba(0,0,0,0.3);
-    backdrop-filter: blur(20px);
+    gap: 4px;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.3);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     overflow-y: auto;
 }
 
@@ -263,72 +204,57 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     padding-bottom: 16px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 0.5px solid var(--border-color);
 }
 
 .menu-close {
     background: var(--danger);
     border: none;
     color: white;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 1.2em;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.1em;
 }
 
 .menu-item {
     background: none;
-    border: 2px solid transparent;
+    border: none;
     color: var(--text-main);
-    padding: 14px 16px;
+    padding: 16px 14px;
     text-align: left;
-    font-size: 0.95em;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 500;
     border-radius: 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     transition: var(--transition);
+    min-height: 44px;
 }
 
-.menu-item:hover {
+.menu-item:active {
     background-color: var(--primary);
     color: white;
-    transform: translateX(4px);
-}
-
-.menu-titulo {
-    font-size: 0.85em;
-    font-weight: bold;
-    margin: 16px 0 8px 0;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.menu-divider {
-    height: 1px;
-    background: var(--border-color);
-    margin: 12px 0;
-    opacity: 0.5;
 }
 
 .toggle-switch {
-    width: 48px;
-    height: 26px;
+    width: 52px;
+    height: 32px;
     background: var(--border-color);
-    border-radius: 13px;
+    border-radius: 16px;
     position: relative;
     cursor: pointer;
     transition: var(--transition);
     margin-left: auto;
+    flex-shrink: 0;
 }
 
 .toggle-switch.ativo {
@@ -338,57 +264,50 @@ html, body {
 .toggle-switch::after {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     background: white;
     border-radius: 50%;
-    top: 3px;
-    left: 3px;
+    top: 2px;
+    left: 2px;
     transition: var(--transition);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .toggle-switch.ativo::after {
-    left: 25px;
+    left: 22px;
 }
 
-/* Área de Chat Responsiva */
+/* Área de Chat - Otimizada para iPhone */
 #chat-container {
     flex: 1;
-    padding: 16px;
+    padding: 12px 10px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     background: var(--bg-chat);
     scroll-behavior: smooth;
     min-height: 0;
+    -webkit-overflow-scrolling: touch; /* Scroll suave iOS */
 }
 
 #chat-container::-webkit-scrollbar { 
-    width: 6px; 
+    display: none; /* Esconder scrollbar iOS */
 }
 
-#chat-container::-webkit-scrollbar-track { 
-    background: transparent; 
-}
-
-#chat-container::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 4px;
-}
-
-/* Mensagens Responsivas */
+/* Mensagens para iPhone */
 .mensagem-wrapper {
     display: flex;
     flex-direction: column;
-    max-width: 90%;
+    max-width: 88%;
     animation: slideIn 0.3s ease-out;
 }
 
 @keyframes slideIn {
     from { 
         opacity: 0; 
-        transform: translateY(10px); 
+        transform: translateY(8px); 
     }
     to { 
         opacity: 1; 
@@ -406,108 +325,78 @@ html, body {
 }
 
 .mensagem {
-    padding: 14px 18px;
+    padding: 12px 16px;
     border-radius: 18px;
-    line-height: 1.6;
+    line-height: 1.4;
     box-shadow: var(--shadow-sm);
     word-wrap: break-word;
     position: relative;
+    font-size: 16px;
     word-break: break-word;
 }
 
 .cici {
     background: var(--cici-bubble);
     color: var(--cici-text);
-    border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 6px;
 }
 
 .usuario {
     background-color: var(--user-bubble);
     color: var(--user-text);
-    border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 6px;
 }
 
 .mensagem-hora {
-    font-size: 0.75em;
+    font-size: 13px;
     opacity: 0.7;
     margin-top: 4px;
 }
 
 .mensagem-acoes {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     margin-top: 8px;
     flex-wrap: wrap;
 }
 
 .btn-acao {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0,0,0,0.08);
     border: none;
     color: var(--text-secondary);
-    font-size: 0.85em;
+    font-size: 13px;
     cursor: pointer;
     display: flex;
     gap: 4px;
     align-items: center;
-    padding: 6px 12px;
+    padding: 6px 10px;
     border-radius: 8px;
     transition: var(--transition);
-    font-weight: 600;
+    font-weight: 500;
+    min-height: 32px;
 }
 
-.btn-acao:hover {
+.btn-acao:active {
     background: var(--primary);
     color: white;
-    transform: translateY(-2px);
+    transform: scale(0.96);
 }
 
-/* Indicador de Digitação */
-.typing-indicator {
-    display: flex;
-    gap: 4px;
-    padding: 16px 20px;
-}
-
-.typing-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--cici-text);
-    border-radius: 50%;
-    animation: typing 1.4s infinite;
-}
-
-.typing-dot:nth-child(2) { 
-    animation-delay: 0.2s; 
-}
-
-.typing-dot:nth-child(3) { 
-    animation-delay: 0.4s; 
-}
-
-@keyframes typing {
-    0%, 60%, 100% { 
-        opacity: 0.3; 
-        transform: scale(0.8); 
-    }
-    30% { 
-        opacity: 1; 
-        transform: scale(1); 
-    }
-}
-
-/* Sugestões Responsivas */
+/* Sugestões iPhone */
 .sugestoes-container {
-    padding: 12px 16px;
+    padding: 10px 12px;
     background: linear-gradient(to top, rgba(20,20,28,0.95), rgba(20,20,28,0));
     flex-shrink: 0;
+    border-top: 0.5px solid rgba(255,255,255,0.1);
 }
 
 .sugestoes-scroll {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     overflow-x: auto;
     scrollbar-width: none;
-    padding-bottom: 4px;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
 }
 
 .sugestoes-scroll::-webkit-scrollbar {
@@ -518,41 +407,42 @@ html, body {
     display: flex;
     align-items: center;
     gap: 6px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    padding: 8px 16px;
+    background: rgba(255,255,255,0.12);
+    border: 0.5px solid rgba(255,255,255,0.2);
+    padding: 10px 14px;
     border-radius: 20px;
     color: #fff;
     white-space: nowrap;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.1s ease;
+    transition: var(--transition);
     flex-shrink: 0;
-}
-
-.chip:hover {
-    background: rgba(255,255,255,0.12);
+    font-size: 15px;
+    font-weight: 500;
+    min-height: 36px;
 }
 
 .chip:active {
+    background: rgba(255,255,255,0.2);
     transform: scale(0.96);
 }
 
-/* Área de Input Responsiva */
+/* Área de Input iPhone */
 footer {
     background: var(--bg-chat);
-    padding: 16px;
-    border-top: 1px solid var(--border-color);
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+    padding: 12px 10px;
+    border-top: 0.5px solid var(--border-color);
     flex-shrink: 0;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
 }
 
 .input-tools {
     display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
+    gap: 6px;
+    margin-bottom: 10px;
     overflow-x: auto;
-    padding-bottom: 4px;
+    padding-bottom: 2px;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .input-tools::-webkit-scrollbar {
@@ -561,30 +451,32 @@ footer {
 
 .tool-btn {
     background: var(--bg-card);
-    border: 2px solid var(--border-color);
+    border: 0.5px solid var(--border-color);
     color: var(--text-main);
-    padding: 8px 14px;
+    padding: 8px 12px;
     border-radius: 10px;
-    font-size: 0.85em;
+    font-size: 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 6px;
     white-space: nowrap;
     transition: var(--transition);
-    font-weight: 600;
+    font-weight: 500;
     flex-shrink: 0;
+    min-height: 36px;
 }
 
-.tool-btn:hover, .tool-btn.ativo {
+.tool-btn:active {
     background: var(--primary);
     color: white;
     border-color: var(--primary);
+    transform: scale(0.96);
 }
 
 .input-area {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: flex-end;
 }
 
@@ -598,25 +490,27 @@ footer {
 
 #entradaUsuario {
     width: 100%;
-    max-height: 140px;
-    min-height: 42px;
+    max-height: 120px;
+    min-height: 40px;
     resize: none;
     padding: 12px 16px;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: 20px;
+    font-size: 17px;
     line-height: 1.4;
-    border: 1px solid var(--border-color);
+    border: 0.5px solid var(--border-color);
     background: var(--bg-card);
     color: var(--text-main);
     caret-color: var(--primary);
     font-family: inherit;
     transition: var(--transition);
+    -webkit-user-select: text;
+    user-select: text;
 }
 
 #entradaUsuario:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+    box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.15);
 }
 
 #entradaUsuario::placeholder {
@@ -624,17 +518,9 @@ footer {
     opacity: 0.7;
 }
 
-.input-contador {
-    font-size: 12px;
-    opacity: 0.7;
-    margin-top: 4px;
-    text-align: right;
-    color: var(--text-secondary);
-}
-
 .input-actions {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
     flex-shrink: 0;
 }
@@ -642,12 +528,12 @@ footer {
 #btn-mic, #btn-attach {
     background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
     color: white;
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
     border-radius: 50%;
     border: none;
-    font-size: 1.2em;
+    font-size: 18px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -660,9 +546,8 @@ footer {
     background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
 }
 
-#btn-mic:hover, #btn-attach:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-lg);
+#btn-mic:active, #btn-attach:active {
+    transform: scale(0.92);
 }
 
 #btn-mic.ouvindo {
@@ -673,25 +558,24 @@ footer {
 .btn-send {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
-    padding: 0 24px;
-    height: 48px;
-    border-radius: 24px;
+    padding: 0 20px;
+    height: 44px;
+    border-radius: 22px;
     border: none;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     box-shadow: var(--shadow-md);
     transition: var(--transition);
-    font-size: 1em;
+    font-size: 16px;
     white-space: nowrap;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 80px;
+    min-width: 70px;
 }
 
-.btn-send:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+.btn-send:active {
+    transform: scale(0.95);
 }
 
 .btn-send:disabled {
@@ -705,40 +589,41 @@ footer {
         transform: scale(1); 
     }
     50% { 
-        transform: scale(1.1); 
+        transform: scale(1.05); 
     }
 }
 
-/* Modal Responsivo */
+/* Modal iPhone */
 .modal-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9998;
+    z-index: 2000;
     padding: 20px;
 }
 
 .card-aviso {
     width: 100%;
-    max-width: 440px;
-    padding: 28px 24px;
+    max-width: 320px;
+    padding: 24px 20px;
     background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    border: 0.5px solid var(--border-color);
     border-radius: 20px;
     color: var(--text-main);
     text-align: center;
     box-shadow: var(--shadow-lg);
-    animation: fadeZoom 0.35s ease;
+    animation: fadeZoom 0.3s ease;
 }
 
 @keyframes fadeZoom {
     0% {
         opacity: 0;
-        transform: scale(0.92);
+        transform: scale(0.9);
     }
     100% {
         opacity: 1;
@@ -747,74 +632,57 @@ footer {
 }
 
 .aviso-titulo {
-    font-size: 1.9em;
-    margin-bottom: 20px;
-    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 16px;
+    font-weight: 700;
 }
 
 .aviso-lista {
     text-align: left;
-    line-height: 1.65;
-    font-size: 1.05em;
-    margin: 18px 0 26px;
+    line-height: 1.5;
+    font-size: 16px;
+    margin: 16px 0 20px;
 }
 
 .btn-grande {
     width: 100%;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    padding: 14px 0;
+    padding: 16px 0;
     border-radius: 14px;
     border: none;
     color: white;
-    font-size: 1.1em;
+    font-size: 17px;
     cursor: pointer;
     font-weight: 600;
-    transition: transform 0.15s ease, opacity 0.2s ease;
-}
-
-.btn-grande:hover {
-    opacity: 0.92;
+    transition: var(--transition);
+    min-height: 50px;
 }
 
 .btn-grande:active {
-    transform: scale(0.96);
+    transform: scale(0.98);
 }
 
-.aviso-links {
-    margin-top: 20px;
-    font-size: 0.9em;
-    opacity: 0.9;
-}
-
-.aviso-links a {
-    color: var(--primary);
-    text-decoration: none;
-}
-
-.aviso-links a:hover {
-    text-decoration: underline;
-}
-
-/* Toast Notifications */
+/* Toast iPhone */
 .toast {
     position: fixed;
-    bottom: 90px;
+    bottom: 80px;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
     background: var(--bg-card);
     color: var(--text-main);
-    padding: 16px 20px;
-    border-radius: 12px;
+    padding: 14px 18px;
+    border-radius: 14px;
     box-shadow: var(--shadow-lg);
-    z-index: 1000;
+    z-index: 1500;
     display: flex;
     align-items: center;
-    gap: 12px;
-    min-width: 250px;
-    max-width: calc(100% - 40px);
+    gap: 10px;
+    min-width: 200px;
+    max-width: calc(100% - 32px);
     opacity: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 0.5px solid var(--border-color);
+    font-size: 15px;
 }
 
 .toast.mostrar {
@@ -822,374 +690,87 @@ footer {
     transform: translateX(-50%) translateY(0);
 }
 
-.toast.sucesso { 
-    border-color: var(--success); 
-}
-
-.toast.erro { 
-    border-color: var(--danger); 
-}
-
-.toast.aviso { 
-    border-color: var(--warning); 
-}
-
 .oculto { 
     display: none !important; 
 }
 
-/* Markdown Styling Responsivo */
+/* Markdown para iPhone */
 .mensagem p { 
-    margin: 8px 0; 
-    line-height: 1.6; 
-}
-
-.mensagem p:first-child { 
-    margin-top: 0; 
-}
-
-.mensagem p:last-child { 
-    margin-bottom: 0; 
+    margin: 6px 0; 
+    line-height: 1.4; 
+    font-size: 16px;
 }
 
 .mensagem ul, .mensagem ol { 
-    margin: 10px 0; 
+    margin: 8px 0; 
     padding-left: 20px; 
-    line-height: 1.8; 
+    line-height: 1.5; 
 }
 
 .mensagem li { 
-    margin: 6px 0; 
-}
-
-.mensagem strong { 
-    font-weight: 800; 
-    color: var(--primary); 
-}
-
-.mensagem em { 
-    font-style: italic; 
-    opacity: 0.9; 
+    margin: 4px 0; 
 }
 
 .mensagem code:not(.hljs) { 
     background: rgba(0,0,0,0.1); 
     padding: 2px 6px; 
     border-radius: 4px; 
-    font-family: 'Courier New', monospace;
-    font-size: 0.9em;
-    word-break: break-word;
+    font-family: 'Menlo', 'Courier New', monospace;
+    font-size: 14px;
 }
 
 .mensagem pre {
     background: #1e1e1e;
-    padding: 16px;
-    border-radius: 8px;
+    padding: 14px;
+    border-radius: 10px;
     overflow-x: auto;
-    margin: 12px 0;
-    position: relative;
-}
-
-.mensagem pre code {
-    background: none;
-    padding: 0;
-    color: #e0e0e0;
+    margin: 10px 0;
+    -webkit-overflow-scrolling: touch;
 }
 
 .mensagem a { 
     color: var(--primary); 
     text-decoration: underline;
-    font-weight: 600;
-    word-break: break-word;
+    font-weight: 500;
 }
 
-.mensagem h1, .mensagem h2, .mensagem h3 {
-    margin: 16px 0 8px 0;
-    font-weight: 800;
-    line-height: 1.3;
-}
-
-.mensagem blockquote {
-    border-left: 4px solid var(--primary);
-    padding-left: 16px;
-    margin: 12px 0;
-    opacity: 0.9;
-}
-
-.mensagem table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 12px 0;
-    overflow-x: auto;
-    display: block;
-}
-
-.mensagem table th,
-.mensagem table td {
-    border: 1px solid var(--border-color);
-    padding: 8px 12px;
-    text-align: left;
-    word-break: break-word;
-}
-
-.mensagem table th {
-    background: var(--primary);
-    color: white;
-    font-weight: bold;
-}
-
-/* Code Copy Button */
-.code-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #2d2d2d;
-    padding: 8px 12px;
-    border-radius: 8px 8px 0 0;
-    margin-bottom: -12px;
-}
-
-.code-language {
-    color: #aaa;
-    font-size: 0.85em;
-    font-weight: 600;
-}
-
-.code-copy-btn {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-size: 0.8em;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.code-copy-btn:hover {
-    background: var(--primary-dark);
-}
-
-/* Capabilities Cards Responsivo */
-.capabilities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-    margin: 16px 0;
-}
-
-.capability-card {
-    background: var(--bg-card);
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.capability-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-}
-
-.capability-icon {
-    font-size: 2.5em;
-    margin-bottom: 8px;
-}
-
-.capability-title {
-    font-weight: 700;
-    font-size: 0.9em;
-    color: var(--text-main);
-}
-
-/* Anexos e Imagens Responsivas */
-.file-attachment {
-    background: rgba(0,0,0,0.05);
-    padding: 12px;
-    border-radius: 10px;
-    margin: 8px 0;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border: 2px dashed var(--border-color);
-    flex-wrap: wrap;
-}
-
-.file-icon {
-    font-size: 2em;
-}
-
-.file-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.file-name {
-    font-weight: 600;
-    margin-bottom: 4px;
-    word-break: break-word;
-}
-
-.file-size {
-    font-size: 0.85em;
-    opacity: 0.7;
-}
-
-.image-preview {
-    max-width: 100%;
-    border-radius: 12px;
-    margin: 8px 0;
-    cursor: pointer;
-    transition: var(--transition);
-    height: auto;
-}
-
-.image-preview:hover {
-    transform: scale(1.02);
-    box-shadow: var(--shadow-lg);
-}
-
-/* Modo Leitura Facilitada */
-body.leitura-facilitada {
-    font-size: 20px;
-}
-
-body.leitura-facilitada .mensagem {
-    line-height: 2;
-    letter-spacing: 0.5px;
-}
-
-/* File Input Hidden */
-#fileInput {
-    display: none;
-}
-
-/* Media Queries para Responsividade */
-@media (max-width: 768px) {
+/* Media Queries específicas para iPhone */
+/* iPhone SE e menores */
+@media (max-width: 320px) {
     .app-header {
-        padding: 10px 14px;
+        padding: 6px 10px;
     }
     
     #chat-container {
-        padding: 12px;
-        gap: 12px;
+        padding: 10px 8px;
+        gap: 10px;
     }
     
     .mensagem-wrapper {
-        max-width: 95%;
-    }
-    
-    .mensagem {
-        padding: 12px 16px;
-    }
-    
-    .capabilities-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 10px;
-    }
-    
-    footer {
-        padding: 12px;
-    }
-    
-    .input-area {
-        gap: 8px;
-    }
-    
-    #entradaUsuario {
-        padding: 10px 14px;
-        font-size: 16px;
-    }
-    
-    #btn-mic, #btn-attach {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-    }
-    
-    .btn-send {
-        height: 44px;
-        padding: 0 20px;
-        min-width: 70px;
-    }
-    
-    .card-aviso {
-        padding: 24px 20px;
-    }
-    
-    .aviso-titulo {
-        font-size: 1.7em;
-    }
-}
-
-@media (max-width: 480px) {
-    .app-header {
-        padding: 8px 12px;
-    }
-    
-    .logo-area .logo {
-        width: 36px;
-        height: 36px;
-    }
-    
-    .icone-menu, .icone-header {
-        width: 20px;
-        height: 20px;
-    }
-    
-    #chat-container {
-        padding: 10px;
-        gap: 10px;
+        max-width: 92%;
     }
     
     .mensagem {
         padding: 10px 14px;
-        font-size: 0.95em;
-    }
-    
-    .mensagem-wrapper {
-        max-width: 100%;
+        font-size: 15px;
     }
     
     .sugestoes-container {
-        padding: 10px 12px;
+        padding: 8px 10px;
     }
     
     .chip {
-        padding: 6px 12px;
-        font-size: 0.85em;
+        padding: 8px 12px;
+        font-size: 14px;
     }
     
-    .input-tools {
-        gap: 6px;
-    }
-    
-    .tool-btn {
-        padding: 6px 10px;
-        font-size: 0.8em;
+    footer {
+        padding: 10px 8px;
     }
     
     #entradaUsuario {
-        padding: 8px 12px;
-        min-height: 40px;
+        padding: 10px 14px;
         font-size: 16px;
-    }
-    
-    #btn-mic, #btn-attach {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-        font-size: 1.1em;
-    }
-    
-    .btn-send {
-        height: 40px;
-        padding: 0 16px;
-        font-size: 0.9em;
-        min-width: 60px;
     }
     
     .card-aviso {
@@ -1197,51 +778,63 @@ body.leitura-facilitada .mensagem {
     }
     
     .aviso-titulo {
-        font-size: 1.5em;
-    }
-    
-    .aviso-lista {
-        font-size: 1em;
-    }
-    
-    .toast {
-        max-width: calc(100% - 20px);
-        padding: 14px 16px;
+        font-size: 18px;
     }
 }
 
-@media (max-width: 320px) {
-    #side-menu {
-        width: 90%;
-    }
-    
-    .menu-item {
-        padding: 12px 14px;
-    }
-    
-    .input-area {
-        flex-wrap: wrap;
-    }
-    
-    .input-container {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    
-    .input-actions {
-        width: 100%;
-        justify-content: space-between;
-    }
-}
-
-/* Suporte para orientação paisagem em dispositivos móveis */
-@media (max-height: 500px) and (orientation: landscape) {
+/* iPhone Plus e maiores */
+@media (min-width: 414px) {
     .app-header {
-        padding: 6px 12px;
+        padding: 10px 16px;
     }
     
     #chat-container {
-        padding: 8px;
+        padding: 16px 14px;
+    }
+    
+    .mensagem-wrapper {
+        max-width: 85%;
+    }
+    
+    footer {
+        padding: 16px 14px;
+    }
+}
+
+/* iPad */
+@media (min-width: 768px) {
+    .app-header {
+        padding: 12px 20px;
+    }
+    
+    #chat-container {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    .mensagem-wrapper {
+        max-width: 80%;
+    }
+    
+    footer {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+/* Suporte para orientação paisagem iPhone */
+@media (max-height: 400px) and (orientation: landscape) {
+    .app-header {
+        min-height: 40px;
+        padding: 4px 12px;
+    }
+    
+    #chat-container {
+        padding: 8px 10px;
         gap: 8px;
     }
     
@@ -1250,26 +843,61 @@ body.leitura-facilitada .mensagem {
     }
     
     footer {
-        padding: 8px 12px;
+        padding: 8px 10px;
     }
     
     .sugestoes-container {
-        padding: 8px 12px;
+        display: none; /* Esconder sugestões em paisagem para economizar espaço */
     }
 }
 
-/* Melhorias de acessibilidade para foco */
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
+/* Melhorias de acessibilidade iOS */
+button, input, textarea {
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 
-/* Prevenir zoom em inputs em iOS */
-@media (max-width: 480px) {
-    input, textarea, select {
-        font-size: 16px !important;
+input, textarea {
+    font-size: 16px !important; /* Prevenir zoom em iOS */
+}
+
+/* Safe Area support melhorado */
+@supports (padding: max(0px)) {
+    #tela-app {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-top: max(8px, env(safe-area-inset-top));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+    
+    footer {
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Prevenir seleção de texto em elementos interativos */
+button, .chip, .tool-btn {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Feedback tátil melhorado */
+@media (hover: none) and (pointer: coarse) {
+    .menu-item:hover,
+    .chip:hover,
+    .tool-btn:hover,
+    .btn-acao:hover {
+        background: initial;
+        transform: initial;
+    }
+    
+    .menu-item:active,
+    .chip:active,
+    .tool-btn:active,
+    .btn-acao:active {
+        background: var(--primary);
+        transform: scale(0.96);
     }
 }
     </style>
