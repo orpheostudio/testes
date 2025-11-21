@@ -4,18 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>𝑺𝒆𝒏𝒂 ✧ - Tecnologia com alma gentil</title>
-    
+
+    <!-- PWA Meta Tags -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#6c5ce7">
-    <meta name="description" content="Assistente AI multifuncional com chat, análise de documentos, geração de imagens, código e muito mais">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sena">
     <link rel="apple-touch-icon" href="https://i.imgur.com/ivFEqQU.png">
+    <link rel="apple-touch-startup-image" href="https://i.imgur.com/ivFEqQU.png">
+    <meta name="mobile-web-app-capable" content="yes">
 
+    <meta name="description" content="Assistente AI multifuncional com chat, análise de documentos, geração de imagens, código e muito mais">
+
+    <!-- Fontes e Bibliotecas -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-    
+
+    <!-- Microsoft Clarity Analytics -->
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -26,891 +35,1027 @@
 
     <style>
         :root {
-    --primary: #6c5ce7; 
-    --primary-dark: #4834d4;
-    --primary-light: #a29bfe;
-    --success: #00b894;
-    --warning: #fdcb6e;
-    --danger: #d63031;
-    --info: #0984e3;
-    --bg-app: #f5f6fa;
-    --bg-chat: #ffffff;
-    --bg-card: #ffffff;
-    --text-main: #2d3436;
-    --text-secondary: #636e72;
-    --cici-bubble: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
-    --cici-text: #ffffff;
-    --user-bubble: #fab1a0;
-    --user-text: #2d3436;
-    --border-color: #dfe6e9;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-    --shadow-md: 0 2px 8px rgba(0,0,0,0.12);
-    --shadow-lg: 0 4px 15px rgba(0,0,0,0.15);
-    --menu-bg: rgba(255, 255, 255, 0.98);
-    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
+            --primary: #6c5ce7; 
+            --primary-dark: #4834d4;
+            --primary-light: #a29bfe;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+            --info: #0984e3;
+            --bg-app: #f5f6fa;
+            --bg-chat: #ffffff;
+            --bg-card: #ffffff;
+            --text-main: #2d3436;
+            --text-secondary: #636e72;
+            --cici-bubble: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            --cici-text: #ffffff;
+            --user-bubble: #fab1a0;
+            --user-text: #2d3436;
+            --border-color: #dfe6e9;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 2px 8px rgba(0,0,0,0.12);
+            --shadow-lg: 0 4px 15px rgba(0,0,0,0.15);
+            --menu-bg: rgba(255, 255, 255, 0.98);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --safe-area-top: env(safe-area-inset-top);
+            --safe-area-bottom: env(safe-area-inset-bottom);
+            --safe-area-left: env(safe-area-inset-left);
+            --safe-area-right: env(safe-area-inset-right);
+        }
 
-/* Tema Escuro para iPhone */
-@media (prefers-color-scheme: dark) {
-    body:not(.alto-contraste) {
-        --primary: #a29bfe;
-        --primary-dark: #6c5ce7;
-        --bg-app: #000000;
-        --bg-chat: #1c1c1e;
-        --bg-card: #2c2c2e;
-        --text-main: #ffffff;
-        --text-secondary: #98989f;
-        --cici-bubble: linear-gradient(135deg, #6c5ce7 0%, #4834d4 100%);
-        --user-bubble: #ff6b6b;
-        --border-color: #38383a;
-        --menu-bg: rgba(44, 44, 46, 0.95);
-    }
-}
+        /* Tema Escuro para iPhone */
+        @media (prefers-color-scheme: dark) {
+            body:not(.alto-contraste) {
+                --primary: #a29bfe;
+                --primary-dark: #6c5ce7;
+                --bg-app: #000000;
+                --bg-chat: #1c1c1e;
+                --bg-card: #2c2c2e;
+                --text-main: #ffffff;
+                --text-secondary: #98989f;
+                --cici-bubble: linear-gradient(135deg, #6c5ce7 0%, #4834d4 100%);
+                --user-bubble: #ff6b6b;
+                --border-color: #38383a;
+                --menu-bg: rgba(44, 44, 46, 0.95);
+            }
+        }
 
-/* Alto Contraste */
-body.alto-contraste {
-    --primary: #ffffff;
-    --primary-dark: #cccccc;
-    --bg-app: #000000;
-    --bg-chat: #000000;
-    --bg-card: #000000;
-    --text-main: #ffff00;
-    --text-secondary: #ffff00;
-    --cici-bubble: #ffff00;
-    --cici-text: #000000;
-    --user-bubble: #ffff00;
-    --user-text: #000000;
-    --border-color: #ffff00;
-    --shadow-sm: 0 0 0 1px #ffff00;
-}
+        /* Alto Contraste */
+        body.alto-contraste {
+            --primary: #ffffff;
+            --primary-dark: #cccccc;
+            --bg-app: #000000;
+            --bg-chat: #000000;
+            --bg-card: #000000;
+            --text-main: #ffff00;
+            --text-secondary: #ffff00;
+            --cici-bubble: #ffff00;
+            --cici-text: #000000;
+            --user-bubble: #ffff00;
+            --user-text: #000000;
+            --border-color: #ffff00;
+            --shadow-sm: 0 0 0 1px #ffff00;
+        }
 
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
+        /* Estilos para PWA */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            height: -webkit-fill-available;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            font-size: 17px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            overscroll-behavior: none;
+        }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--bg-app);
-    color: var(--text-main);
-    font-size: 17px; /* Tamanho padrão iOS */
-    -webkit-text-size-adjust: 100%; /* Prevenir zoom automático */
-}
+        /* Layout Principal - Otimizado para Safe Area */
+        #tela-app {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            height: -webkit-fill-available;
+            max-height: 100vh;
+            width: 100%;
+            padding-top: var(--safe-area-top);
+            padding-bottom: var(--safe-area-bottom);
+            padding-left: var(--safe-area-left);
+            padding-right: var(--safe-area-right);
+        }
 
-/* Layout Principal - Otimizado para Safe Area */
-#tela-app {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    height: -webkit-fill-available;
-    max-height: 100vh;
-    width: 100%;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-}
-
-/* Header iPhone */
-.app-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px;
-    background: rgba(20, 20, 26, 0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 0.5px solid rgba(255,255,255,0.1);
-    flex-shrink: 0;
-    min-height: 44px; /* Tamanho mínimo touch iOS */
-}
-
-/* Botões com tamanho touch ideal */
-.menu-btn, .header-action {
-    background: transparent;
-    border: none;
-    padding: 8px;
-    min-width: 44px;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: var(--transition);
-}
-
-.menu-btn:active, .header-action:active {
-    background: rgba(255,255,255,0.1);
-    transform: scale(0.95);
-}
-
-.icone-menu, .icone-header {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
-}
-
-.logo-area .logo {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-}
-
-/* Menu Lateral iPhone */
-#overlay-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-#overlay-menu.aberto {
-    opacity: 1;
-    pointer-events: all;
-}
-
-#side-menu {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 280px;
-    height: 100%;
-    background: var(--menu-bg);
-    z-index: 1001;
-    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 20px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    box-shadow: 2px 0 15px rgba(0,0,0,0.3);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    overflow-y: auto;
-}
-
-#side-menu.aberto { 
-    left: 0; 
-}
-
-.menu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 0.5px solid var(--border-color);
-}
-
-.menu-close {
-    background: var(--danger);
-    border: none;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1em;
-}
-
-.menu-item {
-    background: none;
-    border: none;
-    color: var(--text-main);
-    padding: 16px 14px;
-    text-align: left;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    transition: var(--transition);
-    min-height: 44px;
-}
-
-.menu-item:active {
-    background-color: var(--primary);
-    color: white;
-}
-
-.toggle-switch {
-    width: 52px;
-    height: 32px;
-    background: var(--border-color);
-    border-radius: 16px;
-    position: relative;
-    cursor: pointer;
-    transition: var(--transition);
-    margin-left: auto;
-    flex-shrink: 0;
-}
-
-.toggle-switch.ativo {
-    background: var(--success);
-}
-
-.toggle-switch::after {
-    content: '';
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    background: white;
-    border-radius: 50%;
-    top: 2px;
-    left: 2px;
-    transition: var(--transition);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.toggle-switch.ativo::after {
-    left: 22px;
-}
-
-/* Área de Chat - Otimizada para iPhone */
-#chat-container {
-    flex: 1;
-    padding: 12px 10px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    background: var(--bg-chat);
-    scroll-behavior: smooth;
-    min-height: 0;
-    -webkit-overflow-scrolling: touch; /* Scroll suave iOS */
-}
-
-#chat-container::-webkit-scrollbar { 
-    display: none; /* Esconder scrollbar iOS */
-}
-
-/* Mensagens para iPhone */
-.mensagem-wrapper {
-    display: flex;
-    flex-direction: column;
-    max-width: 88%;
-    animation: slideIn 0.3s ease-out;
-}
-
-@keyframes slideIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(8px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-.cici-wrapper { 
-    align-self: flex-start; 
-}
-
-.usuario-wrapper { 
-    align-self: flex-end; 
-    align-items: flex-end; 
-}
-
-.mensagem {
-    padding: 12px 16px;
-    border-radius: 18px;
-    line-height: 1.4;
-    box-shadow: var(--shadow-sm);
-    word-wrap: break-word;
-    position: relative;
-    font-size: 16px;
-    word-break: break-word;
-}
-
-.cici {
-    background: var(--cici-bubble);
-    color: var(--cici-text);
-    border-bottom-left-radius: 6px;
-}
-
-.usuario {
-    background-color: var(--user-bubble);
-    color: var(--user-text);
-    border-bottom-right-radius: 6px;
-}
-
-.mensagem-hora {
-    font-size: 13px;
-    opacity: 0.7;
-    margin-top: 4px;
-}
-
-.mensagem-acoes {
-    display: flex;
-    gap: 6px;
-    margin-top: 8px;
-    flex-wrap: wrap;
-}
-
-.btn-acao {
-    background: rgba(0,0,0,0.08);
-    border: none;
-    color: var(--text-secondary);
-    font-size: 13px;
-    cursor: pointer;
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    padding: 6px 10px;
-    border-radius: 8px;
-    transition: var(--transition);
-    font-weight: 500;
-    min-height: 32px;
-}
-
-.btn-acao:active {
-    background: var(--primary);
-    color: white;
-    transform: scale(0.96);
-}
-
-/* Sugestões iPhone */
-.sugestoes-container {
-    padding: 10px 12px;
-    background: linear-gradient(to top, rgba(20,20,28,0.95), rgba(20,20,28,0));
-    flex-shrink: 0;
-    border-top: 0.5px solid rgba(255,255,255,0.1);
-}
-
-.sugestoes-scroll {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding-bottom: 2px;
-    -webkit-overflow-scrolling: touch;
-}
-
-.sugestoes-scroll::-webkit-scrollbar {
-    display: none;
-}
-
-.chip {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255,255,255,0.12);
-    border: 0.5px solid rgba(255,255,255,0.2);
-    padding: 10px 14px;
-    border-radius: 20px;
-    color: #fff;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: var(--transition);
-    flex-shrink: 0;
-    font-size: 15px;
-    font-weight: 500;
-    min-height: 36px;
-}
-
-.chip:active {
-    background: rgba(255,255,255,0.2);
-    transform: scale(0.96);
-}
-
-/* Área de Input iPhone */
-footer {
-    background: var(--bg-chat);
-    padding: 12px 10px;
-    border-top: 0.5px solid var(--border-color);
-    flex-shrink: 0;
-    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-}
-
-.input-tools {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 10px;
-    overflow-x: auto;
-    padding-bottom: 2px;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-}
-
-.input-tools::-webkit-scrollbar {
-    display: none;
-}
-
-.tool-btn {
-    background: var(--bg-card);
-    border: 0.5px solid var(--border-color);
-    color: var(--text-main);
-    padding: 8px 12px;
-    border-radius: 10px;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    transition: var(--transition);
-    font-weight: 500;
-    flex-shrink: 0;
-    min-height: 36px;
-}
-
-.tool-btn:active {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-    transform: scale(0.96);
-}
-
-.input-area {
-    display: flex;
-    gap: 8px;
-    align-items: flex-end;
-}
-
-.input-container {
-    flex: 1;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
-#entradaUsuario {
-    width: 100%;
-    max-height: 120px;
-    min-height: 40px;
-    resize: none;
-    padding: 12px 16px;
-    border-radius: 20px;
-    font-size: 17px;
-    line-height: 1.4;
-    border: 0.5px solid var(--border-color);
-    background: var(--bg-card);
-    color: var(--text-main);
-    caret-color: var(--primary);
-    font-family: inherit;
-    transition: var(--transition);
-    -webkit-user-select: text;
-    user-select: text;
-}
-
-#entradaUsuario:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.15);
-}
-
-#entradaUsuario::placeholder {
-    color: var(--text-secondary);
-    opacity: 0.7;
-}
-
-.input-actions {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-#btn-mic, #btn-attach {
-    background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
-    color: white;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    border-radius: 50%;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition);
-}
-
-#btn-attach {
-    background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
-}
-
-#btn-mic:active, #btn-attach:active {
-    transform: scale(0.92);
-}
-
-#btn-mic.ouvindo {
-    background: linear-gradient(135deg, var(--success) 0%, #00b894 100%);
-    animation: pulse 1.5s infinite;
-}
-
-.btn-send {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: 0 20px;
-    height: 44px;
-    border-radius: 22px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition);
-    font-size: 16px;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 70px;
-}
-
-.btn-send:active {
-    transform: scale(0.95);
-}
-
-.btn-send:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-}
-
-@keyframes pulse {
-    0%, 100% { 
-        transform: scale(1); 
-    }
-    50% { 
-        transform: scale(1.05); 
-    }
-}
-
-/* Modal iPhone */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
+        /* Header com altura segura para dispositivos móveis */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: rgba(30, 30, 40, 0.45);
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    padding: 20px;
-}
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 0.5px solid rgba(255,255,255,0.1);
+            flex-shrink: 0;
+            min-height: 44px;
+            padding-top: max(8px, var(--safe-area-top));
+        }
 
-.card-aviso {
-    width: 100%;
-    max-width: 320px;
-    padding: 24px 20px;
-    background: var(--bg-card);
-    border: 0.5px solid var(--border-color);
-    border-radius: 20px;
-    color: var(--text-main);
-    text-align: center;
-    box-shadow: var(--shadow-lg);
-    animation: fadeZoom 0.3s ease;
-}
+        /* Botões com tamanho touch ideal */
+        .menu-btn, .header-action {
+            background: transparent;
+            border: none;
+            padding: 8px;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+        }
 
-@keyframes fadeZoom {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
+        .menu-btn:active, .header-action:active {
+            background: rgba(255,255,255,0.1);
+            transform: scale(0.95);
+        }
 
-.aviso-titulo {
-    font-size: 20px;
-    margin-bottom: 16px;
-    font-weight: 700;
-}
+        .icone-menu, .icone-header {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
 
-.aviso-lista {
-    text-align: left;
-    line-height: 1.5;
-    font-size: 16px;
-    margin: 16px 0 20px;
-}
+        .logo-area .logo {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
 
-.btn-grande {
-    width: 100%;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    padding: 16px 0;
-    border-radius: 14px;
-    border: none;
-    color: white;
-    font-size: 17px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: var(--transition);
-    min-height: 50px;
-}
+        /* Menu Lateral com gesto de arrastar */
+        #overlay-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            touch-action: pan-y;
+        }
 
-.btn-grande:active {
-    transform: scale(0.98);
-}
+        #overlay-menu.aberto {
+            opacity: 1;
+            pointer-events: all;
+        }
 
-/* Toast iPhone */
-.toast {
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--bg-card);
-    color: var(--text-main);
-    padding: 14px 18px;
-    border-radius: 14px;
-    box-shadow: var(--shadow-lg);
-    z-index: 1500;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 200px;
-    max-width: calc(100% - 32px);
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 0.5px solid var(--border-color);
-    font-size: 15px;
-}
+        #side-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100%;
+            background: var(--menu-bg);
+            z-index: 1001;
+            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            overflow-y: auto;
+            padding-top: max(20px, var(--safe-area-top));
+            padding-bottom: max(20px, var(--safe-area-bottom));
+        }
 
-.toast.mostrar {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
+        #side-menu.aberto { 
+            left: 0; 
+        }
 
-.oculto { 
-    display: none !important; 
-}
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 0.5px solid var(--border-color);
+        }
 
-/* Markdown para iPhone */
-.mensagem p { 
-    margin: 6px 0; 
-    line-height: 1.4; 
-    font-size: 16px;
-}
+        .menu-close {
+            background: var(--danger);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-.mensagem ul, .mensagem ol { 
-    margin: 8px 0; 
-    padding-left: 20px; 
-    line-height: 1.5; 
-}
+        .menu-item {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            padding: 16px 14px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: var(--transition);
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-.mensagem li { 
-    margin: 4px 0; 
-}
+        .menu-item:active {
+            background-color: var(--primary);
+            color: white;
+        }
 
-.mensagem code:not(.hljs) { 
-    background: rgba(0,0,0,0.1); 
-    padding: 2px 6px; 
-    border-radius: 4px; 
-    font-family: 'Menlo', 'Courier New', monospace;
-    font-size: 14px;
-}
+        .toggle-switch {
+            width: 52px;
+            height: 32px;
+            background: var(--border-color);
+            border-radius: 16px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: auto;
+            flex-shrink: 0;
+        }
 
-.mensagem pre {
-    background: #1e1e1e;
-    padding: 14px;
-    border-radius: 10px;
-    overflow-x: auto;
-    margin: 10px 0;
-    -webkit-overflow-scrolling: touch;
-}
+        .toggle-switch.ativo {
+            background: var(--success);
+        }
 
-.mensagem a { 
-    color: var(--primary); 
-    text-decoration: underline;
-    font-weight: 500;
-}
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: var(--transition);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
 
-/* Media Queries específicas para iPhone */
-/* iPhone SE e menores */
-@media (max-width: 320px) {
-    .app-header {
-        padding: 6px 10px;
-    }
-    
-    #chat-container {
-        padding: 10px 8px;
-        gap: 10px;
-    }
-    
-    .mensagem-wrapper {
-        max-width: 92%;
-    }
-    
-    .mensagem {
-        padding: 10px 14px;
-        font-size: 15px;
-    }
-    
-    .sugestoes-container {
-        padding: 8px 10px;
-    }
-    
-    .chip {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-    
-    footer {
-        padding: 10px 8px;
-    }
-    
-    #entradaUsuario {
-        padding: 10px 14px;
-        font-size: 16px;
-    }
-    
-    .card-aviso {
-        padding: 20px 16px;
-    }
-    
-    .aviso-titulo {
-        font-size: 18px;
-    }
-}
+        .toggle-switch.ativo::after {
+            left: 22px;
+        }
 
-/* iPhone Plus e maiores */
-@media (min-width: 414px) {
-    .app-header {
-        padding: 10px 16px;
-    }
-    
-    #chat-container {
-        padding: 16px 14px;
-    }
-    
-    .mensagem-wrapper {
-        max-width: 85%;
-    }
-    
-    footer {
-        padding: 16px 14px;
-    }
-}
+        /* Área de Chat - Otimizada para dispositivos móveis */
+        #chat-container {
+            flex: 1;
+            padding: 12px 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: var(--bg-chat);
+            scroll-behavior: smooth;
+            min-height: 0;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
 
-/* iPad */
-@media (min-width: 768px) {
-    .app-header {
-        padding: 12px 20px;
-    }
-    
-    #chat-container {
-        padding: 20px;
-        max-width: 800px;
-        margin: 0 auto;
-        width: 100%;
-    }
-    
-    .mensagem-wrapper {
-        max-width: 80%;
-    }
-    
-    footer {
-        padding: 20px;
-        max-width: 800px;
-        margin: 0 auto;
-        width: 100%;
-    }
-}
+        #chat-container::-webkit-scrollbar { 
+            display: none;
+        }
 
-/* Suporte para orientação paisagem iPhone */
-@media (max-height: 400px) and (orientation: landscape) {
-    .app-header {
-        min-height: 40px;
-        padding: 4px 12px;
-    }
-    
-    #chat-container {
-        padding: 8px 10px;
-        gap: 8px;
-    }
-    
-    .mensagem {
-        padding: 8px 12px;
-    }
-    
-    footer {
-        padding: 8px 10px;
-    }
-    
-    .sugestoes-container {
-        display: none; /* Esconder sugestões em paisagem para economizar espaço */
-    }
-}
+        /* Mensagens para dispositivos móveis */
+        .mensagem-wrapper {
+            display: flex;
+            flex-direction: column;
+            max-width: 88%;
+            animation: slideIn 0.3s ease-out;
+        }
 
-/* Melhorias de acessibilidade iOS */
-button, input, textarea {
-    -webkit-appearance: none;
-    border-radius: 0;
-}
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(8px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
 
-input, textarea {
-    font-size: 16px !important; /* Prevenir zoom em iOS */
-}
+        .cici-wrapper { 
+            align-self: flex-start; 
+        }
 
-/* Safe Area support melhorado */
-@supports (padding: max(0px)) {
-    #tela-app {
-        padding-left: max(12px, env(safe-area-inset-left));
-        padding-right: max(12px, env(safe-area-inset-right));
-        padding-top: max(8px, env(safe-area-inset-top));
-        padding-bottom: max(12px, env(safe-area-inset-bottom));
-    }
-    
-    footer {
-        padding-bottom: max(12px, env(safe-area-inset-bottom));
-    }
-}
+        .usuario-wrapper { 
+            align-self: flex-end; 
+            align-items: flex-end; 
+        }
 
-/* Prevenir seleção de texto em elementos interativos */
-button, .chip, .tool-btn {
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-}
+        .mensagem {
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.4;
+            box-shadow: var(--shadow-sm);
+            word-wrap: break-word;
+            position: relative;
+            font-size: 16px;
+            word-break: break-word;
+            -webkit-user-select: text;
+            user-select: text;
+        }
 
-/* Feedback tátil melhorado */
-@media (hover: none) and (pointer: coarse) {
-    .menu-item:hover,
-    .chip:hover,
-    .tool-btn:hover,
-    .btn-acao:hover {
-        background: initial;
-        transform: initial;
-    }
-    
-    .menu-item:active,
-    .chip:active,
-    .tool-btn:active,
-    .btn-acao:active {
-        background: var(--primary);
-        transform: scale(0.96);
-    }
-}
+        .cici {
+            background: var(--cici-bubble);
+            color: var(--cici-text);
+            border-bottom-left-radius: 6px;
+        }
+
+        .usuario {
+            background-color: var(--user-bubble);
+            color: var(--user-text);
+            border-bottom-right-radius: 6px;
+        }
+
+        .mensagem-hora {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+
+        .mensagem-acoes {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-acao {
+            background: rgba(0,0,0,0.08);
+            border: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+            min-height: 32px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-acao:active {
+            background: var(--primary);
+            color: white;
+            transform: scale(0.96);
+        }
+
+        /* Sugestões para dispositivos móveis */
+        .sugestoes-container {
+            padding: 10px 12px;
+            background: linear-gradient(to top, rgba(20,20,28,0.95), rgba(20,20,28,0));
+            flex-shrink: 0;
+            border-top: 0.5px solid rgba(255,255,255,0.1);
+        }
+
+        .sugestoes-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 2px;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+        }
+
+        .sugestoes-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.12);
+            border: 0.5px solid rgba(255,255,255,0.2);
+            padding: 10px 14px;
+            border-radius: 20px;
+            color: #fff;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+            font-size: 15px;
+            font-weight: 500;
+            min-height: 36px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .chip:active {
+            background: rgba(255,255,255,0.2);
+            transform: scale(0.96);
+        }
+
+        /* Área de Input para dispositivos móveis */
+        footer {
+            background: var(--bg-chat);
+            padding: 12px 10px;
+            border-top: 0.5px solid var(--border-color);
+            flex-shrink: 0;
+            padding-bottom: max(12px, var(--safe-area-bottom));
+        }
+
+        .input-tools {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 10px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+        }
+
+        .input-tools::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tool-btn {
+            background: var(--bg-card);
+            border: 0.5px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: var(--transition);
+            font-weight: 500;
+            flex-shrink: 0;
+            min-height: 36px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .tool-btn:active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(0.96);
+        }
+
+        .input-area {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .input-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        #entradaUsuario {
+            width: 100%;
+            max-height: 120px;
+            min-height: 40px;
+            resize: none;
+            padding: 12px 16px;
+            border-radius: 20px;
+            font-size: 17px;
+            line-height: 1.4;
+            border: 0.5px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-main);
+            caret-color: var(--primary);
+            font-family: inherit;
+            transition: var(--transition);
+            -webkit-user-select: text;
+            user-select: text;
+            -webkit-appearance: none;
+        }
+
+        #entradaUsuario:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.15);
+        }
+
+        #entradaUsuario::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        #btn-mic, #btn-attach {
+            background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+            color: white;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 50%;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #btn-attach {
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+        }
+
+        #btn-mic:active, #btn-attach:active {
+            transform: scale(0.92);
+        }
+
+        #btn-mic.ouvindo {
+            background: linear-gradient(135deg, var(--success) 0%, #00b894 100%);
+            animation: pulse 1.5s infinite;
+        }
+
+        .btn-send {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 0 20px;
+            height: 44px;
+            border-radius: 22px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            font-size: 16px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 70px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-send:active {
+            transform: scale(0.95);
+        }
+
+        .btn-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1); 
+            }
+            50% { 
+                transform: scale(1.05); 
+            }
+        }
+
+        /* Modal para dispositivos móveis */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+            padding-top: max(20px, var(--safe-area-top));
+            padding-bottom: max(20px, var(--safe-area-bottom));
+        }
+
+        .card-aviso {
+            width: 100%;
+            max-width: 320px;
+            padding: 24px 20px;
+            background: var(--bg-card);
+            border: 0.5px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--text-main);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            animation: fadeZoom 0.3s ease;
+        }
+
+        @keyframes fadeZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .aviso-titulo {
+            font-size: 20px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .aviso-lista {
+            text-align: left;
+            line-height: 1.5;
+            font-size: 16px;
+            margin: 16px 0 20px;
+        }
+
+        .btn-grande {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 16px 0;
+            border-radius: 14px;
+            border: none;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            min-height: 50px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-grande:active {
+            transform: scale(0.98);
+        }
+
+        /* Toast para dispositivos móveis */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 14px 18px;
+            border-radius: 14px;
+            box-shadow: var(--shadow-lg);
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 200px;
+            max-width: calc(100% - 32px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 0.5px solid var(--border-color);
+            font-size: 15px;
+            margin-bottom: max(80px, var(--safe-area-bottom));
+        }
+
+        .toast.mostrar {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .oculto { 
+            display: none !important; 
+        }
+
+        /* Indicador de digitação */
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 8px 0;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Melhorias de acessibilidade */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            z-index: 10000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Media Queries específicas para dispositivos */
+        /* iPhone SE e menores */
+        @media (max-width: 320px) {
+            .app-header {
+                padding: 6px 10px;
+            }
+
+            #chat-container {
+                padding: 10px 8px;
+                gap: 10px;
+            }
+
+            .mensagem-wrapper {
+                max-width: 92%;
+            }
+
+            .mensagem {
+                padding: 10px 14px;
+                font-size: 15px;
+            }
+
+            .sugestoes-container {
+                padding: 8px 10px;
+            }
+
+            .chip {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            footer {
+                padding: 10px 8px;
+            }
+
+            #entradaUsuario {
+                padding: 10px 14px;
+                font-size: 16px;
+            }
+
+            .card-aviso {
+                padding: 20px 16px;
+            }
+
+            .aviso-titulo {
+                font-size: 18px;
+            }
+        }
+
+        /* iPhone Plus e maiores */
+        @media (min-width: 414px) {
+            .app-header {
+                padding: 10px 16px;
+            }
+
+            #chat-container {
+                padding: 16px 14px;
+            }
+
+            .mensagem-wrapper {
+                max-width: 85%;
+            }
+
+            footer {
+                padding: 16px 14px;
+            }
+        }
+
+        /* iPad */
+        @media (min-width: 768px) {
+            .app-header {
+                padding: 12px 20px;
+            }
+
+            #chat-container {
+                padding: 20px;
+                max-width: 800px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .mensagem-wrapper {
+                max-width: 80%;
+            }
+
+            footer {
+                padding: 20px;
+                max-width: 800px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+
+        /* Suporte para orientação paisagem */
+        @media (max-height: 400px) and (orientation: landscape) {
+            .app-header {
+                min-height: 40px;
+                padding: 4px 12px;
+            }
+
+            #chat-container {
+                padding: 8px 10px;
+                gap: 8px;
+            }
+
+            .mensagem {
+                padding: 8px 12px;
+            }
+
+            footer {
+                padding: 8px 10px;
+            }
+
+            .sugestoes-container {
+                display: none;
+            }
+        }
+
+        /* Melhorias de acessibilidade iOS */
+        button, input, textarea {
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+
+        input, textarea {
+            font-size: 16px !important;
+        }
+
+        /* Prevenir seleção de texto em elementos interativos */
+        button, .chip, .tool-btn {
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        /* Feedback tátil melhorado */
+        @media (hover: none) and (pointer: coarse) {
+            .menu-item:hover,
+            .chip:hover,
+            .tool-btn:hover,
+            .btn-acao:hover {
+                background: initial;
+                transform: initial;
+            }
+
+            .menu-item:active,
+            .chip:active,
+            .tool-btn:active,
+            .btn-acao:active {
+                background: var(--primary);
+                transform: scale(0.96);
+            }
+        }
+
+        /* Estilos para tela de boas-vindas */
+        .boas-vindas {
+            text-align: center;
+        }
+
+        .logo-boas-vindas {
+            margin-bottom: 20px;
+            border-radius: 20px;
+        }
+
+        .titulo-boas-vindas {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .subtitulo-forte {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            font-size: 16px;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+
+        .aviso-links {
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        .aviso-links a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Estilos para anexos de arquivo */
+        .file-attachment {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-icon {
+            font-size: 24px;
+        }
+
+        .file-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-name {
+            font-weight: 600;
+        }
+
+        .file-size {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* Estilos para código */
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: #2d2d2d;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .code-language {
+            font-weight: 600;
+        }
+
+        .code-copy-btn {
+            background: #444;
+            border: none;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .code-copy-btn:active {
+            background: #666;
+        }
+
+        /* Estilos para menu dividers */
+        .menu-divider {
+            height: 1px;
+            background: var(--border-color);
+            margin: 12px 0;
+        }
+
+        .menu-titulo {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 16px 0 8px;
+            padding: 0 14px;
+        }
+
+        /* Estilos para modo ativo nos botões */
+        .tool-btn.ativo {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
     </style>
 </head>
 <body>
+    <!-- Link de acessibilidade para pular para o conteúdo principal -->
     <a href="#chat-container" class="skip-link">Pular para o chat</a>
 
+    <!-- Overlay e Menu Lateral -->
     <div id="overlay-menu" onclick="fecharMenu()"></div>
 
-    <nav id="side-menu" role="navigation">
+    <nav id="side-menu" role="navigation" aria-label="Menu de configurações">
         <div class="menu-header">
             <h2 style="margin:0; font-size:1.3em;">⚙️ Configurações</h2>
-            <button class="menu-close" onclick="fecharMenu()">✕</button>
+            <button class="menu-close" onclick="fecharMenu()" aria-label="Fechar menu">✕</button>
         </div>
 
         <div class="menu-titulo">🎨 Aparência</div>
@@ -1001,134 +1146,131 @@ button, .chip, .tool-btn {
     </nav>
 
     <!-- Tela de Boas-Vindas -->
-<div id="tela-boas-vindas" class="modal-overlay">
-    <div class="card-aviso boas-vindas">
-        <img src="https://i.imgur.com/ivFEqQU.png" 
-             width="110" 
-             alt="Logo Cici"
-             class="logo-boas-vindas">
+    <div id="tela-boas-vindas" class="modal-overlay">
+        <div class="card-aviso boas-vindas">
+            <img src="https://i.imgur.com/ivFEqQU.png" 
+                 width="110" 
+                 alt="Logo Sena"
+                 class="logo-boas-vindas">
 
-        <h1 class="titulo-boas-vindas">🌸 𝑺𝒆𝒏𝒂 ✧</h1>
+            <h1 class="titulo-boas-vindas">🌸 𝑺𝒆𝒏𝒂 ✧</h1>
 
-        <p class="subtitulo-forte">Tecnologia com alma gentil</p>
-        <p class="subtitulo">Chat • Análise • Código • Imagens • Documentos</p>
+            <p class="subtitulo-forte">Tecnologia com alma gentil</p>
+            <p class="subtitulo">Chat • Análise • Código • Imagens • Documentos</p>
 
-        <button class="btn-grande" onclick="irParaAviso()">Começar Agora</button>
+            <button class="btn-grande" onclick="irParaAviso()">Começar Agora</button>
+        </div>
     </div>
-</div>
 
     <!-- Tela de Avisos -->
-<div id="tela-aviso" class="modal-overlay oculto">
-    <div class="card-aviso">
-        <h2 class="aviso-titulo">⚠️ Informações Importantes</h2>
+    <div id="tela-aviso" class="modal-overlay oculto">
+        <div class="card-aviso">
+            <h2 class="aviso-titulo">⚠️ Informações Importantes</h2>
 
-        <div class="aviso-lista">
-            <p><strong>✓</strong> Sou uma assistente IA em desenvolvimento</p>
-            <p><strong>✓</strong> Posso cometer erros — verifique informações críticas</p>
-            <p><strong>✓</strong> Não compartilhe senhas ou dados bancários</p>
-            <p><strong>✓</strong> Suas conversas são salvas localmente</p>
-            <p><strong>✓</strong> Posso analisar documentos(beta), gerar código e muito mais</p>
-        </div>
+            <div class="aviso-lista">
+                <p><strong>✓</strong> Sou uma assistente IA em desenvolvimento</p>
+                <p><strong>✓</strong> Posso cometer erros — verifique informações críticas</p>
+                <p><strong>✓</strong> Não compartilhe senhas ou dados bancários</p>
+                <p><strong>✓</strong> Suas conversas são salvas localmente</p>
+                <p><strong>✓</strong> Posso analisar documentos(beta), gerar código e muito mais</p>
+            </div>
 
-        <button class="btn-grande" onclick="irParaChat()">Entendi e Aceito</button>
+            <button class="btn-grande" onclick="irParaChat()">Entendi e Aceito</button>
 
-        <div class="aviso-links">
-            <a href="https://termos.orpheostudio.com.br" target="_blank">Termos de Uso</a> |
-            <a href="https://politicas.orpheostudio.com.br" target="_blank">Política de Privacidade</a>
+            <div class="aviso-links">
+                <a href="https://termos.orpheostudio.com.br" target="_blank">Termos de Uso</a> |
+                <a href="https://politicas.orpheostudio.com.br" target="_blank">Política de Privacidade</a>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- Aplicação Principal -->
-<div id="tela-app" class="oculto" style="display:flex; flex-direction:column; height:100%">
-    <header class="app-header">
-        
-        <button class="menu-btn" onclick="abrirMenu()" aria-label="Abrir menu">
-            <img src="https://i.imgur.com/6hl6JoA.png" alt="Menu" class="icone-menu">
-        </button>
+    <div id="tela-app" class="oculto" style="display:flex; flex-direction:column; height:100%">
+        <header class="app-header">
+            <button class="menu-btn" onclick="abrirMenu()" aria-label="Abrir menu">
+                <img src="https://i.imgur.com/6hl6JoA.png" alt="Menu" class="icone-menu">
+            </button>
 
-        <div class="logo-area">
-            <img src="https://i.imgur.com/ivFEqQU.png" alt="Sena" class="logo">
+            <div class="logo-area">
+                <img src="https://i.imgur.com/ivFEqQU.png" alt="Sena" class="logo">
+            </div>
+
+            <button class="header-action sena-btn" 
+                    onclick="novaConversa()" 
+                    aria-label="Nova conversa" 
+                    title="Nova conversa">
+                <img src="https://i.imgur.com/FsXkN6B.png" alt="Nova conversa" class="icone-header">
+            </button>
+        </header>
+
+        <div id="chat-container" role="main" aria-live="polite" aria-label="Área de conversa"></div>
+
+        <div class="sugestoes-container">
+            <div class="sugestoes-scroll" id="chips-sugestoes">
+                <button class="chip" onclick="usarChip('Explique de forma simples:')">
+                    <span>🎯</span> Explicação Simples
+                </button>
+                <button class="chip" onclick="usarChip('Crie um código em Python para:')">
+                    <span>💻</span> Gerar Código
+                </button>
+                <button class="chip" onclick="usarChip('Analise este documento:')">
+                    <span>📄</span> Analisar Documento
+                </button>
+                <button class="chip" onclick="usarChip('Resuma em tópicos:')">
+                    <span>📝</span> Resumir
+                </button>
+                <button class="chip" onclick="usarChip('Traduza para o inglês:')">
+                    <span>🌍</span> Traduzir
+                </button>
+                <button class="chip" onclick="usarChip('Me ajude com matemática:')">
+                    <span>🔢</span> Matemática
+                </button>
+            </div>
         </div>
-
-        <button class="header-action sena-btn" 
-                onclick="novaConversa()" 
-                aria-label="Nova conversa" 
-                title="Nova conversa">
-            <img src="https://i.imgur.com/FsXkN6B.png" alt="Nova conversa" class="icone-header">
-        </button>
-
-    </header>
-
-    <div id="chat-container" role="main" aria-live="polite" aria-label="Área de conversa"></div>
-
-    <div class="sugestoes-container">
-        <div class="sugestoes-scroll" id="chips-sugestoes">
-            <button class="chip" onclick="usarChip('Explique de forma simples:')">
-                <span>🎯</span> Explicação Simples
-            </button>
-            <button class="chip" onclick="usarChip('Crie um código em Python para:')">
-                <span>💻</span> Gerar Código
-            </button>
-            <button class="chip" onclick="usarChip('Analise este documento:')">
-                <span>📄</span> Analisar Documento
-            </button>
-            <button class="chip" onclick="usarChip('Resuma em tópicos:')">
-                <span>📝</span> Resumir
-            </button>
-            <button class="chip" onclick="usarChip('Traduza para o inglês:')">
-                <span>🌍</span> Traduzir
-            </button>
-            <button class="chip" onclick="usarChip('Me ajude com matemática:')">
-                <span>🔢</span> Matemática
-            </button>
-        </div>
-    </div>
-</div>
 
         <footer>
-    <div class="input-tools" id="toolsBar">
-        <button class="tool-btn" onclick="ativarModoContexto('criativo')" title="Modo criativo">
-            <span>✨</span> Criativo
-        </button>
-        <button class="tool-btn" onclick="ativarModoContexto('preciso')" title="Modo preciso">
-            <span>🎯</span> Preciso
-        </button>
-        <button class="tool-btn" onclick="ativarModoContexto('codigo')" title="Especialista em código">
-            <span>💻</span> Código
-        </button>
-        <button class="tool-btn" onclick="ativarModoContexto('ensino')" title="Modo professor">
-            <span>🎓</span> Ensino
-        </button>
-        <button class="tool-btn" onclick="ativarModoContexto('analise')" title="Análise profunda">
-            <span>🔬</span> Análise
-        </button>
+            <div class="input-tools" id="toolsBar">
+                <button class="tool-btn" onclick="ativarModoContexto('criativo')" title="Modo criativo">
+                    <span>✨</span> Criativo
+                </button>
+                <button class="tool-btn" onclick="ativarModoContexto('preciso')" title="Modo preciso">
+                    <span>🎯</span> Preciso
+                </button>
+                <button class="tool-btn" onclick="ativarModoContexto('codigo')" title="Especialista em código">
+                    <span>💻</span> Código
+                </button>
+                <button class="tool-btn" onclick="ativarModoContexto('ensino')" title="Modo professor">
+                    <span>🎓</span> Ensino
+                </button>
+                <button class="tool-btn" onclick="ativarModoContexto('analise')" title="Análise profunda">
+                    <span>🔬</span> Análise
+                </button>
+            </div>
+
+            <div class="input-area">
+                <div class="input-actions">
+                    <button id="btn-mic" onclick="ativarMicrofone()" aria-label="Ativar microfone" title="Falar">🎤</button>
+                    <button id="btn-attach" onclick="anexarArquivo()" aria-label="Anexar arquivo" title="Anexar">📎</button>
+                </div>
+
+                <div class="input-container">
+                    <textarea id="entradaUsuario"
+                              placeholder="Digite sua mensagem... (Shift+Enter para nova linha)"
+                              rows="1"></textarea>
+                    <span class="input-contador" id="contador-chars">0/4000</span>
+                </div>
+
+                <button class="btn-send" id="btn-enviar" onclick="enviarMensagem()">
+                    Enviar
+                </button>
+            </div>
+        </footer>
     </div>
 
-    <div class="input-wrapper">
-    <div class="input-actions">
-        <button id="btn-mic" onclick="ativarMicrofone()" aria-label="Ativar microfone" title="Falar">🎤</button>
-        <button id="btn-attach" onclick="anexarArquivo()" aria-label="Anexar arquivo" title="Anexar">📎</button>
-    </div>
-</div>
-
-        <<div class="input-area">
-    <div class="input-container">
-        <textarea id="entradaUsuario"
-                  placeholder="Digite sua mensagem... (Shift+Enter para nova linha)"
-                  rows="1"></textarea>
-
-        <span class="input-contador" id="contador-chars">0/4000</span>
-    </div>
-
-    <button class="btn-send" id="btn-enviar" onclick="enviarMensagem()">
-        Enviar
-    </button>
-    </div>
-</footer>
-    </div>
-
-    <input type="file" id="fileInput" accept=".txt,.pdf,.doc,.docx,.jpg,.jpeg,.png,.gif" multiple>
+    <!-- Input oculto para arquivos -->
+    <input type="file" id="fileInput" accept=".txt,.pdf,.doc,.docx,.jpg,.jpeg,.png,.gif" multiple class="oculto">
+    
+    <!-- Container para toasts -->
     <div id="toast-container"></div>
 
     <script>
@@ -1153,23 +1295,27 @@ button, .chip, .tool-btn {
             conversaAtual: [],
             aguardandoResposta: false,
             modoContexto: 'normal',
-            arquivosAnexados: []
+            arquivosAnexados: [],
+            reconhecimentoVozAtivo: false
         };
 
         let supabase = null;
+        let reconhecimentoVoz = null;
 
-const urlValida = CONFIG.SUPABASE_URL && CONFIG.SUPABASE_URL !== 'SUA_URL_SUPABASE_AQUI';
-const keyValida = CONFIG.SUPABASE_KEY && CONFIG.SUPABASE_KEY !== 'SUA_CHAVE_SUPABASE_AQUI';
+        // Inicializar Supabase se as credenciais estiverem configuradas
+        const urlValida = CONFIG.SUPABASE_URL && CONFIG.SUPABASE_URL !== 'SUA_URL_SUPABASE_AQUI';
+        const keyValida = CONFIG.SUPABASE_KEY && CONFIG.SUPABASE_KEY !== 'SUA_CHAVE_SUPABASE_AQUI';
 
-if (urlValida && keyValida) {
-    supabase = window.supabase.createClient(
-        CONFIG.SUPABASE_URL,
-        CONFIG.SUPABASE_KEY
-    );
-} else {
-    console.warn("⚠️ Supabase não configurado. Defina SUPABASE_URL e SUPABASE_KEY em CONFIG.");
-}
+        if (urlValida && keyValida) {
+            supabase = window.supabase.createClient(
+                CONFIG.SUPABASE_URL,
+                CONFIG.SUPABASE_KEY
+            );
+        } else {
+            console.warn("⚠️ Supabase não configurado. Defina SUPABASE_URL e SUPABASE_KEY em CONFIG.");
+        }
 
+        // Configurar Marked para processamento de markdown
         marked.setOptions({ 
             breaks: true,
             highlight: function(code, lang) {
@@ -1180,7 +1326,23 @@ if (urlValida && keyValida) {
             }
         });
 
-        // ===== NAVEGAÇÃO (DEVE ESTAR NO INÍCIO) =====
+        // ===== INICIALIZAÇÃO =====
+        window.onload = () => {
+            carregarConfiguracoes();
+            carregarHistorico();
+            configurarEventos();
+            aplicarConfiguracoes();
+            verificarSuporteFuncionalidades();
+            inicializarReconhecimentoVoz();
+            
+            // Verificar se é um PWA instalado
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('Executando como PWA instalado');
+                document.body.classList.add('pwa-instalado');
+            }
+        };
+
+        // ===== NAVEGAÇÃO =====
         function irParaAviso() {
             document.getElementById('tela-boas-vindas').classList.add('oculto');
             document.getElementById('tela-aviso').classList.remove('oculto');
@@ -1189,15 +1351,20 @@ if (urlValida && keyValida) {
         function irParaChat() {
             document.getElementById('tela-aviso').classList.add('oculto');
             document.getElementById('tela-app').classList.remove('oculto');
-            
+
             const chat = document.getElementById('chat-container');
             if (chat.children.length === 0) {
                 setTimeout(() => mostrarMensagemBoasVindas(), 300);
             }
+            
+            // Focar no campo de entrada após um breve delay
+            setTimeout(() => {
+                document.getElementById('entradaUsuario').focus();
+            }, 500);
         }
 
         function mostrarMensagemBoasVindas() {
-    const mensagem = `# 🌸 Olá! Eu sou a **Sena**, sua assistente em desenvolvimento.
+            const mensagem = `# 🌸 Olá! Eu sou a **Sena**, sua assistente em desenvolvimento.
 
 Aqui vai um resumo rápido do que eu consigo fazer por você:
 
@@ -1253,73 +1420,85 @@ Pronto para começar?`;
                 mostrarToast('Já está em uma conversa nova', 'info');
                 return;
             }
+            
             if (confirm('Deseja iniciar uma nova conversa? A conversa atual será salva.')) {
                 const timestamp = Date.now();
-                localStorage.setItem(`ciciChat_${timestamp}`, JSON.stringify(estado.conversaAtual));
+                localStorage.setItem(`senaChat_${timestamp}`, JSON.stringify(estado.conversaAtual));
                 limparChat();
                 setTimeout(() => mostrarMensagemBoasVindas(), 300);
                 mostrarToast('Nova conversa iniciada!', 'sucesso');
             }
         }
 
-        // ===== INICIALIZAÇÃO =====
-        window.onload = () => {
-            carregarConfiguracoes();
-            carregarHistorico();
-            configurarEventos();
-            aplicarConfiguracoes();
-            verificarSuporteFuncionalidades();
-        };
-
+        // ===== CONFIGURAÇÕES E PREFERÊNCIAS =====
         function carregarConfiguracoes() {
-            const configs = JSON.parse(localStorage.getItem('ciciConfigs') || '{}');
+            const configs = JSON.parse(localStorage.getItem('senaConfigs') || '{}');
             estado = { ...estado, ...configs };
+            
+            // Verificar configurações específicas
             if (localStorage.getItem('altoContraste') === 'true') {
                 estado.altoContraste = true;
+            }
+            
+            // Verificar tema do sistema
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                estado.temaEscuro = true;
             }
         }
 
         function salvarConfiguracoes() {
-            localStorage.setItem('ciciConfigs', JSON.stringify(estado));
+            localStorage.setItem('senaConfigs', JSON.stringify(estado));
+            localStorage.setItem('altoContraste', estado.altoContraste);
         }
 
         function aplicarConfiguracoes() {
+            // Aplicar tema
             if (estado.temaEscuro) {
                 document.body.classList.add('tema-escuro');
                 document.getElementById('toggle-tema').classList.add('ativo');
                 document.getElementById('icone-tema').textContent = '☀️';
                 document.getElementById('texto-tema').textContent = 'Modo Claro';
             }
+            
+            // Aplicar alto contraste
             if (estado.altoContraste) {
                 document.body.classList.add('alto-contraste');
                 document.getElementById('toggle-contraste').classList.add('ativo');
             }
+            
+            // Aplicar leitura facilitada
             if (estado.leituraFacilitada) {
                 document.body.classList.add('leitura-facilitada');
                 document.getElementById('toggle-leitura').classList.add('ativo');
             }
+            
+            // Aplicar configurações de áudio
             if (estado.somAtivado) {
                 document.getElementById('toggle-som').classList.add('ativo');
                 document.getElementById('icone-som').textContent = '🔊';
                 document.getElementById('texto-som').textContent = 'Desativar Voz';
             }
+            
+            // Aplicar tamanho da fonte
             document.documentElement.style.fontSize = estado.tamanhoFonte + 'px';
         }
 
         function configurarEventos() {
             const input = document.getElementById('entradaUsuario');
-            
+
+            // Eventos de teclado para o campo de entrada
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
                     enviarMensagem();
                 }
             });
-            
+
             input.addEventListener('input', () => {
                 autoResizeTextarea(input);
                 const contador = document.getElementById('contador-chars');
                 contador.textContent = `${input.value.length}/${CONFIG.MAX_CHARS}`;
+                
                 if (input.value.length > CONFIG.MAX_CHARS * 0.9) {
                     contador.style.color = 'var(--danger)';
                 } else {
@@ -1327,6 +1506,7 @@ Pronto para começar?`;
                 }
             });
 
+            // Eventos de teclado globais
             document.addEventListener('keydown', (e) => {
                 if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                     e.preventDefault();
@@ -1345,10 +1525,27 @@ Pronto para começar?`;
                 }
             });
 
+            // Eventos de toque para melhor experiência móvel
+            document.addEventListener('touchstart', function() {}, {passive: true});
+            
+            // Prevenir zoom em duplo toque
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function (event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+
+            // Configurar input de arquivo
             const fileInput = document.getElementById('fileInput');
             if (fileInput) {
                 fileInput.addEventListener('change', processarArquivos);
             }
+            
+            // Configurar gestos para o menu lateral
+            configurarGestosMenu();
         }
 
         function autoResizeTextarea(textarea) {
@@ -1356,23 +1553,120 @@ Pronto para começar?`;
             textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
         }
 
+        function configurarGestosMenu() {
+            const menu = document.getElementById('side-menu');
+            const overlay = document.getElementById('overlay-menu');
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+
+            overlay.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            });
+
+            overlay.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                
+                currentX = e.touches[0].clientX;
+                const diff = currentX - startX;
+                
+                if (diff < 0) {
+                    menu.style.transform = `translateX(${diff}px)`;
+                }
+            });
+
+            overlay.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                
+                isDragging = false;
+                const diff = currentX - startX;
+                
+                if (diff < -50) {
+                    fecharMenu();
+                }
+                
+                menu.style.transform = '';
+            });
+        }
+
         function verificarSuporteFuncionalidades() {
+            // Verificar suporte a reconhecimento de voz
             const temReconhecimentoVoz = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
             if (!temReconhecimentoVoz) {
                 const btnMic = document.getElementById('btn-mic');
                 if (btnMic) btnMic.style.display = 'none';
             }
+
+            // Verificar suporte a síntese de voz
+            const temSinteseVoz = 'speechSynthesis' in window;
+            if (!temSinteseVoz) {
+                estado.somAtivado = false;
+                document.getElementById('toggle-som').style.display = 'none';
+            }
+
+            // Verificar suporte a compartilhamento
+            const temCompartilhamento = 'share' in navigator;
+            if (!temCompartilhamento) {
+                // Ocultar opções de compartilhamento que dependem da API
+            }
         }
 
-        // ===== NAVEGAÇÃO (REMOVIDO DUPLICADO) =====
-        
+        function inicializarReconhecimentoVoz() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (SpeechRecognition) {
+                reconhecimentoVoz = new SpeechRecognition();
+                reconhecimentoVoz.continuous = false;
+                reconhecimentoVoz.interimResults = false;
+                reconhecimentoVoz.lang = 'pt-BR';
+
+                reconhecimentoVoz.onstart = () => {
+                    estado.reconhecimentoVozAtivo = true;
+                    document.getElementById('btn-mic').classList.add('ouvindo');
+                    mostrarToast('🎤 Estou ouvindo...', 'aviso');
+                };
+
+                reconhecimentoVoz.onend = () => {
+                    estado.reconhecimentoVozAtivo = false;
+                    document.getElementById('btn-mic').classList.remove('ouvindo');
+                };
+
+                reconhecimentoVoz.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('entradaUsuario').value = transcript;
+                    document.getElementById('entradaUsuario').focus();
+                    autoResizeTextarea(document.getElementById('entradaUsuario'));
+                    mostrarToast('✓ Texto capturado!', 'sucesso');
+                };
+
+                reconhecimentoVoz.onerror = (event) => {
+                    estado.reconhecimentoVozAtivo = false;
+                    document.getElementById('btn-mic').classList.remove('ouvindo');
+                    
+                    let mensagem = 'Erro ao capturar voz';
+                    if (event.error === 'no-speech') {
+                        mensagem = 'Nenhuma fala detectada';
+                    } else if (event.error === 'audio-capture') {
+                        mensagem = 'Nenhum microfone detectado';
+                    } else if (event.error === 'not-allowed') {
+                        mensagem = 'Permissão de microfone negada';
+                    }
+                    
+                    mostrarToast(mensagem, 'erro');
+                };
+            }
+        }
+
         // ===== APARÊNCIA =====
         function alternarTemaEscuro() {
             estado.temaEscuro = !estado.temaEscuro;
             document.body.classList.toggle('tema-escuro');
+            
             const toggle = document.getElementById('toggle-tema');
             const icone = document.getElementById('icone-tema');
             const texto = document.getElementById('texto-tema');
+            
             if (estado.temaEscuro) {
                 toggle.classList.add('ativo');
                 icone.textContent = '☀️';
@@ -1382,6 +1676,7 @@ Pronto para começar?`;
                 icone.textContent = '🌙';
                 texto.textContent = 'Modo Escuro';
             }
+            
             salvarConfiguracoes();
             mostrarToast('Tema alterado!', 'sucesso');
         }
@@ -1390,7 +1685,7 @@ Pronto para começar?`;
             estado.altoContraste = !estado.altoContraste;
             document.body.classList.toggle('alto-contraste');
             document.getElementById('toggle-contraste').classList.toggle('ativo');
-            localStorage.setItem('altoContraste', estado.altoContraste);
+            
             salvarConfiguracoes();
             mostrarToast('Alto contraste ' + (estado.altoContraste ? 'ativado' : 'desativado'), 'sucesso');
         }
@@ -1399,6 +1694,7 @@ Pronto para começar?`;
             estado.leituraFacilitada = !estado.leituraFacilitada;
             document.body.classList.toggle('leitura-facilitada');
             document.getElementById('toggle-leitura').classList.toggle('ativo');
+            
             salvarConfiguracoes();
             mostrarToast('Leitura facilitada ' + (estado.leituraFacilitada ? 'ativada' : 'desativada'), 'sucesso');
         }
@@ -1406,6 +1702,7 @@ Pronto para começar?`;
         function ajustarFonte(incremento) {
             estado.tamanhoFonte = Math.max(12, Math.min(28, estado.tamanhoFonte + incremento));
             document.documentElement.style.fontSize = estado.tamanhoFonte + 'px';
+            
             salvarConfiguracoes();
             mostrarToast(`Tamanho: ${estado.tamanhoFonte}px`, 'sucesso');
         }
@@ -1413,16 +1710,25 @@ Pronto para começar?`;
         function resetarFonte() {
             estado.tamanhoFonte = 16;
             document.documentElement.style.fontSize = '16px';
+            
             salvarConfiguracoes();
             mostrarToast('Tamanho padrão restaurado', 'sucesso');
         }
 
         // ===== ÁUDIO =====
         function alternarSom() {
+            // Verificar se o navegador suporta síntese de voz
+            if (!('speechSynthesis' in window)) {
+                mostrarToast('Seu navegador não suporta síntese de voz', 'erro');
+                return;
+            }
+            
             estado.somAtivado = !estado.somAtivado;
+            
             const toggle = document.getElementById('toggle-som');
             const icone = document.getElementById('icone-som');
             const texto = document.getElementById('texto-som');
+            
             if (estado.somAtivado) {
                 toggle.classList.add('ativo');
                 icone.textContent = '🔊';
@@ -1434,75 +1740,82 @@ Pronto para começar?`;
                 texto.textContent = 'Ativar Voz';
                 window.speechSynthesis.cancel();
             }
+            
             salvarConfiguracoes();
         }
 
         function ajustarVelocidadeVoz(incremento) {
             estado.velocidadeVoz = Math.max(0.5, Math.min(2.0, estado.velocidadeVoz + incremento));
+            
             salvarConfiguracoes();
+            
             const velocidadeTexto = estado.velocidadeVoz === 1.0 ? 'normal' : 
                                    estado.velocidadeVoz < 1.0 ? 'lenta' : 'rápida';
+            
             mostrarToast(`Velocidade da voz: ${velocidadeTexto}`, 'sucesso');
-            falar('Teste de velocidade da voz');
+            
+            if (estado.somAtivado) {
+                falar('Teste de velocidade da voz');
+            }
         }
 
         function falar(texto) {
             if (!estado.somAtivado || !('speechSynthesis' in window)) return;
+            
+            // Cancelar qualquer fala em andamento
             window.speechSynthesis.cancel();
-            const textoLimpo = texto.replace(/[*_#`]/g, '').replace(/<[^>]*>/g, '').replace(/\n+/g, '. ');
+            
+            // Limpar o texto de formatação markdown
+            const textoLimpo = texto
+                .replace(/[*_#`]/g, '')
+                .replace(/<[^>]*>/g, '')
+                .replace(/\n+/g, '. ')
+                .substring(0, 200); // Limitar o tamanho para evitar problemas
+            
             const utterance = new SpeechSynthesisUtterance(textoLimpo);
             utterance.lang = 'pt-BR';
             utterance.rate = estado.velocidadeVoz;
             utterance.pitch = 1.0;
             utterance.volume = 1.0;
+            
+            utterance.onerror = (event) => {
+                console.error('Erro na síntese de voz:', event);
+            };
+            
             window.speechSynthesis.speak(utterance);
         }
 
         function ativarMicrofone() {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (!SpeechRecognition) {
-                mostrarToast('Seu navegador não suporta reconhecimento de voz', 'erro');
+            if (!reconhecimentoVoz) {
+                mostrarToast('Reconhecimento de voz não disponível', 'erro');
                 return;
             }
-            const recognition = new SpeechRecognition();
-            recognition.lang = 'pt-BR';
-            recognition.continuous = false;
-            recognition.interimResults = false;
-            const btnMic = document.getElementById('btn-mic');
-            recognition.onstart = () => {
-                btnMic.classList.add('ouvindo');
-                mostrarToast('🎤 Estou ouvindo...', 'aviso');
-            };
-            recognition.onend = () => {
-                btnMic.classList.remove('ouvindo');
-            };
-            recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
-                document.getElementById('entradaUsuario').value = transcript;
-                document.getElementById('entradaUsuario').focus();
-                autoResizeTextarea(document.getElementById('entradaUsuario'));
-                mostrarToast('✓ Texto capturado!', 'sucesso');
-            };
-            recognition.onerror = (event) => {
-                btnMic.classList.remove('ouvindo');
-                let mensagem = 'Erro ao capturar voz';
-                if (event.error === 'no-speech') mensagem = 'Nenhuma fala detectada';
-                else if (event.error === 'not-allowed') mensagem = 'Permissão de microfone negada';
-                mostrarToast(mensagem, 'erro');
-            };
+            
+            if (estado.reconhecimentoVozAtivo) {
+                reconhecimentoVoz.stop();
+                return;
+            }
+            
             try {
-                recognition.start();
-            } catch (e) {
-                mostrarToast('Erro ao iniciar microfone', 'erro');
+                reconhecimentoVoz.start();
+            } catch (error) {
+                console.error('Erro ao iniciar reconhecimento de voz:', error);
+                mostrarToast('Erro ao acessar o microfone', 'erro');
             }
         }
 
         // ===== MODOS DE CONTEXTO =====
         function ativarModoContexto(modo) {
-            document.querySelectorAll('.tool-btn').forEach(btn => btn.classList.remove('ativo'));
-            event.target.closest('.tool-btn').classList.add('ativo');
-            estado.modoContexto = modo;
+            // Remover classe ativa de todos os botões
+            document.querySelectorAll('.tool-btn').forEach(btn => {
+                btn.classList.remove('ativo');
+            });
             
+            // Adicionar classe ativa ao botão clicado
+            event.target.closest('.tool-btn').classList.add('ativo');
+            
+            estado.modoContexto = modo;
+
             const modos = {
                 criativo: '✨ Modo Criativo ativado - Respostas mais imaginativas',
                 preciso: '🎯 Modo Preciso ativado - Respostas mais factuais',
@@ -1510,7 +1823,7 @@ Pronto para começar?`;
                 ensino: '🎓 Modo Ensino ativado - Explicações didáticas',
                 analise: '🔬 Modo Análise ativado - Análises profundas'
             };
-            
+
             mostrarToast(modos[modo], 'sucesso');
         }
 
@@ -1522,36 +1835,43 @@ Pronto para começar?`;
         async function processarArquivos(event) {
             const files = Array.from(event.target.files);
             if (files.length === 0) return;
-            
+
             for (const file of files) {
+                // Verificar tamanho do arquivo (máximo 10MB)
                 if (file.size > 10 * 1024 * 1024) {
                     mostrarToast(`Arquivo ${file.name} muito grande (máx 10MB)`, 'erro');
                     continue;
                 }
-                
+
                 const reader = new FileReader();
+                
                 reader.onload = async (e) => {
                     const conteudo = e.target.result;
                     const tipoArquivo = file.type.startsWith('image/') ? 'imagem' : 'documento';
-                    
+
                     estado.arquivosAnexados.push({
                         nome: file.name,
                         tipo: tipoArquivo,
                         tamanho: file.size,
                         conteudo: conteudo
                     });
-                    
+
                     mostrarArquivoAnexado(file.name, file.size, tipoArquivo);
                     mostrarToast(`✓ ${file.name} anexado!`, 'sucesso');
                 };
-                
+
+                reader.onerror = () => {
+                    mostrarToast(`Erro ao ler o arquivo ${file.name}`, 'erro');
+                };
+
                 if (file.type.startsWith('image/')) {
                     reader.readAsDataURL(file);
                 } else {
-                    reader.readAsText(file);
+                    reader.readAsText(file, 'UTF-8');
                 }
             }
-            
+
+            // Limpar o input para permitir selecionar o mesmo arquivo novamente
             event.target.value = '';
         }
 
@@ -1559,12 +1879,12 @@ Pronto para começar?`;
             const chat = document.getElementById('chat-container');
             const wrapper = document.createElement('div');
             wrapper.className = 'mensagem-wrapper usuario-wrapper';
-            
+
             const icones = {
                 'imagem': '🖼️',
                 'documento': '📄'
             };
-            
+
             wrapper.innerHTML = `
                 <div class="mensagem usuario">
                     <div class="file-attachment">
@@ -1575,8 +1895,9 @@ Pronto para começar?`;
                         </div>
                     </div>
                 </div>
+                <div class="mensagem-hora">${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</div>
             `;
-            
+
             chat.appendChild(wrapper);
             chat.scrollTop = chat.scrollHeight;
         }
@@ -1589,48 +1910,70 @@ Pronto para começar?`;
 
         // ===== ENVIAR MENSAGEM =====
         function usarChip(texto) {
-            document.getElementById('entradaUsuario').value = texto + ' ';
-            document.getElementById('entradaUsuario').focus();
-            autoResizeTextarea(document.getElementById('entradaUsuario'));
+            const input = document.getElementById('entradaUsuario');
+            input.value = texto + ' ';
+            input.focus();
+            autoResizeTextarea(input);
         }
 
         async function enviarMensagem() {
             const input = document.getElementById('entradaUsuario');
             const texto = input.value.trim();
+
+            // Verificar se há conteúdo para enviar
+            if (!texto && estado.arquivosAnexados.length === 0) {
+                mostrarToast('Digite uma mensagem ou anexe um arquivo', 'aviso');
+                return;
+            }
             
-            if (!texto && estado.arquivosAnexados.length === 0) return;
-            if (estado.aguardandoResposta) return;
-            
+            // Verificar se já está aguardando uma resposta
+            if (estado.aguardandoResposta) {
+                mostrarToast('Aguarde a resposta anterior', 'aviso');
+                return;
+            }
+
             let mensagemCompleta = texto;
-            
+
+            // Adicionar informação sobre arquivos anexados
             if (estado.arquivosAnexados.length > 0) {
                 mensagemCompleta += `\n\n[Arquivos anexados: ${estado.arquivosAnexados.map(a => a.nome).join(', ')}]`;
             }
-            
+
+            // Adicionar mensagem do usuário ao chat
             adicionarMensagem(mensagemCompleta, 'usuario', true);
+            
+            // Limpar campo de entrada
             input.value = '';
             autoResizeTextarea(input);
             document.getElementById('contador-chars').textContent = '0/4000';
-            
+
+            // Desativar botão de enviar enquanto processa
             estado.aguardandoResposta = true;
             document.getElementById('btn-enviar').disabled = true;
-            
+
+            // Mostrar indicador de digitação
             mostrarIndicadorDigitacao();
-            
+
             try {
+                // Obter resposta da IA
                 const resposta = await obterRespostaIA(mensagemCompleta);
+                
+                // Remover indicador de digitação e adicionar resposta
                 removerIndicadorDigitacao();
                 adicionarMensagem(resposta, 'cici', true);
-                
+
+                // Reproduzir resposta por voz se ativado
                 if (estado.somAtivado) {
                     falar(resposta);
                 }
             } catch (erro) {
+                // Tratar erros
                 removerIndicadorDigitacao();
                 adicionarMensagem('Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.', 'cici', false);
                 mostrarToast('Erro ao comunicar com a IA', 'erro');
                 console.error('Erro:', erro);
             } finally {
+                // Reativar botão e limpar estado
                 estado.aguardandoResposta = false;
                 document.getElementById('btn-enviar').disabled = false;
                 estado.arquivosAnexados = [];
@@ -1664,46 +2007,51 @@ Pronto para começar?`;
             const chat = document.getElementById('chat-container');
             const wrapper = document.createElement('div');
             wrapper.className = `mensagem-wrapper ${remetente}-wrapper`;
-            
+
             const agora = new Date();
             const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-            
+
             const mensagemDiv = document.createElement('div');
             mensagemDiv.className = `mensagem ${remetente}`;
-            
+
+            // Processar markdown para mensagens da Sena
             if (remetente === 'cici') {
                 mensagemDiv.innerHTML = marked.parse(texto);
-                
+
                 // Adicionar botões de copiar para blocos de código
                 mensagemDiv.querySelectorAll('pre code').forEach((block) => {
                     const pre = block.parentElement;
                     const wrapper = document.createElement('div');
                     wrapper.style.position = 'relative';
-                    
+
                     const header = document.createElement('div');
                     header.className = 'code-header';
-                    
+
                     const language = block.className.replace('language-', '').replace('hljs', '').trim() || 'code';
                     header.innerHTML = `
                         <span class="code-language">${language}</span>
                         <button class="code-copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button>
                     `;
-                    
+
                     pre.parentNode.insertBefore(wrapper, pre);
                     wrapper.appendChild(header);
                     wrapper.appendChild(pre);
                 });
             } else {
-                mensagemDiv.textContent = texto;
+                // Para mensagens do usuário, usar texto simples
+                const textoFormatado = document.createElement('div');
+                textoFormatado.textContent = texto;
+                mensagemDiv.appendChild(textoFormatado);
             }
-            
+
             const horaDiv = document.createElement('div');
             horaDiv.className = 'mensagem-hora';
             horaDiv.textContent = hora;
-            
+
             wrapper.appendChild(mensagemDiv);
             wrapper.appendChild(horaDiv);
-            
+
+            // Adicionar ações para mensagens da Sena
             if (remetente === 'cici') {
                 const acoesDiv = document.createElement('div');
                 acoesDiv.className = 'mensagem-acoes';
@@ -1722,45 +2070,63 @@ Pronto para começar?`;
                 `;
                 wrapper.appendChild(acoesDiv);
             }
-            
+
             chat.appendChild(wrapper);
             chat.scrollTop = chat.scrollHeight;
-            
+
+            // Salvar no histórico se necessário
             if (salvar) {
-                estado.conversaAtual.push({ texto, remetente, timestamp: Date.now() });
+                estado.conversaAtual.push({ 
+                    texto, 
+                    remetente, 
+                    timestamp: Date.now() 
+                });
                 salvarHistorico();
             }
         }
 
         function copiarCodigo(btn) {
-            const pre = btn.closest('div').querySelector('pre code');
+            const pre = btn.closest('div').nextElementSibling;
             const codigo = pre.textContent;
+            
             navigator.clipboard.writeText(codigo).then(() => {
                 const textoOriginal = btn.textContent;
                 btn.textContent = '✓ Copiado!';
                 setTimeout(() => btn.textContent = textoOriginal, 2000);
                 mostrarToast('Código copiado!', 'sucesso');
+            }).catch(err => {
+                console.error('Erro ao copiar código:', err);
+                mostrarToast('Erro ao copiar código', 'erro');
             });
         }
 
         function copiarMensagem(btn) {
             const mensagem = btn.closest('.mensagem-wrapper').querySelector('.mensagem');
             const texto = mensagem.textContent || mensagem.innerText;
+            
             navigator.clipboard.writeText(texto).then(() => {
                 mostrarToast('Mensagem copiada!', 'sucesso');
+            }).catch(err => {
+                console.error('Erro ao copiar mensagem:', err);
+                mostrarToast('Erro ao copiar mensagem', 'erro');
             });
         }
 
         function compartilharMensagem(btn) {
             const mensagem = btn.closest('.mensagem-wrapper').querySelector('.mensagem');
             const texto = mensagem.textContent || mensagem.innerText;
-            
+
             if (navigator.share) {
                 navigator.share({
-                    title: 'Cici AI',
+                    title: 'Sena AI',
                     text: texto
-                }).catch(() => {});
+                }).catch(err => {
+                    console.error('Erro ao compartilhar:', err);
+                    // Fallback para copiar
+                    copiarMensagem(btn);
+                });
             } else {
+                // Fallback para copiar
                 copiarMensagem(btn);
                 mostrarToast('Texto copiado para compartilhar', 'sucesso');
             }
@@ -1775,7 +2141,8 @@ Pronto para começar?`;
         // ===== API IA =====
         async function obterRespostaIA(mensagemUsuario) {
             const systemPrompt = getSystemPromptPorModo(estado.modoContexto);
-            
+
+            // Construir histórico de mensagens para contexto
             const mensagens = [
                 { role: 'system', content: systemPrompt },
                 ...estado.conversaAtual.slice(-CONFIG.MAX_HISTORICO).map(m => ({
@@ -1785,6 +2152,7 @@ Pronto para começar?`;
                 { role: 'user', content: mensagemUsuario }
             ];
 
+            // Fazer requisição para a API Mistral
             const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
                 method: 'POST',
                 headers: {
@@ -1795,55 +2163,105 @@ Pronto para começar?`;
                     model: 'mistral-small-latest',
                     messages: mensagens,
                     temperature: estado.modoContexto === 'criativo' ? 0.9 : 0.7,
-                    max_tokens: 2000
+                    max_tokens: 2000,
+                    stream: false
                 })
             });
 
             if (!response.ok) {
-                throw new Error(`Erro na API: ${response.status}`);
+                const errorText = await response.text();
+                throw new Error(`Erro na API: ${response.status} - ${errorText}`);
             }
 
             const data = await response.json();
+            
+            if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+                throw new Error('Resposta da API em formato inesperado');
+            }
+            
             return data.choices[0].message.content;
         }
 
         function getSystemPromptPorModo(modo) {
             const prompts = {
-                normal: 'Você é Sena, uma assistente multifuncional avançada. Seja prestativa, clara e objetiva.',
-                criativo: 'Você é Hanabi no modo criativo. Seja imaginativa, use metáforas e analogias interessantes.',
-                preciso: 'Você é Sion no modo preciso. Seja factual, concisa e baseie suas respostas em informações verificáveis.',
-                codigo: 'Você é Orion, especialista em programação. Forneça código limpo, bem comentado e explique suas soluções.',
-                ensino: 'Você é Cici no modo professor. Explique conceitos de forma didática, use exemplos e verifique o entendimento.',
-                analise: 'Você é Codex no modo análise. Faça análises profundas, considere múltiplas perspectivas e forneça insights detalhados.'
+                normal: `Você é Sena, uma assistente AI multifuncional desenvolvida pela Orpheo Studio. 
+Seja prestativa, clara e objetiva. Responda em português brasileiro, a menos que solicitado em outro idioma.
+Forneça respostas úteis e informativas, sendo honesta sobre suas limitações quando necessário.`,
+
+                criativo: `Você é Sena no modo criativo. Seja imaginativa, use metáforas e analogias interessantes.
+Incentive a criatividade do usuário e forneça ideias originais. Seja inspiradora e encorajadora.`,
+
+                preciso: `Você é Sena no modo preciso. Seja factual, concisa e baseie suas respostas em informações verificáveis.
+Priorize a precisão sobre a criatividade. Se ciente de suas limitações e não invente informações.`,
+
+                codigo: `Você é Sena no modo programação. Especialista em código e desenvolvimento de software.
+Forneça código limpo, bem comentado e explique suas soluções. Considere boas práticas e performance.
+Seja precisa com sintaxe e detalhes técnicos.`,
+
+                ensino: `Você é Sena no modo professor. Explique conceitos de forma didática, use exemplos e verifique o entendimento.
+Adapte sua explicação ao nível de conhecimento do usuário. Seja paciente e encorajadora.`,
+
+                analise: `Você é Sena no modo análise. Faça análises profundas, considere múltiplas perspectivas e forneça insights detalhados.
+Estruture seu raciocínio de forma lógica e apresente conclusões bem fundamentadas.`
             };
+            
             return prompts[modo] || prompts.normal;
         }
 
         // ===== HISTÓRICO =====
         function salvarHistorico() {
             try {
-                localStorage.setItem('ciciHistorico', JSON.stringify(estado.conversaAtual));
+                localStorage.setItem('senaHistorico', JSON.stringify(estado.conversaAtual));
+                
+                // Também salvar no Supabase se configurado
+                if (supabase && estado.conversaAtual.length > 0) {
+                    // Implementar salvamento no Supabase se necessário
+                }
             } catch (e) {
                 console.error('Erro ao salvar histórico:', e);
+                // Tentar salvar apenas as mensagens mais recentes se houver erro de quota
+                if (e.name === 'QuotaExceededError') {
+                    estado.conversaAtual = estado.conversaAtual.slice(-10);
+                    localStorage.setItem('senaHistorico', JSON.stringify(estado.conversaAtual));
+                    mostrarToast('Histórico limitado devido ao espaço', 'aviso');
+                }
             }
         }
 
         function carregarHistorico() {
             try {
-                const historico = localStorage.getItem('ciciHistorico');
+                const historico = localStorage.getItem('senaHistorico');
                 if (historico) {
                     estado.conversaAtual = JSON.parse(historico);
+                    
+                    // Adicionar mensagens ao chat
                     estado.conversaAtual.forEach(msg => {
                         adicionarMensagem(msg.texto, msg.remetente, false);
                     });
+                    
+                    // Rolar para a última mensagem
+                    const chat = document.getElementById('chat-container');
+                    if (chat) {
+                        setTimeout(() => {
+                            chat.scrollTop = chat.scrollHeight;
+                        }, 100);
+                    }
                 }
             } catch (e) {
                 console.error('Erro ao carregar histórico:', e);
+                // Limpar histórico corrompido
+                localStorage.removeItem('senaHistorico');
+                estado.conversaAtual = [];
             }
         }
 
         function limparChat() {
-            if (confirm('Deseja realmente limpar toda a conversa?')) {
+            if (estado.conversaAtual.length === 0) {
+                mostrarToast('Não há conversa para limpar', 'info');
+                return;
+            }
+            
+            if (confirm('Deseja realmente limpar toda a conversa? Esta ação não pode ser desfeita.')) {
                 document.getElementById('chat-container').innerHTML = '';
                 estado.conversaAtual = [];
                 salvarHistorico();
@@ -1857,22 +2275,24 @@ Pronto para começar?`;
                 mostrarToast('Nenhuma conversa para exportar', 'aviso');
                 return;
             }
-            
+
             let texto = '=== CONVERSA Sena ===\n\n';
             estado.conversaAtual.forEach(msg => {
-                const remetente = msg.remetente === 'usuario' ? 'VOCÊ' : 'Sena';
+                const remetente = msg.remetente === 'usuario' ? 'VOCÊ' : 'SENA';
                 const data = new Date(msg.timestamp).toLocaleString('pt-BR');
                 texto += `[${data}] ${remetente}:\n${msg.texto}\n\n`;
             });
-            
-            const blob = new Blob([texto], { type: 'text/plain' });
+
+            const blob = new Blob([texto], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `cici-conversa-${Date.now()}.txt`;
+            a.download = `sena-conversa-${Date.now()}.txt`;
+            document.body.appendChild(a);
             a.click();
+            document.body.removeChild(a);
             URL.revokeObjectURL(url);
-            
+
             mostrarToast('Conversa exportada!', 'sucesso');
         }
 
@@ -1881,21 +2301,32 @@ Pronto para começar?`;
                 mostrarToast('Nenhuma conversa para compartilhar', 'aviso');
                 return;
             }
-            
-            let texto = 'Conversa Sena:\n\n';
+
+            let texto = 'Conversa com Sena AI:\n\n';
+            // Pegar apenas as últimas 5 mensagens para não ficar muito longo
             estado.conversaAtual.slice(-5).forEach(msg => {
                 const remetente = msg.remetente === 'usuario' ? 'Eu' : 'Sena';
                 texto += `${remetente}: ${msg.texto}\n\n`;
             });
-            
+
             if (navigator.share) {
                 navigator.share({
-                    title: 'Conversa Sena',
+                    title: 'Conversa Sena AI',
                     text: texto
-                }).catch(() => {});
+                }).catch(err => {
+                    console.error('Erro ao compartilhar:', err);
+                    // Fallback para copiar
+                    navigator.clipboard.writeText(texto).then(() => {
+                        mostrarToast('Conversa copiada!', 'sucesso');
+                    });
+                });
             } else {
+                // Fallback para copiar
                 navigator.clipboard.writeText(texto).then(() => {
                     mostrarToast('Conversa copiada!', 'sucesso');
+                }).catch(err => {
+                    console.error('Erro ao copiar:', err);
+                    mostrarToast('Erro ao copiar conversa', 'erro');
                 });
             }
         }
@@ -1905,7 +2336,62 @@ Pronto para começar?`;
                 mostrarToast('Nenhuma conversa para imprimir', 'aviso');
                 return;
             }
-            window.print();
+            
+            // Criar uma nova janela para impressão
+            const janelaImpressao = window.open('', '_blank');
+            janelaImpressao.document.write(`
+                <html>
+                    <head>
+                        <title>Conversa Sena</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; margin: 20px; }
+                            .mensagem { margin-bottom: 15px; padding: 10px; border-radius: 10px; }
+                            .usuario { background: #f0f0f0; margin-left: 20%; }
+                            .cici { background: #6c5ce7; color: white; margin-right: 20%; }
+                            .hora { font-size: 12px; color: #666; margin-top: 5px; }
+                            @media print {
+                                body { margin: 0; }
+                                .mensagem { break-inside: avoid; }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>Conversa com Sena AI</h1>
+                        <p>Exportado em: ${new Date().toLocaleString('pt-BR')}</p>
+                        <div id="conteudo">
+            `);
+            
+            estado.conversaAtual.forEach(msg => {
+                const classe = msg.remetente === 'usuario' ? 'usuario' : 'cici';
+                const remetente = msg.remetente === 'usuario' ? 'Você' : 'Sena';
+                const hora = new Date(msg.timestamp).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                
+                janelaImpressao.document.write(`
+                    <div class="mensagem ${classe}">
+                        <strong>${remetente}:</strong><br>
+                        ${msg.texto.replace(/\n/g, '<br>')}
+                        <div class="hora">${hora}</div>
+                    </div>
+                `);
+            });
+            
+            janelaImpressao.document.write(`
+                        </div>
+                    </body>
+                </html>
+            `);
+            janelaImpressao.document.close();
+            
+            // Aguardar o carregamento e então imprimir
+            janelaImpressao.onload = () => {
+                janelaImpressao.print();
+                // Fechar a janela após um tempo se não foi cancelada
+                setTimeout(() => {
+                    if (!janelaImpressao.closed) {
+                        janelaImpressao.close();
+                    }
+                }, 1000);
+            };
         }
 
         // ===== AJUDA =====
@@ -1985,7 +2471,7 @@ Use o menu ☰ para acessar todas as configurações!`;
 
 Experimente! Estou aqui para ajudar! 😊`;
 
-            adicionarMensagem(capacidades, 'sena', false);
+            adicionarMensagem(capacidades, 'cici', false);
             fecharMenu();
         }
 
@@ -2017,35 +2503,88 @@ Experimente! Estou aqui para ajudar! 😊`;
         function mostrarToast(mensagem, tipo = 'info') {
             const toast = document.createElement('div');
             toast.className = `toast ${tipo}`;
-            
+
             const icones = {
                 sucesso: '✓',
                 erro: '✕',
                 aviso: '⚠️',
                 info: 'ℹ️'
             };
-            
+
             toast.innerHTML = `
                 <span style="font-size:1.4em">${icones[tipo]}</span>
                 <span>${mensagem}</span>
             `;
-            
-            document.body.appendChild(toast);
-            
+
+            document.getElementById('toast-container').appendChild(toast);
+
+            // Animação de entrada
             setTimeout(() => toast.classList.add('mostrar'), 10);
-            
+
+            // Remover após 3 segundos
             setTimeout(() => {
                 toast.classList.remove('mostrar');
-                setTimeout(() => toast.remove(), 400);
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 400);
             }, 3000);
         }
 
-        // Service Worker (PWA)
+        // ===== PWA E INSTALAÇÃO =====
+        // Registrar Service Worker para PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').catch(() => {});
+                // Tentar registrar o service worker
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registrado com sucesso: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('Falha no registro do ServiceWorker: ', registrationError);
+                    });
             });
         }
+
+        // Detectar se o app está sendo executado em modo standalone (PWA)
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('Executando como PWA instalado');
+                document.body.classList.add('pwa-instalado');
+                
+                // Ajustes específicos para PWA
+                if (navigator.userAgent.includes('Android')) {
+                    // Ajustes específicos para Android
+                } else if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+                    // Ajustes específicos para iOS
+                }
+            }
+        });
+
+        // Prevenir comportamento padrão de gestos em PWA
+        document.addEventListener('touchmove', function(e) {
+            if (e.scale !== 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Gerenciar estado online/offline
+        window.addEventListener('online', () => {
+            mostrarToast('Conexão restaurada', 'sucesso');
+        });
+
+        window.addEventListener('offline', () => {
+            mostrarToast('Sem conexão com a internet', 'erro');
+        });
+
+        // Prevenir saída acidental em PWA
+        window.addEventListener('beforeunload', (e) => {
+            if (estado.conversaAtual.length > 0) {
+                e.preventDefault();
+                e.returnValue = 'Você tem uma conversa em andamento. Tem certeza que deseja sair?';
+            }
+        });
     </script>
 </body>
 </html>
