@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Cici AI - Assistente Multifuncional</title>
+    <title>𝑺𝒆𝒏𝒂 ✧ - Tecnologia com alma gentil</title>
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#6c5ce7">
     <meta name="description" content="Assistente AI multifuncional com chat, análise de documentos, geração de imagens, código e muito mais">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4712/4712027.png">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/ivFEqQU.png">
 
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -21,7 +21,7 @@
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "SEU_ID_DO_CLARITY"); 
+        })(window, document, "clarity", "script", "tlya8thx8r"); 
     </script>
 
     <style>
@@ -185,62 +185,141 @@
             font-weight: bold;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            min-height: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            box-shadow: var(--shadow-md);
-            z-index: 20;
-            position: relative;
-        }
+        /* HEADER */
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background: rgba(20, 20, 26, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+ html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* evita rolagens fantasmas */
+}
 
-        .menu-btn, .header-action {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 1.3em;
-            cursor: pointer;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-        .menu-btn:hover, .header-action:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.05);
-        }
+#tela-app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;           /* ocupa TODA a tela */
+    max-height: 100vh;       /* impede ultrapassar */
+    width: 100%;
+}
 
-        .logo-area {
-            font-size: 1.4em;
-            font-weight: 800;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+header {
+    flex-shrink: 0;          /* header nunca diminui */
+}
 
-        .status-indicator {
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
+.sugestoes-container {
+    flex-shrink: 0;          /* chips também não diminuem */
+}
 
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
+#chat-container {
+    flex: 1;                 /* ocupa o espaço restante */
+    overflow-y: auto;        /* rolagem só aqui */
+    min-height: 0;           /* linha mágica que evita bugs em telas pequenas */
+}
+
+.input-wrapper {
+    flex-shrink: 0;          /* mantém barra fixa */
+}
+
+/* Botão do menu */
+.menu-btn {
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.menu-btn:hover {
+    opacity: 0.85;
+}
+
+.menu-btn:active {
+    transform: scale(0.95);
+}
+
+.icone-menu {
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+}
+
+/* Logo central */
+.logo-area .logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.18));
+}
+
+/* Botão da ação no header */
+.header-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.header-action:hover {
+    opacity: 0.85;
+}
+
+.header-action:active {
+    transform: scale(0.95);
+}
+
+.icone-header {
+    width: 32px;
+    height: 32px;
+}
+
+/* Chips de sugestão */
+.sugestoes-container {
+    padding: 12px 14px;
+    background: linear-gradient(to top, rgba(20,20,28,0.95), rgba(20,20,28,0));
+}
+
+.sugestoes-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.sugestoes-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #fff;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.chip:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+.chip:active {
+    transform: scale(0.96);
+}
+    
 
         /* Menu Lateral */
         #overlay-menu {
@@ -367,6 +446,32 @@
         .toggle-switch.ativo::after {
             left: 25px;
         }
+    .menu-btn {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.icone-menu {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu-btn:hover .icone-menu {
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+.menu-btn:active .icone-menu {
+    transform: scale(0.92);
+}
 
         /* Chat Area */
         #chat-container {
@@ -630,51 +735,103 @@
             border-color: var(--primary);
         }
 
-        .input-wrapper {
-            display: flex;
-            gap: 12px;
-            align-items: flex-end;
-            position: relative;
-        }
+        .input-area {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
 
-        .input-container {
-            flex: 1;
-            position: relative;
-        }
+.input-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
 
-        #entradaUsuario {
-            width: 100%;
-            padding: 14px 50px 14px 18px;
-            border: 2px solid var(--border-color);
-            border-radius: 25px;
-            font-size: 1em;
-            outline: none;
-            font-family: inherit;
-            background: var(--bg-card);
-            color: var(--text-main);
-            transition: var(--transition);
-            resize: none;
-            min-height: 52px;
-            max-height: 120px;
-        }
-        #entradaUsuario:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
-        }
+#entradaUsuario {
+    width: 100%;
+    min-height: 44px;
+    max-height: 150px;
+    padding: 12px 14px;
+    padding-right: 60px;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    outline: none;
+    resize: none;
+    transition: border 0.2s, background 0.2s;
+}
 
-        .input-contador {
-            position: absolute;
-            right: 16px;
-            bottom: 16px;
-            font-size: 0.75em;
-            color: var(--text-secondary);
-            pointer-events: none;
-        }
+#entradaUsuario:focus {
+    border-color: rgba(255,255,255,0.28);
+    background: rgba(255,255,255,0.12);
+}
+
+.input-contador {
+    position: absolute;
+    right: 10px;
+    bottom: 6px;
+    font-size: 0.75rem;
+    opacity: 0.65;
+}
+
+.btn-send {
+    padding: 10px 18px;
+    background: #6f4aff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.btn-send:hover {
+    background: #7e5aff;
+}
+
+.btn-send:active {
+    transform: scale(0.96);
+}
 
         .input-actions {
-            display: flex;
-            gap: 8px;
-        }
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.input-actions button {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 12px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    transition: 
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        opacity 0.2s ease;
+}
+
+.input-actions button:hover {
+    background: rgba(255, 255, 255, 0.17);
+    border-color: rgba(255, 255, 255, 0.25);
+    opacity: 1;
+}
+
+.input-actions button:active {
+    transform: scale(0.92);
+}
 
         #btn-mic, #btn-attach {
             background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
@@ -731,57 +888,155 @@
             transform: none;
         }
 
-        /* Modals */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            overflow-y: auto;
-        }
+        /* Tela */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+}
 
-        .card-aviso {
-            background: rgba(255,255,255,0.15);
-            padding: 40px 32px;
-            border-radius: 24px;
-            backdrop-filter: blur(20px);
-            max-width: 500px;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+/* Card */
+.card-aviso.boas-vindas {
+    width: 92%;
+    max-width: 420px;
+    padding: 35px 32px;
+    background: rgba(25, 25, 30, 0.82);
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.12);
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    animation: fadeZoom 0.35s ease;
+}
 
-        .card-aviso h1 { font-size: 2.5em; margin: 16px 0; }
-        .card-aviso p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            opacity: 0.95;
-            margin: 12px 0;
-        }
+/* Logo */
+.logo-boas-vindas {
+    margin-bottom: 18px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25));
+}
 
-        .btn-grande {
-            background: white;
-            color: var(--primary);
-            padding: 16px 48px;
-            border-radius: 30px;
-            border: none;
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-top: 24px;
-            cursor: pointer;
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
-        }
-        .btn-grande:hover { transform: scale(1.05); }
+/* Títulos */
+.titulo-boas-vindas {
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.subtitulo-forte {
+    font-size: 1.25em;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.subtitulo {
+    font-size: 1em;
+    opacity: 0.9;
+    margin-bottom: 26px;
+}
+
+/* Botão */
+.btn-grande {
+    width: 100%;
+    background: linear-gradient(135deg, #ff7ce1, #c77dff);
+    padding: 14px 0;
+    border-radius: 14px;
+    border: none;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.btn-grande:hover {
+    opacity: 0.92;
+}
+
+.btn-grande:active {
+    transform: scale(0.96);
+}
+
+/* Animação */
+@keyframes fadeZoom {
+    0% {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.oculto {
+    display: none;
+}
+
+.card-aviso {
+    width: 90%;
+    max-width: 440px;
+    padding: 28px 32px;
+    background: rgba(25, 25, 30, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+.aviso-titulo {
+    font-size: 1.9em;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.aviso-lista {
+    text-align: left;
+    line-height: 1.65;
+    font-size: 1.05em;
+    margin: 18px 0 26px;
+}
+
+.btn-grande {
+    width: 100%;
+    background: linear-gradient(135deg, #4f7cff, #7da3ff);
+    padding: 14px 0;
+    border-radius: 14px;
+    border: none;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.btn-grande:hover {
+    opacity: 0.92;
+}
+
+.btn-grande:active {
+    transform: scale(0.96);
+}
+
+.aviso-links {
+    margin-top: 20px;
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.aviso-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.aviso-links a:hover {
+    text-decoration: underline;
+}
 
         /* Toast Notifications */
         .toast {
@@ -925,7 +1180,7 @@
 
         <div class="menu-titulo">🔊 Áudio</div>
         <button class="menu-item" onclick="alternarSom()">
-            <span id="icone-som">🔇</span>
+            <span id="icone-som">🎙️</span>
             <span id="texto-som">Ativar Voz</span>
             <div class="toggle-switch" id="toggle-som"></div>
         </button>
@@ -934,7 +1189,7 @@
             <span>Voz Mais Lenta</span>
         </button>
         <button class="menu-item" onclick="ajustarVelocidadeVoz(0.2)">
-            <span>🐇</span>
+            <span>⚡</span>
             <span>Voz Mais Rápida</span>
         </button>
 
@@ -946,7 +1201,7 @@
             <span>Salvar Conversa</span>
         </button>
         <button class="menu-item" onclick="compartilharConversa()">
-            <span>📤</span>
+            <span>⛓️‍💥</span>
             <span>Compartilhar</span>
         </button>
         <button class="menu-item" onclick="imprimirConversa()">
@@ -976,117 +1231,131 @@
     </nav>
 
     <!-- Tela de Boas-Vindas -->
-    <div id="tela-boas-vindas" class="modal-overlay">
-        <div class="card-aviso">
-            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" 
-                 width="100" 
-                 alt="Logo Cici"
-                 style="margin-bottom:20px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));">
-            <h1>🤖 Cici AI</h1>
-            <p style="font-size: 1.3em; font-weight: 700;">Assistente Multifuncional</p>
-            <p>Chat • Análise • Código • Imagens • Documentos</p>
-            <button class="btn-grande" onclick="irParaAviso()">Começar Agora</button>
-        </div>
+<div id="tela-boas-vindas" class="modal-overlay">
+    <div class="card-aviso boas-vindas">
+        <img src="https://i.imgur.com/ivFEqQU.png" 
+             width="110" 
+             alt="Logo Cici"
+             class="logo-boas-vindas">
+
+        <h1 class="titulo-boas-vindas">🌸 𝑺𝒆𝒏𝒂 ✧</h1>
+
+        <p class="subtitulo-forte">Tecnologia com alma gentil</p>
+        <p class="subtitulo">Chat • Análise • Código • Imagens • Documentos</p>
+
+        <button class="btn-grande" onclick="irParaAviso()">Começar Agora</button>
     </div>
+</div>
 
     <!-- Tela de Avisos -->
-    <div id="tela-aviso" class="modal-overlay oculto">
-        <div class="card-aviso">
-            <h2 style="font-size: 2em; margin-bottom: 20px;">⚠️ Informações Importantes</h2>
-            <div style="text-align: left; margin: 20px 0;">
-                <p><strong>✓</strong> Sou uma assistente IA avançada e multifuncional</p>
-                <p><strong>✓</strong> Posso cometer erros - verifique informações críticas</p>
-                <p><strong>✓</strong> Não compartilhe senhas ou dados bancários</p>
-                <p><strong>✓</strong> Suas conversas são salvas localmente</p>
-                <p><strong>✓</strong> Posso analisar documentos, gerar código e muito mais</p>
-            </div>
-            <button class="btn-grande" onclick="irParaChat()">Entendi e Aceito</button>
-            <div style="margin-top: 24px; font-size: 0.9em; opacity: 0.9;">
-                <a href="https://termos.orpheostudio.com.br" style="color:white" target="_blank">Termos de Uso</a> | 
-                <a href="https://politicas.orpheostudio.com.br" style="color:white" target="_blank">Política de Privacidade</a>
-            </div>
+<div id="tela-aviso" class="modal-overlay oculto">
+    <div class="card-aviso">
+        <h2 class="aviso-titulo">⚠️ Informações Importantes</h2>
+
+        <div class="aviso-lista">
+            <p><strong>✓</strong> Sou uma assistente IA em desenvolvimento</p>
+            <p><strong>✓</strong> Posso cometer erros — verifique informações críticas</p>
+            <p><strong>✓</strong> Não compartilhe senhas ou dados bancários</p>
+            <p><strong>✓</strong> Suas conversas são salvas localmente</p>
+            <p><strong>✓</strong> Posso analisar documentos(beta), gerar código e muito mais</p>
+        </div>
+
+        <button class="btn-grande" onclick="irParaChat()">Entendi e Aceito</button>
+
+        <div class="aviso-links">
+            <a href="https://termos.orpheostudio.com.br" target="_blank">Termos de Uso</a> |
+            <a href="https://politicas.orpheostudio.com.br" target="_blank">Política de Privacidade</a>
         </div>
     </div>
+</div>
 
     <!-- Aplicação Principal -->
-    <div id="tela-app" class="oculto" style="display:flex; flex-direction:column; height:100%">
-        <header>
-            <button class="menu-btn" onclick="abrirMenu()" aria-label="Abrir menu">☰</button>
-            <div class="logo-area">
-                <span>🤖 Cici AI</span>
-                <span class="status-indicator" aria-label="Online"></span>
-            </div>
-            <button class="header-action" onclick="novaConversa()" aria-label="Nova conversa" title="Nova conversa">
-                ➕
-            </button>
-        </header>
+<div id="tela-app" class="oculto" style="display:flex; flex-direction:column; height:100%">
+    <header class="app-header">
+        
+        <button class="menu-btn" onclick="abrirMenu()" aria-label="Abrir menu">
+            <img src="https://i.imgur.com/6hl6JoA.png" alt="Menu" class="icone-menu">
+        </button>
 
-        <div id="chat-container" role="main" aria-live="polite" aria-label="Área de conversa"></div>
-
-        <div class="sugestoes-container">
-            <div class="sugestoes-scroll" id="chips-sugestoes">
-                <button class="chip" onclick="usarChip('Explique de forma simples:')">
-                    <span>🎯</span> Explicação Simples
-                </button>
-                <button class="chip" onclick="usarChip('Crie um código em Python para:')">
-                    <span>💻</span> Gerar Código
-                </button>
-                <button class="chip" onclick="usarChip('Analise este documento:')">
-                    <span>📄</span> Analisar Documento
-                </button>
-                <button class="chip" onclick="usarChip('Resuma em tópicos:')">
-                    <span>📝</span> Resumir
-                </button>
-                <button class="chip" onclick="usarChip('Traduza para o inglês:')">
-                    <span>🌍</span> Traduzir
-                </button>
-                <button class="chip" onclick="usarChip('Me ajude com matemática:')">
-                    <span>🔢</span> Matemática
-                </button>
-            </div>
+        <div class="logo-area">
+            <img src="https://i.imgur.com/ivFEqQU.png" alt="Sena" class="logo">
         </div>
 
-        <footer>
-            <div class="input-tools" id="toolsBar">
-                <button class="tool-btn" onclick="ativarModoContexto('criativo')" title="Modo criativo">
-                    <span>✨</span> Criativo
-                </button>
-                <button class="tool-btn" onclick="ativarModoContexto('preciso')" title="Modo preciso">
-                    <span>🎯</span> Preciso
-                </button>
-                <button class="tool-btn" onclick="ativarModoContexto('codigo')" title="Especialista em código">
-                    <span>💻</span> Código
-                </button>
-                <button class="tool-btn" onclick="ativarModoContexto('ensino')" title="Modo professor">
-                    <span>🎓</span> Ensino
-                </button>
-                <button class="tool-btn" onclick="ativarModoContexto('analise')" title="Análise profunda">
-                    <span>🔬</span> Análise
-                </button>
-            </div>
+        <button class="header-action sena-btn" 
+                onclick="novaConversa()" 
+                aria-label="Nova conversa" 
+                title="Nova conversa">
+            <img src="https://i.imgur.com/FsXkN6B.png" alt="Nova conversa" class="icone-header">
+        </button>
 
-            <div class="input-wrapper">
-                <div class="input-actions">
-                    <button id="btn-mic" onclick="ativarMicrofone()" aria-label="Ativar microfone" title="Falar">🎤</button>
-                    <button id="btn-attach" onclick="anexarArquivo()" aria-label="Anexar arquivo" title="Anexar">📎</button>
-                </div>
-                
-                <div class="input-container">
-                    <textarea id="entradaUsuario" 
-                           placeholder="Digite sua mensagem... (Shift+Enter para nova linha)" 
-                           aria-label="Campo de mensagem"
-                           rows="1"></textarea>
-                    <span class="input-contador" id="contador-chars">0/4000</span>
-                </div>
-                
-                <button class="btn-send" 
-                        onclick="enviarMensagem()" 
-                        id="btn-enviar"
-                        aria-label="Enviar mensagem">
-                    Enviar
-                </button>
-            </div>
-        </footer>
+    </header>
+
+    <div id="chat-container" role="main" aria-live="polite" aria-label="Área de conversa"></div>
+
+    <div class="sugestoes-container">
+        <div class="sugestoes-scroll" id="chips-sugestoes">
+            <button class="chip" onclick="usarChip('Explique de forma simples:')">
+                <span>🎯</span> Explicação Simples
+            </button>
+            <button class="chip" onclick="usarChip('Crie um código em Python para:')">
+                <span>💻</span> Gerar Código
+            </button>
+            <button class="chip" onclick="usarChip('Analise este documento:')">
+                <span>📄</span> Analisar Documento
+            </button>
+            <button class="chip" onclick="usarChip('Resuma em tópicos:')">
+                <span>📝</span> Resumir
+            </button>
+            <button class="chip" onclick="usarChip('Traduza para o inglês:')">
+                <span>🌍</span> Traduzir
+            </button>
+            <button class="chip" onclick="usarChip('Me ajude com matemática:')">
+                <span>🔢</span> Matemática
+            </button>
+        </div>
+    </div>
+</div>
+
+        <footer>
+    <div class="input-tools" id="toolsBar">
+        <button class="tool-btn" onclick="ativarModoContexto('criativo')" title="Modo criativo">
+            <span>✨</span> Criativo
+        </button>
+        <button class="tool-btn" onclick="ativarModoContexto('preciso')" title="Modo preciso">
+            <span>🎯</span> Preciso
+        </button>
+        <button class="tool-btn" onclick="ativarModoContexto('codigo')" title="Especialista em código">
+            <span>💻</span> Código
+        </button>
+        <button class="tool-btn" onclick="ativarModoContexto('ensino')" title="Modo professor">
+            <span>🎓</span> Ensino
+        </button>
+        <button class="tool-btn" onclick="ativarModoContexto('analise')" title="Análise profunda">
+            <span>🔬</span> Análise
+        </button>
+    </div>
+
+    <div class="input-wrapper">
+    <div class="input-actions">
+        <button id="btn-mic" onclick="ativarMicrofone()" aria-label="Ativar microfone" title="Falar">🎤</button>
+        <button id="btn-attach" onclick="anexarArquivo()" aria-label="Anexar arquivo" title="Anexar">📎</button>
+    </div>
+</div>
+
+        <<div class="input-area">
+    <div class="input-container">
+        <textarea id="entradaUsuario"
+                  placeholder="Digite sua mensagem... (Shift+Enter para nova linha)"
+                  rows="1"></textarea>
+
+        <span class="input-contador" id="contador-chars">0/4000</span>
+    </div>
+
+    <button class="btn-send" id="btn-enviar" onclick="enviarMensagem()">
+        Enviar
+    </button>
+    </div>
+</footer>
     </div>
 
     <input type="file" id="fileInput" accept=".txt,.pdf,.doc,.docx,.jpg,.jpeg,.png,.gif" multiple>
@@ -1095,9 +1364,9 @@
     <script>
         // ===== CONFIGURAÇÕES =====
         const CONFIG = {
-            MISTRAL_API_KEY: 'SUA_CHAVE_API_MISTRAL_AQUI',
-            SUPABASE_URL: 'SUA_URL_SUPABASE_AQUI',
-            SUPABASE_KEY: 'SUA_CHAVE_ANON_SUPABASE_AQUI',
+            MISTRAL_API_KEY: 'NFuAj8PYUPcaf6tA1BjbyXuIeSjSA4sW',
+            SUPABASE_URL: 'https://onyhbarnwvoqpwveyvhc.supabase.co',
+            SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ueWhiYXJud3ZvcXB3dmV5dmhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1OTY0NDQsImV4cCI6MjA3MzE3MjQ0NH0.2zqN73ZxkqxlWLp49Kmrg1CUau0YAi7dee2EIyhodoI',
             MAX_HISTORICO: 15,
             MAX_CHARS: 4000,
             VELOCIDADE_VOZ_PADRAO: 1.0,
@@ -1118,9 +1387,18 @@
         };
 
         let supabase = null;
-        if (CONFIG.SUPABASE_URL !== 'SUA_URL_SUPABASE_AQUI') {
-            supabase = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_KEY);
-        }
+
+const urlValida = CONFIG.SUPABASE_URL && CONFIG.SUPABASE_URL !== 'SUA_URL_SUPABASE_AQUI';
+const keyValida = CONFIG.SUPABASE_KEY && CONFIG.SUPABASE_KEY !== 'SUA_CHAVE_SUPABASE_AQUI';
+
+if (urlValida && keyValida) {
+    supabase = window.supabase.createClient(
+        CONFIG.SUPABASE_URL,
+        CONFIG.SUPABASE_KEY
+    );
+} else {
+    console.warn("⚠️ Supabase não configurado. Defina SUPABASE_URL e SUPABASE_KEY em CONFIG.");
+}
 
         marked.setOptions({ 
             breaks: true,
@@ -1131,6 +1409,88 @@
                 return hljs.highlightAuto(code).value;
             }
         });
+
+        // ===== NAVEGAÇÃO (DEVE ESTAR NO INÍCIO) =====
+        function irParaAviso() {
+            document.getElementById('tela-boas-vindas').classList.add('oculto');
+            document.getElementById('tela-aviso').classList.remove('oculto');
+        }
+
+        function irParaChat() {
+            document.getElementById('tela-aviso').classList.add('oculto');
+            document.getElementById('tela-app').classList.remove('oculto');
+            
+            const chat = document.getElementById('chat-container');
+            if (chat.children.length === 0) {
+                setTimeout(() => mostrarMensagemBoasVindas(), 300);
+            }
+        }
+
+        function mostrarMensagemBoasVindas() {
+    const mensagem = `# 🌸 Olá! Eu sou a **Sena**, sua assistente em desenvolvimento.
+
+Aqui vai um resumo rápido do que eu consigo fazer por você:
+
+## 💬 Conversação Natural
+- Respostas claras e diretas
+- Capacidade de manter contexto
+- Explicações fáceis até quando o assunto tenta complicar
+
+## 💻 Programação
+- Geração de código em múltiplas linguagens
+- Explicações técnicas sem enrolação
+- Correção e otimização de scripts
+
+## 📄 Documentos (Beta, pode haver erros)
+- Análise de textos, PDFs e imagens
+- Resumos enxutos ou completos
+- Extração de informações relevantes
+
+## 🎨 Criatividade
+- Construção de histórias, poemas e roteiros
+- Desenvolvimento de ideias novas
+- Suporte criativo para qualquer projeto
+
+## 🔬 Análises
+- Comparações inteligentes
+- Raciocínio detalhado
+- Soluções para problemas complexos
+
+## 🌍 Idiomas
+- Traduções naturais
+- Explicações gramaticais
+- Ajuda no aprendizado de outros idiomas
+
+Pronto para começar?`;
+
+            adicionarMensagem(mensagem, 'cici', false);
+        }
+
+        function abrirMenu() {
+            document.getElementById('side-menu').classList.add('aberto');
+            document.getElementById('overlay-menu').classList.add('aberto');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharMenu() {
+            document.getElementById('side-menu').classList.remove('aberto');
+            document.getElementById('overlay-menu').classList.remove('aberto');
+            document.body.style.overflow = '';
+        }
+
+        function novaConversa() {
+            if (estado.conversaAtual.length === 0) {
+                mostrarToast('Já está em uma conversa nova', 'info');
+                return;
+            }
+            if (confirm('Deseja iniciar uma nova conversa? A conversa atual será salva.')) {
+                const timestamp = Date.now();
+                localStorage.setItem(`ciciChat_${timestamp}`, JSON.stringify(estado.conversaAtual));
+                limparChat();
+                setTimeout(() => mostrarMensagemBoasVindas(), 300);
+                mostrarToast('Nova conversa iniciada!', 'sucesso');
+            }
+        }
 
         // ===== INICIALIZAÇÃO =====
         window.onload = () => {
@@ -1215,7 +1575,10 @@
                 }
             });
 
-            document.getElementById('fileInput').addEventListener('change', processarArquivos);
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput) {
+                fileInput.addEventListener('change', processarArquivos);
+            }
         }
 
         function autoResizeTextarea(textarea) {
@@ -1226,92 +1589,13 @@
         function verificarSuporteFuncionalidades() {
             const temReconhecimentoVoz = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
             if (!temReconhecimentoVoz) {
-                document.getElementById('btn-mic').style.display = 'none';
+                const btnMic = document.getElementById('btn-mic');
+                if (btnMic) btnMic.style.display = 'none';
             }
         }
 
-        // ===== NAVEGAÇÃO =====
-        function irParaAviso() {
-            document.getElementById('tela-boas-vindas').classList.add('oculto');
-            document.getElementById('tela-aviso').classList.remove('oculto');
-        }
-
-        function irParaChat() {
-            document.getElementById('tela-aviso').classList.add('oculto');
-            document.getElementById('tela-app').classList.remove('oculto');
-            
-            const chat = document.getElementById('chat-container');
-            if (chat.children.length === 0) {
-                setTimeout(() => mostrarMensagemBoasVindas(), 300);
-            }
-        }
-
-        function mostrarMensagemBoasVindas() {
-            const mensagem = `# 🚀 Olá! Eu sou a **Cici AI**
-
-Sou uma assistente multifuncional avançada. Veja o que posso fazer:
-
-**💬 Conversação Natural**
-- Respondo perguntas complexas
-- Mantenho contexto da conversa
-- Explico conceitos de forma clara
-
-**💻 Programação**
-- Gero código em várias linguagens
-- Explico e depuro código
-- Crio algoritmos e soluções
-
-**📄 Documentos**
-- Analiso PDFs, textos e imagens
-- Resumo conteúdos
-- Extraio informações importantes
-
-**🎨 Criatividade**
-- Escrevo histórias e poemas
-- Crio roteiros e ideias
-- Ajudo com brainstorming
-
-**🔬 Análise**
-- Faço análises profundas
-- Comparo informações
-- Resolvo problemas complexos
-
-**🌍 Multilíngue**
-- Traduzo textos
-- Ensino idiomas
-- Explico gramática
-
-Como posso ajudar você hoje?`;
-
-            adicionarMensagem(mensagem, 'cici', false);
-        }
-
-        function abrirMenu() {
-            document.getElementById('side-menu').classList.add('aberto');
-            document.getElementById('overlay-menu').classList.add('aberto');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function fecharMenu() {
-            document.getElementById('side-menu').classList.remove('aberto');
-            document.getElementById('overlay-menu').classList.remove('aberto');
-            document.body.style.overflow = '';
-        }
-
-        function novaConversa() {
-            if (estado.conversaAtual.length === 0) {
-                mostrarToast('Já está em uma conversa nova', 'info');
-                return;
-            }
-            if (confirm('Deseja iniciar uma nova conversa? A conversa atual será salva.')) {
-                const timestamp = Date.now();
-                localStorage.setItem(`ciciChat_${timestamp}`, JSON.stringify(estado.conversaAtual));
-                limparChat();
-                setTimeout(() => mostrarMensagemBoasVindas(), 300);
-                mostrarToast('Nova conversa iniciada!', 'sucesso');
-            }
-        }
-
+        // ===== NAVEGAÇÃO (REMOVIDO DUPLICADO) =====
+        
         // ===== APARÊNCIA =====
         function alternarTemaEscuro() {
             estado.temaEscuro = !estado.temaEscuro;
@@ -1549,1255 +1833,449 @@ Como posso ajudar você hoje?`;
             
             let mensagemCompleta = texto;
             
-            // ===== ENVIAR MENSAGEM =====
-async function enviarMensagem() {
-    const input = document.getElementById('entradaUsuario');
-    const texto = input.value.trim();
-    
-    if (!texto && estado.arquivosAnexados.length === 0) {
-        mostrarToast('Digite uma mensagem ou anexe um arquivo', 'aviso');
-        return;
-    }
-    
-    if (estado.aguardandoResposta) {
-        mostrarToast('Aguarde a resposta atual', 'aviso');
-        return;
-    }
-    
-    let mensagemCompleta = texto;
-    
-    // Adicionar informações dos arquivos anexados
-    if (estado.arquivosAnexados.length > 0) {
-        mensagemCompleta += "\n\n📎 **Arquivos anexados:**";
-        estado.arquivosAnexados.forEach(arquivo => {
-            mensagemCompleta += `\n- ${arquivo.nome} (${arquivo.tipo})`;
+            if (estado.arquivosAnexados.length > 0) {
+                mensagemCompleta += `\n\n[Arquivos anexados: ${estado.arquivosAnexados.map(a => a.nome).join(', ')}]`;
+            }
             
-            // Para arquivos de texto, incluir o conteúdo
-            if (arquivo.tipo === 'documento' && arquivo.conteudo) {
-                mensagemCompleta += `\n  Conteúdo: ${arquivo.conteudo.substring(0, 500)}...`;
+            adicionarMensagem(mensagemCompleta, 'usuario', true);
+            input.value = '';
+            autoResizeTextarea(input);
+            document.getElementById('contador-chars').textContent = '0/4000';
+            
+            estado.aguardandoResposta = true;
+            document.getElementById('btn-enviar').disabled = true;
+            
+            mostrarIndicadorDigitacao();
+            
+            try {
+                const resposta = await obterRespostaIA(mensagemCompleta);
+                removerIndicadorDigitacao();
+                adicionarMensagem(resposta, 'cici', true);
+                
+                if (estado.somAtivado) {
+                    falar(resposta);
+                }
+            } catch (erro) {
+                removerIndicadorDigitacao();
+                adicionarMensagem('Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.', 'cici', false);
+                mostrarToast('Erro ao comunicar com a IA', 'erro');
+                console.error('Erro:', erro);
+            } finally {
+                estado.aguardandoResposta = false;
+                document.getElementById('btn-enviar').disabled = false;
+                estado.arquivosAnexados = [];
             }
-        });
-    }
-
-    // Adicionar mensagem do usuário ao chat
-    adicionarMensagem(mensagemCompleta, 'usuario');
-    estado.conversaAtual.push({ role: 'user', content: mensagemCompleta });
-
-    // Limpar input e arquivos
-    input.value = '';
-    input.style.height = 'auto';
-    estado.arquivosAnexados = [];
-    document.getElementById('contador-chars').textContent = '0/4000';
-    estado.aguardandoResposta = true;
-
-    // Mostrar indicador de digitação
-    mostrarDigitando();
-
-    try {
-        const resposta = await gerarRespostaIA(mensagemCompleta);
-        
-        // Remover indicador de digitação
-        removerDigitando();
-        
-        // Adicionar resposta ao chat
-        adicionarMensagem(resposta, 'cici', true);
-        estado.conversaAtual.push({ role: 'assistant', content: resposta });
-        
-        // Falar resposta se áudio estiver ativado
-        falar(resposta);
-        
-    } catch (error) {
-        removerDigitando();
-        console.error('Erro na API:', error);
-        
-        let mensagemErro = "Desculpe, ocorreu um erro ao processar sua solicitação. ";
-        
-        if (error.message.includes('API key')) {
-            mensagemErro = "⚠️ **Configuração de API necessária**\n\nPara usar a Cici AI, configure:\n\n1. Sua chave da API Mistral em `CONFIG.MISTRAL_API_KEY`\n2. URL e chave do Supabase para armazenamento\n\nSem essas configurações, a aplicação não pode se conectar aos serviços de IA.";
-        } else if (error.message.includes('network') || error.message.includes('fetch')) {
-            mensagemErro = "🌐 **Erro de conexão**\n\nVerifique sua conexão com a internet e tente novamente.";
-        } else if (error.message.includes('rate limit') || error.status === 429) {
-            mensagemErro = "⏳ **Limite de requisições**\n\nMuitas requisições em um curto período. Tente novamente em alguns instantes.";
-        } else if (error.status === 401) {
-            mensagemErro = "🔑 **Erro de autenticação**\n\nChave da API inválida ou expirada. Verifique suas credenciais.";
-        } else if (error.status >= 500) {
-            mensagemErro = "⚡ **Erro do servidor**\n\nO serviço de IA está temporariamente indisponível. Tente novamente em alguns minutos.";
         }
-        
-        adicionarMensagem(mensagemErro, 'cici', true);
-        mostrarToast('Erro na comunicação com a IA', 'erro');
-    }
 
-    estado.aguardandoResposta = false;
-}
-
-async function gerarRespostaIA(mensagem) {
-    // Verificar se a API key está configurada
-    if (CONFIG.MISTRAL_API_KEY === 'SUA_CHAVE_API_MISTRAL_AQUI') {
-        throw new Error('API key não configurada');
-    }
-
-    // Preparar histórico da conversa
-    const historico = estado.conversaAtual.slice(-CONFIG.MAX_HISTORICO);
-    
-    // Configurar parâmetros baseados no modo de contexto
-    let temperatura = 0.7; // padrão
-    let maxTokens = 2000;
-    
-    switch(estado.modoContexto) {
-        case 'preciso':
-            temperatura = 0.3;
-            break;
-        case 'criativo':
-            temperatura = 0.9;
-            break;
-        case 'codigo':
-            temperatura = 0.5;
-            maxTokens = 3000;
-            break;
-        case 'ensino':
-            temperatura = 0.6;
-            break;
-        case 'analise':
-            temperatura = 0.4;
-            maxTokens = 2500;
-            break;
-    }
-
-    const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${CONFIG.MISTRAL_API_KEY}`
-        },
-        body: JSON.stringify({
-            model: 'mistral-small', // ou mistral-medium para mais capacidade
-            messages: [
-                {
-                    role: 'system',
-                    content: `Você é a Cici AI, uma assistente multifuncional avançada. 
-                    Responda de forma clara, útil e detalhada. 
-                    Formate respostas usando Markdown quando apropriado.
-                    Seja direta e evite textos muito longos sem formatação.`
-                },
-                ...historico,
-                { role: 'user', content: mensagem }
-            ],
-            temperature: temperatura,
-            max_tokens: maxTokens,
-            top_p: 0.9,
-            stream: false
-        })
-    });
-
-    if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(`HTTP ${response.status}: ${errorData.message || 'Erro na API'}`);
-    }
-
-    const data = await response.json();
-    
-    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-        throw new Error('Resposta da API inválida');
-    }
-
-    return data.choices[0].message.content;
-}
-
-// ===== FUNÇÕES DO CHAT =====
-function adicionarMensagem(texto, tipo, renderMarkdown = true) {
-    const chat = document.getElementById('chat-container');
-    const wrapper = document.createElement('div');
-    wrapper.className = `mensagem-wrapper ${tipo}-wrapper`;
-
-    const hora = new Date().toLocaleTimeString('pt-BR', { 
-        hour: '2-digit', 
-        minute: '2-digit' 
-    });
-
-    let conteudo = texto;
-    if (renderMarkdown && tipo === 'cici') {
-        try {
-            conteudo = marked.parse(texto);
-        } catch (e) {
-            console.error('Erro ao processar markdown:', e);
-            conteudo = texto.replace(/\n/g, '<br>');
-        }
-    } else {
-        conteudo = texto.replace(/\n/g, '<br>');
-    }
-
-    wrapper.innerHTML = `
-        <div class="mensagem ${tipo}">
-            ${conteudo}
-            <div class="mensagem-hora">${hora}</div>
-            ${tipo === 'cici' ? `
-            <div class="mensagem-acoes">
-                <button class="btn-acao" onclick="copiarTexto(this, '${escapeTexto(texto)}')">
-                    📋 Copiar
-                </button>
-                <button class="btn-acao" onclick="falar('${escapeTexto(texto)}')" ${!estado.somAtivado ? 'disabled' : ''}>
-                    🔊 Ouvir
-                </button>
-            </div>
-            ` : ''}
-        </div>
-    `;
-
-    chat.appendChild(wrapper);
-    chat.scrollTop = chat.scrollHeight;
-
-    // Aplicar syntax highlighting para código
-    wrapper.querySelectorAll('pre code').forEach((block) => {
-        hljs.highlightElement(block);
-        
-        // Adicionar botão de copiar para blocos de código
-        const pre = block.closest('pre');
-        if (pre && !pre.querySelector('.code-header')) {
-            const header = document.createElement('div');
-            header.className = 'code-header';
-            header.innerHTML = `
-                <span class="code-language">${block.className.replace('language-', '') || 'code'}</span>
-                <button class="code-copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+        function mostrarIndicadorDigitacao() {
+            const chat = document.getElementById('chat-container');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'mensagem-wrapper cici-wrapper';
+            wrapper.id = 'indicador-digitacao';
+            wrapper.innerHTML = `
+                <div class="mensagem cici">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
             `;
-            pre.insertBefore(header, pre.firstChild);
+            chat.appendChild(wrapper);
+            chat.scrollTop = chat.scrollHeight;
         }
-    });
-}
 
-function escapeTexto(texto) {
-    return texto.replace(/'/g, "\\'").replace(/\n/g, '\\n');
-}
+        function removerIndicadorDigitacao() {
+            const indicador = document.getElementById('indicador-digitacao');
+            if (indicador) indicador.remove();
+        }
 
-// ===== MENSAGEM DE BOAS-VINDAS REAL =====
-function mostrarMensagemBoasVindas() {
-    const mensagem = `# 🚀 Olá! Eu sou a **Cici AI**
-
-Sou uma assistente multifuncional avançada conectada à API Mistral. 
-
-**🎯 Funcionalidades Disponíveis:**
-• 💬 Conversação natural e contextual
-• 💻 Geração e análise de código
-• 📄 Processamento de documentos anexados
-• 🎨 Conteúdo criativo e brainstorming
-• 🔬 Análise profunda de problemas
-• 🌍 Tradução e suporte multilíngue
-
-**⚡ Modos de Operação:**
-• \`Criativo\` - Respostas imaginativas
-• \`Preciso\` - Respostas factuais e diretas  
-• \`Código\` - Especialista em programação
-• \`Ensino\` - Explicações didáticas
-• \`Análise\` - Análises detalhadas
-
-**📎 Posso processar:** Textos, PDFs, imagens e outros documentos.
-
-Como posso ajudá-lo hoje?`;
-
-    adicionarMensagem(mensagem, 'cici', false);
-}
-
-// ===== CONFIGURAÇÃO DE API =====
-function verificarConfiguracaoAPI() {
-    if (CONFIG.MISTRAL_API_KEY === 'SUA_CHAVE_API_MISTRAL_AQUI') {
-        console.warn('⚠️ API Mistral não configurada');
-        return false;
-    }
-    return true;
-}
-
-// Modificar a função de inicialização para verificar a API
-window.onload = () => {
-    carregarConfiguracoes();
-    carregarHistorico();
-    configurarEventos();
-    aplicarConfiguracoes();
-    verificarSuporteFuncionalidades();
-    
-    if (!verificarConfiguracaoAPI()) {
-        console.log('Configure a API Mistral para uso completo');
-    }
-};
-
-// Adicionar verificação ao enviar primeira mensagem
-function irParaChat() {
-    document.getElementById('tela-aviso').classList.add('oculto');
-    document.getElementById('tela-app').classList.remove('oculto');
-    
-    const chat = document.getElementById('chat-container');
-    if (chat.children.length === 0) {
-        setTimeout(() => {
-            if (!verificarConfiguracaoAPI()) {
-                const avisoConfig = `# ⚠️ **Configuração Necessária**
-
-Para usar toda a funcionalidade da Cici AI, configure:
-
-1. **API Mistral**: Obtenha uma chave em https://mistral.ai
-2. **Supabase**: Para armazenamento de conversas (opcional)
-
-**Configuração atual:**
-• Mistral API: ${CONFIG.MISTRAL_API_KEY === 'SUA_CHAVE_API_MISTRAL_AQUI' ? '❌ Não configurada' : '✅ Configurada'}
-• Supabase: ${CONFIG.SUPABASE_URL === 'SUA_URL_SUPABASE_AQUI' ? '❌ Não configurado' : '✅ Configurado'}
-
-Enquanto isso, você pode testar a interface, mas as respostas da IA não estarão disponíveis.`;
-                adicionarMensagem(avisoConfig, 'cici', true);
+        function adicionarMensagem(texto, remetente, salvar = true) {
+            const chat = document.getElementById('chat-container');
+            const wrapper = document.createElement('div');
+            wrapper.className = `mensagem-wrapper ${remetente}-wrapper`;
+            
+            const agora = new Date();
+            const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            
+            const mensagemDiv = document.createElement('div');
+            mensagemDiv.className = `mensagem ${remetente}`;
+            
+            if (remetente === 'cici') {
+                mensagemDiv.innerHTML = marked.parse(texto);
+                
+                // Adicionar botões de copiar para blocos de código
+                mensagemDiv.querySelectorAll('pre code').forEach((block) => {
+                    const pre = block.parentElement;
+                    const wrapper = document.createElement('div');
+                    wrapper.style.position = 'relative';
+                    
+                    const header = document.createElement('div');
+                    header.className = 'code-header';
+                    
+                    const language = block.className.replace('language-', '').replace('hljs', '').trim() || 'code';
+                    header.innerHTML = `
+                        <span class="code-language">${language}</span>
+                        <button class="code-copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button>
+                    `;
+                    
+                    pre.parentNode.insertBefore(wrapper, pre);
+                    wrapper.appendChild(header);
+                    wrapper.appendChild(pre);
+                });
             } else {
-                mostrarMensagemBoasVindas();
+                mensagemDiv.textContent = texto;
             }
-        }, 300);
-    }
-}
-// ===== CONFIGURAÇÕES =====
-const CONFIG = {
-    MISTRAL_API_KEY: 'SUA_CHAVE_API_MISTRAL_AQUI',
-    SUPABASE_URL: 'SUA_URL_SUPABASE_AQUI',
-    SUPABASE_KEY: 'SUA_CHAVE_ANON_SUPABASE_AQUI',
-    MAX_HISTORICO: 15,
-    MAX_CHARS: 4000,
-    VELOCIDADE_VOZ_PADRAO: 1.0,
-    MODELOS_DISPONIVEIS: ['mistral-tiny', 'mistral-small', 'mistral-medium']
-};
-
-let estado = {
-    somAtivado: false,
-    velocidadeVoz: CONFIG.VELOCIDADE_VOZ_PADRAO,
-    tamanhoFonte: 16,
-    temaEscuro: false,
-    altoContraste: false,
-    leituraFacilitada: false,
-    conversaAtual: [],
-    aguardandoResposta: false,
-    modoContexto: 'normal',
-    arquivosAnexados: []
-};
-
-let supabase = null;
-if (CONFIG.SUPABASE_URL !== 'SUA_URL_SUPABASE_AQUI' && CONFIG.SUPABASE_KEY !== 'SUA_CHAVE_ANON_SUPABASE_AQUI') {
-    supabase = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_KEY);
-}
-
-marked.setOptions({ 
-    breaks: true,
-    highlight: function(code, lang) {
-        if (lang && hljs.getLanguage(lang)) {
-            return hljs.highlight(code, { language: lang }).value;
+            
+            const horaDiv = document.createElement('div');
+            horaDiv.className = 'mensagem-hora';
+            horaDiv.textContent = hora;
+            
+            wrapper.appendChild(mensagemDiv);
+            wrapper.appendChild(horaDiv);
+            
+            if (remetente === 'cici') {
+                const acoesDiv = document.createElement('div');
+                acoesDiv.className = 'mensagem-acoes';
+                acoesDiv.innerHTML = `
+                    <button class="btn-acao" onclick="copiarMensagem(this)">
+                        <span>📋</span> Copiar
+                    </button>
+                    <button class="btn-acao" onclick="compartilharMensagem(this)">
+                        <span>📤</span> Compartilhar
+                    </button>
+                    ${estado.somAtivado ? `
+                        <button class="btn-acao" onclick="repetirAudio(this)">
+                            <span>🔊</span> Repetir
+                        </button>
+                    ` : ''}
+                `;
+                wrapper.appendChild(acoesDiv);
+            }
+            
+            chat.appendChild(wrapper);
+            chat.scrollTop = chat.scrollHeight;
+            
+            if (salvar) {
+                estado.conversaAtual.push({ texto, remetente, timestamp: Date.now() });
+                salvarHistorico();
+            }
         }
-        return hljs.highlightAuto(code).value;
-    }
-});
 
-// ===== INICIALIZAÇÃO =====
-window.onload = () => {
-    carregarConfiguracoes();
-    carregarHistorico();
-    configurarEventos();
-    aplicarConfiguracoes();
-    verificarSuporteFuncionalidades();
-};
-
-function carregarConfiguracoes() {
-    const configs = JSON.parse(localStorage.getItem('ciciConfigs') || '{}');
-    estado = { ...estado, ...configs };
-    if (localStorage.getItem('altoContraste') === 'true') {
-        estado.altoContraste = true;
-    }
-}
-
-function salvarConfiguracoes() {
-    localStorage.setItem('ciciConfigs', JSON.stringify(estado));
-}
-
-function aplicarConfiguracoes() {
-    if (estado.temaEscuro) {
-        document.body.classList.add('tema-escuro');
-        document.getElementById('toggle-tema').classList.add('ativo');
-        document.getElementById('icone-tema').textContent = '☀️';
-        document.getElementById('texto-tema').textContent = 'Modo Claro';
-    }
-    if (estado.altoContraste) {
-        document.body.classList.add('alto-contraste');
-        document.getElementById('toggle-contraste').classList.add('ativo');
-    }
-    if (estado.leituraFacilitada) {
-        document.body.classList.add('leitura-facilitada');
-        document.getElementById('toggle-leitura').classList.add('ativo');
-    }
-    if (estado.somAtivado) {
-        document.getElementById('toggle-som').classList.add('ativo');
-        document.getElementById('icone-som').textContent = '🔊';
-        document.getElementById('texto-som').textContent = 'Desativar Voz';
-    }
-    document.documentElement.style.fontSize = estado.tamanhoFonte + 'px';
-}
-
-function configurarEventos() {
-    const input = document.getElementById('entradaUsuario');
-    
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            enviarMensagem();
+        function copiarCodigo(btn) {
+            const pre = btn.closest('div').querySelector('pre code');
+            const codigo = pre.textContent;
+            navigator.clipboard.writeText(codigo).then(() => {
+                const textoOriginal = btn.textContent;
+                btn.textContent = '✓ Copiado!';
+                setTimeout(() => btn.textContent = textoOriginal, 2000);
+                mostrarToast('Código copiado!', 'sucesso');
+            });
         }
-    });
-    
-    input.addEventListener('input', () => {
-        autoResizeTextarea(input);
-        const contador = document.getElementById('contador-chars');
-        contador.textContent = `${input.value.length}/${CONFIG.MAX_CHARS}`;
-        if (input.value.length > CONFIG.MAX_CHARS * 0.9) {
-            contador.style.color = 'var(--danger)';
-        } else {
-            contador.style.color = 'var(--text-secondary)';
-        }
-    });
 
-    document.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-            e.preventDefault();
-            input.focus();
+        function copiarMensagem(btn) {
+            const mensagem = btn.closest('.mensagem-wrapper').querySelector('.mensagem');
+            const texto = mensagem.textContent || mensagem.innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                mostrarToast('Mensagem copiada!', 'sucesso');
+            });
         }
-        if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
-            e.preventDefault();
-            limparChat();
+
+        function compartilharMensagem(btn) {
+            const mensagem = btn.closest('.mensagem-wrapper').querySelector('.mensagem');
+            const texto = mensagem.textContent || mensagem.innerText;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Cici AI',
+                    text: texto
+                }).catch(() => {});
+            } else {
+                copiarMensagem(btn);
+                mostrarToast('Texto copiado para compartilhar', 'sucesso');
+            }
         }
-        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-            e.preventDefault();
-            exportarConversa();
+
+        function repetirAudio(btn) {
+            const mensagem = btn.closest('.mensagem-wrapper').querySelector('.mensagem');
+            const texto = mensagem.textContent || mensagem.innerText;
+            falar(texto);
         }
-        if (e.key === 'Escape') {
+
+        // ===== API IA =====
+        async function obterRespostaIA(mensagemUsuario) {
+            const systemPrompt = getSystemPromptPorModo(estado.modoContexto);
+            
+            const mensagens = [
+                { role: 'system', content: systemPrompt },
+                ...estado.conversaAtual.slice(-CONFIG.MAX_HISTORICO).map(m => ({
+                    role: m.remetente === 'usuario' ? 'user' : 'assistant',
+                    content: m.texto
+                })),
+                { role: 'user', content: mensagemUsuario }
+            ];
+
+            const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${CONFIG.MISTRAL_API_KEY}`
+                },
+                body: JSON.stringify({
+                    model: 'mistral-small-latest',
+                    messages: mensagens,
+                    temperature: estado.modoContexto === 'criativo' ? 0.9 : 0.7,
+                    max_tokens: 2000
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Erro na API: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.choices[0].message.content;
+        }
+
+        function getSystemPromptPorModo(modo) {
+            const prompts = {
+                normal: 'Você é Sena, uma assistente multifuncional avançada. Seja prestativa, clara e objetiva.',
+                criativo: 'Você é Hanabi no modo criativo. Seja imaginativa, use metáforas e analogias interessantes.',
+                preciso: 'Você é Sion no modo preciso. Seja factual, concisa e baseie suas respostas em informações verificáveis.',
+                codigo: 'Você é Orion, especialista em programação. Forneça código limpo, bem comentado e explique suas soluções.',
+                ensino: 'Você é Cici no modo professor. Explique conceitos de forma didática, use exemplos e verifique o entendimento.',
+                analise: 'Você é Codex no modo análise. Faça análises profundas, considere múltiplas perspectivas e forneça insights detalhados.'
+            };
+            return prompts[modo] || prompts.normal;
+        }
+
+        // ===== HISTÓRICO =====
+        function salvarHistorico() {
+            try {
+                localStorage.setItem('ciciHistorico', JSON.stringify(estado.conversaAtual));
+            } catch (e) {
+                console.error('Erro ao salvar histórico:', e);
+            }
+        }
+
+        function carregarHistorico() {
+            try {
+                const historico = localStorage.getItem('ciciHistorico');
+                if (historico) {
+                    estado.conversaAtual = JSON.parse(historico);
+                    estado.conversaAtual.forEach(msg => {
+                        adicionarMensagem(msg.texto, msg.remetente, false);
+                    });
+                }
+            } catch (e) {
+                console.error('Erro ao carregar histórico:', e);
+            }
+        }
+
+        function limparChat() {
+            if (confirm('Deseja realmente limpar toda a conversa?')) {
+                document.getElementById('chat-container').innerHTML = '';
+                estado.conversaAtual = [];
+                salvarHistorico();
+                mostrarToast('Conversa limpa!', 'sucesso');
+            }
+        }
+
+        // ===== EXPORTAR E COMPARTILHAR =====
+        function exportarConversa() {
+            if (estado.conversaAtual.length === 0) {
+                mostrarToast('Nenhuma conversa para exportar', 'aviso');
+                return;
+            }
+            
+            let texto = '=== CONVERSA Sena ===\n\n';
+            estado.conversaAtual.forEach(msg => {
+                const remetente = msg.remetente === 'usuario' ? 'VOCÊ' : 'Sena';
+                const data = new Date(msg.timestamp).toLocaleString('pt-BR');
+                texto += `[${data}] ${remetente}:\n${msg.texto}\n\n`;
+            });
+            
+            const blob = new Blob([texto], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cici-conversa-${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            mostrarToast('Conversa exportada!', 'sucesso');
+        }
+
+        function compartilharConversa() {
+            if (estado.conversaAtual.length === 0) {
+                mostrarToast('Nenhuma conversa para compartilhar', 'aviso');
+                return;
+            }
+            
+            let texto = 'Conversa Sena:\n\n';
+            estado.conversaAtual.slice(-5).forEach(msg => {
+                const remetente = msg.remetente === 'usuario' ? 'Eu' : 'Sena';
+                texto += `${remetente}: ${msg.texto}\n\n`;
+            });
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Conversa Sena',
+                    text: texto
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(texto).then(() => {
+                    mostrarToast('Conversa copiada!', 'sucesso');
+                });
+            }
+        }
+
+        function imprimirConversa() {
+            if (estado.conversaAtual.length === 0) {
+                mostrarToast('Nenhuma conversa para imprimir', 'aviso');
+                return;
+            }
+            window.print();
+        }
+
+        // ===== AJUDA =====
+        function mostrarAjuda() {
+            const ajuda = `# 📚 Como Usar a Sena
+
+## 💬 Conversação
+- Digite sua mensagem e pressione Enter (Shift+Enter para nova linha)
+- Use o microfone 🎤 para falar sua mensagem
+- Anexe arquivos 📎 para análise
+
+## ⌨️ Atalhos de Teclado
+- **Ctrl/Cmd + K**: Focar no campo de mensagem
+- **Ctrl/Cmd + L**: Limpar conversa
+- **Ctrl/Cmd + S**: Salvar conversa
+- **Esc**: Fechar menu
+
+## 🎨 Modos de Contexto
+- **Criativo**: Respostas imaginativas
+- **Preciso**: Informações factuais
+- **Código**: Programação especializada
+- **Ensino**: Explicações didáticas
+- **Análise**: Análises profundas
+
+## 📱 Recursos
+- Anexar documentos e imagens
+- Reconhecimento de voz
+- Síntese de voz
+- Alto contraste
+- Leitura facilitada
+- Exportar conversas
+
+Use o menu ☰ para acessar todas as configurações!`;
+
+            adicionarMensagem(ajuda, 'cici', false);
             fecharMenu();
         }
-    });
 
-    document.getElementById('fileInput').addEventListener('change', processarArquivos);
-}
+        function mostrarCapacidades() {
+            const capacidades = `# 🚀 Capacidades da Sena
 
-function autoResizeTextarea(textarea) {
-    textarea.style.height = 'auto';
-    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
-}
+## 💻 Programação
+- Gero código em Python, JavaScript, Java, C++, e mais
+- Depuro e explico código existente
+- Crio algoritmos e estruturas de dados
+- Ajudo com frameworks e bibliotecas
 
-function verificarSuporteFuncionalidades() {
-    const temReconhecimentoVoz = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
-    if (!temReconhecimentoVoz) {
-        document.getElementById('btn-mic').style.display = 'none';
-    }
-}
+## 📄 Documentos
+- Analiso PDFs e documentos de texto
+- Resumo conteúdos longos
+- Extraio informações específicas
+- Comparo documentos
 
-// ===== NAVEGAÇÃO =====
-function irParaAviso() {
-    document.getElementById('tela-boas-vindas').classList.add('oculto');
-    document.getElementById('tela-aviso').classList.remove('oculto');
-}
+## 🌍 Idiomas
+- Traduzo entre vários idiomas
+- Explico gramática e vocabulário
+- Corrijo textos
+- Ensino pronúncia
 
-function irParaChat() {
-    document.getElementById('tela-aviso').classList.add('oculto');
-    document.getElementById('tela-app').classList.remove('oculto');
-    
-    const chat = document.getElementById('chat-container');
-    if (chat.children.length === 0) {
-        setTimeout(() => mostrarMensagemBoasVindas(), 300);
-    }
-}
+## 🔬 Análise
+- Analiso dados e estatísticas
+- Resolvo problemas matemáticos
+- Faço análises críticas
+- Comparo informações
 
-function mostrarMensagemBoasVindas() {
-    const mensagem = `# 🚀 Olá! Eu sou a **Cici AI**
+## 🎨 Criatividade
+- Escrevo histórias e poemas
+- Crio roteiros e diálogos
+- Gero ideias criativas
+- Ajudo com brainstorming
 
-Sou uma assistente multifuncional avançada. 
+## 📚 Educação
+- Explico conceitos complexos
+- Crio exercícios e exemplos
+- Auxilio em trabalhos escolares
+- Preparo para provas
 
-**🎯 Funcionalidades Disponíveis:**
-• 💬 Conversação natural e contextual
-• 💻 Geração e análise de código  
-• 📄 Processamento de documentos
-• 🎨 Conteúdo criativo e brainstorming
-• 🔬 Análise profunda de problemas
-• 🌍 Tradução e suporte multilíngue
+Experimente! Estou aqui para ajudar! 😊`;
 
-**⚡ Modos de Operação:**
-• **Criativo** - Respostas imaginativas
-• **Preciso** - Respostas factuais
-• **Código** - Especialista em programação
-• **Ensino** - Explicações didáticas
-• **Análise** - Análises detalhadas
-
-Como posso ajudá-lo hoje?`;
-
-    adicionarMensagem(mensagem, 'cici', true);
-}
-
-function abrirMenu() {
-    document.getElementById('side-menu').classList.add('aberto');
-    document.getElementById('overlay-menu').classList.add('aberto');
-    document.body.style.overflow = 'hidden';
-}
-
-function fecharMenu() {
-    document.getElementById('side-menu').classList.remove('aberto');
-    document.getElementById('overlay-menu').classList.remove('aberto');
-    document.body.style.overflow = '';
-}
-
-function novaConversa() {
-    if (estado.conversaAtual.length === 0) {
-        mostrarToast('Já está em uma conversa nova', 'info');
-        return;
-    }
-    if (confirm('Deseja iniciar uma nova conversa? A conversa atual será salva.')) {
-        const timestamp = Date.now();
-        localStorage.setItem(`ciciChat_${timestamp}`, JSON.stringify(estado.conversaAtual));
-        limparChat();
-        setTimeout(() => mostrarMensagemBoasVindas(), 300);
-        mostrarToast('Nova conversa iniciada!', 'sucesso');
-    }
-}
-
-// ===== APARÊNCIA =====
-function alternarTemaEscuro() {
-    estado.temaEscuro = !estado.temaEscuro;
-    document.body.classList.toggle('tema-escuro');
-    const toggle = document.getElementById('toggle-tema');
-    const icone = document.getElementById('icone-tema');
-    const texto = document.getElementById('texto-tema');
-    if (estado.temaEscuro) {
-        toggle.classList.add('ativo');
-        icone.textContent = '☀️';
-        texto.textContent = 'Modo Claro';
-    } else {
-        toggle.classList.remove('ativo');
-        icone.textContent = '🌙';
-        texto.textContent = 'Modo Escuro';
-    }
-    salvarConfiguracoes();
-    mostrarToast('Tema alterado!', 'sucesso');
-}
-
-function alternarContraste() {
-    estado.altoContraste = !estado.altoContraste;
-    document.body.classList.toggle('alto-contraste');
-    document.getElementById('toggle-contraste').classList.toggle('ativo');
-    localStorage.setItem('altoContraste', estado.altoContraste);
-    salvarConfiguracoes();
-    mostrarToast('Alto contraste ' + (estado.altoContraste ? 'ativado' : 'desativado'), 'sucesso');
-}
-
-function alternarLeituraFacilitada() {
-    estado.leituraFacilitada = !estado.leituraFacilitada;
-    document.body.classList.toggle('leitura-facilitada');
-    document.getElementById('toggle-leitura').classList.toggle('ativo');
-    salvarConfiguracoes();
-    mostrarToast('Leitura facilitada ' + (estado.leituraFacilitada ? 'ativada' : 'desativada'), 'sucesso');
-}
-
-function ajustarFonte(incremento) {
-    estado.tamanhoFonte = Math.max(12, Math.min(28, estado.tamanhoFonte + incremento));
-    document.documentElement.style.fontSize = estado.tamanhoFonte + 'px';
-    salvarConfiguracoes();
-    mostrarToast(`Tamanho: ${estado.tamanhoFonte}px`, 'sucesso');
-}
-
-function resetarFonte() {
-    estado.tamanhoFonte = 16;
-    document.documentElement.style.fontSize = '16px';
-    salvarConfiguracoes();
-    mostrarToast('Tamanho padrão restaurado', 'sucesso');
-}
-
-// ===== ÁUDIO =====
-function alternarSom() {
-    estado.somAtivado = !estado.somAtivado;
-    const toggle = document.getElementById('toggle-som');
-    const icone = document.getElementById('icone-som');
-    const texto = document.getElementById('texto-som');
-    if (estado.somAtivado) {
-        toggle.classList.add('ativo');
-        icone.textContent = '🔊';
-        texto.textContent = 'Desativar Voz';
-        falar('Voz ativada com sucesso!');
-    } else {
-        toggle.classList.remove('ativo');
-        icone.textContent = '🔇';
-        texto.textContent = 'Ativar Voz';
-        window.speechSynthesis.cancel();
-    }
-    salvarConfiguracoes();
-}
-
-function ajustarVelocidadeVoz(incremento) {
-    estado.velocidadeVoz = Math.max(0.5, Math.min(2.0, estado.velocidadeVoz + incremento));
-    salvarConfiguracoes();
-    const velocidadeTexto = estado.velocidadeVoz === 1.0 ? 'normal' : 
-                           estado.velocidadeVoz < 1.0 ? 'lenta' : 'rápida';
-    mostrarToast(`Velocidade da voz: ${velocidadeTexto}`, 'sucesso');
-    if (estado.somAtivado) {
-        falar('Teste de velocidade da voz');
-    }
-}
-
-function falar(texto) {
-    if (!estado.somAtivado || !('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    const textoLimpo = texto.replace(/[*_#`]/g, '').replace(/<[^>]*>/g, '').replace(/\n+/g, '. ');
-    const utterance = new SpeechSynthesisUtterance(textoLimpo);
-    utterance.lang = 'pt-BR';
-    utterance.rate = estado.velocidadeVoz;
-    utterance.pitch = 1.0;
-    utterance.volume = 1.0;
-    window.speechSynthesis.speak(utterance);
-}
-
-function ativarMicrofone() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-        mostrarToast('Seu navegador não suporta reconhecimento de voz', 'erro');
-        return;
-    }
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'pt-BR';
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    const btnMic = document.getElementById('btn-mic');
-    recognition.onstart = () => {
-        btnMic.classList.add('ouvindo');
-        mostrarToast('🎤 Estou ouvindo...', 'aviso');
-    };
-    recognition.onend = () => {
-        btnMic.classList.remove('ouvindo');
-    };
-    recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        document.getElementById('entradaUsuario').value = transcript;
-        document.getElementById('entradaUsuario').focus();
-        autoResizeTextarea(document.getElementById('entradaUsuario'));
-        mostrarToast('✓ Texto capturado!', 'sucesso');
-    };
-    recognition.onerror = (event) => {
-        btnMic.classList.remove('ouvindo');
-        let mensagem = 'Erro ao capturar voz';
-        if (event.error === 'no-speech') mensagem = 'Nenhuma fala detectada';
-        else if (event.error === 'not-allowed') mensagem = 'Permissão de microfone negada';
-        mostrarToast(mensagem, 'erro');
-    };
-    try {
-        recognition.start();
-    } catch (e) {
-        mostrarToast('Erro ao iniciar microfone', 'erro');
-    }
-}
-
-// ===== MODOS DE CONTEXTO =====
-function ativarModoContexto(modo) {
-    document.querySelectorAll('.tool-btn').forEach(btn => btn.classList.remove('ativo'));
-    event.target.closest('.tool-btn').classList.add('ativo');
-    estado.modoContexto = modo;
-    
-    const modos = {
-        criativo: '✨ Modo Criativo ativado - Respostas mais imaginativas',
-        preciso: '🎯 Modo Preciso ativado - Respostas mais factuais',
-        codigo: '💻 Modo Código ativado - Especialista em programação',
-        ensino: '🎓 Modo Ensino ativado - Explicações didáticas',
-        analise: '🔬 Modo Análise ativado - Análises profundas'
-    };
-    
-    mostrarToast(modos[modo], 'sucesso');
-}
-
-// ===== ANEXAR ARQUIVOS =====
-function anexarArquivo() {
-    document.getElementById('fileInput').click();
-}
-
-async function processarArquivos(event) {
-    const files = Array.from(event.target.files);
-    if (files.length === 0) return;
-    
-    for (const file of files) {
-        if (file.size > 10 * 1024 * 1024) {
-            mostrarToast(`Arquivo ${file.name} muito grande (máx 10MB)`, 'erro');
-            continue;
+            adicionarMensagem(capacidades, 'sena', false);
+            fecharMenu();
         }
-        
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-            const conteudo = e.target.result;
-            const tipoArquivo = file.type.startsWith('image/') ? 'imagem' : 'documento';
+
+        function mostrarAtalhos() {
+            const atalhos = `# ⌨️ Atalhos de Teclado
+
+## Navegação
+- **Ctrl/Cmd + K**: Focar no campo de mensagem
+- **Enter**: Enviar mensagem
+- **Shift + Enter**: Nova linha
+- **Esc**: Fechar menu lateral
+
+## Ações
+- **Ctrl/Cmd + L**: Limpar conversa
+- **Ctrl/Cmd + S**: Salvar/Exportar conversa
+- **Ctrl/Cmd + N**: Nova conversa
+
+## Dicas
+- Use as sugestões rápidas (chips) para começar
+- Experimente os diferentes modos de contexto
+- Anexe arquivos para análise mais completa
+- Ative o microfone para ditado por voz`;
+
+            adicionarMensagem(atalhos, 'cici', false);
+            fecharMenu();
+        }
+
+        // ===== TOAST =====
+        function mostrarToast(mensagem, tipo = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${tipo}`;
             
-            estado.arquivosAnexados.push({
-                nome: file.name,
-                tipo: tipoArquivo,
-                tamanho: file.size,
-                conteudo: conteudo
-            });
+            const icones = {
+                sucesso: '✓',
+                erro: '✕',
+                aviso: '⚠️',
+                info: 'ℹ️'
+            };
             
-            mostrarArquivoAnexado(file.name, file.size, tipoArquivo);
-            mostrarToast(`✓ ${file.name} anexado!`, 'sucesso');
-        };
-        
-        if (file.type.startsWith('image/')) {
-            reader.readAsDataURL(file);
-        } else {
-            reader.readAsText(file);
-        }
-    }
-    
-    event.target.value = '';
-}
-
-function mostrarArquivoAnexado(nome, tamanho, tipo) {
-    const chat = document.getElementById('chat-container');
-    const wrapper = document.createElement('div');
-    wrapper.className = 'mensagem-wrapper usuario-wrapper';
-    
-    const icones = {
-        'imagem': '🖼️',
-        'documento': '📄'
-    };
-    
-    wrapper.innerHTML = `
-        <div class="mensagem usuario">
-            <div class="file-attachment">
-                <div class="file-icon">${icones[tipo]}</div>
-                <div class="file-info">
-                    <div class="file-name">${nome}</div>
-                    <div class="file-size">${formatarTamanho(tamanho)}</div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    chat.appendChild(wrapper);
-    chat.scrollTop = chat.scrollHeight;
-}
-
-function formatarTamanho(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
-}
-
-// ===== ENVIAR MENSAGEM =====
-function usarChip(texto) {
-    document.getElementById('entradaUsuario').value = texto + ' ';
-    document.getElementById('entradaUsuario').focus();
-    autoResizeTextarea(document.getElementById('entradaUsuario'));
-}
-
-async function enviarMensagem() {
-    const input = document.getElementById('entradaUsuario');
-    const texto = input.value.trim();
-    
-    if (!texto && estado.arquivosAnexados.length === 0) {
-        mostrarToast('Digite uma mensagem ou anexe um arquivo', 'aviso');
-        return;
-    }
-    
-    if (estado.aguardandoResposta) {
-        mostrarToast('Aguarde a resposta atual', 'aviso');
-        return;
-    }
-    
-    let mensagemCompleta = texto;
-    
-    // Adicionar informações dos arquivos anexados
-    if (estado.arquivosAnexados.length > 0) {
-        mensagemCompleta += "\n\n📎 **Arquivos anexados:**";
-        estado.arquivosAnexados.forEach(arquivo => {
-            mensagemCompleta += `\n- ${arquivo.nome} (${arquivo.tipo})`;
-            
-            // Para arquivos de texto, incluir o conteúdo
-            if (arquivo.tipo === 'documento' && arquivo.conteudo) {
-                mensagemCompleta += `\n  Conteúdo: ${arquivo.conteudo.substring(0, 500)}...`;
-            }
-        });
-    }
-
-    // Adicionar mensagem do usuário ao chat
-    adicionarMensagem(mensagemCompleta, 'usuario');
-    estado.conversaAtual.push({ role: 'user', content: mensagemCompleta });
-
-    // Limpar input e arquivos
-    input.value = '';
-    input.style.height = 'auto';
-    estado.arquivosAnexados = [];
-    document.getElementById('contador-chars').textContent = '0/4000';
-    estado.aguardandoResposta = true;
-
-    // Mostrar indicador de digitação
-    mostrarDigitando();
-
-    try {
-        const resposta = await gerarRespostaIA(mensagemCompleta);
-        
-        // Remover indicador de digitação
-        removerDigitando();
-        
-        // Adicionar resposta ao chat
-        adicionarMensagem(resposta, 'cici', true);
-        estado.conversaAtual.push({ role: 'assistant', content: resposta });
-        
-        // Falar resposta se áudio estiver ativado
-        falar(resposta);
-        
-    } catch (error) {
-        removerDigitando();
-        console.error('Erro na API:', error);
-        
-        let mensagemErro = "Desculpe, ocorreu um erro ao processar sua solicitação. ";
-        
-        if (error.message.includes('API key')) {
-            mensagemErro = "⚠️ **Configuração de API necessária**\n\nPara usar a Cici AI, configure:\n\n1. Sua chave da API Mistral em `CONFIG.MISTRAL_API_KEY`\n2. URL e chave do Supabase para armazenamento\n\nSem essas configurações, a aplicação não pode se conectar aos serviços de IA.";
-        } else if (error.message.includes('network') || error.message.includes('fetch')) {
-            mensagemErro = "🌐 **Erro de conexão**\n\nVerifique sua conexão com a internet e tente novamente.";
-        } else if (error.message.includes('rate limit') || error.status === 429) {
-            mensagemErro = "⏳ **Limite de requisições**\n\nMuitas requisições em um curto período. Tente novamente em alguns instantes.";
-        } else if (error.status === 401) {
-            mensagemErro = "🔑 **Erro de autenticação**\n\nChave da API inválida ou expirada. Verifique suas credenciais.";
-        } else if (error.status >= 500) {
-            mensagemErro = "⚡ **Erro do servidor**\n\nO serviço de IA está temporariamente indisponível. Tente novamente em alguns minutos.";
-        }
-        
-        adicionarMensagem(mensagemErro, 'cici', true);
-        mostrarToast('Erro na comunicação com a IA', 'erro');
-    }
-
-    estado.aguardandoResposta = false;
-}
-
-async function gerarRespostaIA(mensagem) {
-    // Verificar se a API key está configurada
-    if (CONFIG.MISTRAL_API_KEY === 'SUA_CHAVE_API_MISTRAL_AQUI') {
-        throw new Error('API key não configurada');
-    }
-
-    // Preparar histórico da conversa
-    const historico = estado.conversaAtual.slice(-CONFIG.MAX_HISTORICO);
-    
-    // Configurar parâmetros baseados no modo de contexto
-    let temperatura = 0.7; // padrão
-    let maxTokens = 2000;
-    
-    switch(estado.modoContexto) {
-        case 'preciso':
-            temperatura = 0.3;
-            break;
-        case 'criativo':
-            temperatura = 0.9;
-            break;
-        case 'codigo':
-            temperatura = 0.5;
-            maxTokens = 3000;
-            break;
-        case 'ensino':
-            temperatura = 0.6;
-            break;
-        case 'analise':
-            temperatura = 0.4;
-            maxTokens = 2500;
-            break;
-    }
-
-    const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${CONFIG.MISTRAL_API_KEY}`
-        },
-        body: JSON.stringify({
-            model: 'mistral-small',
-            messages: [
-                {
-                    role: 'system',
-                    content: `Você é a Cici AI, uma assistente multifuncional avançada. 
-                    Responda de forma clara, útil e detalhada. 
-                    Formate respostas usando Markdown quando apropriado.
-                    Seja direta e evite textos muito longos sem formatação.`
-                },
-                ...historico,
-                { role: 'user', content: mensagem }
-            ],
-            temperature: temperatura,
-            max_tokens: maxTokens,
-            top_p: 0.9,
-            stream: false
-        })
-    });
-
-    if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(`HTTP ${response.status}: ${errorData.message || 'Erro na API'}`);
-    }
-
-    const data = await response.json();
-    
-    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-        throw new Error('Resposta da API inválida');
-    }
-
-    return data.choices[0].message.content;
-}
-
-// ===== FUNÇÕES DO CHAT =====
-function adicionarMensagem(texto, tipo, renderMarkdown = true) {
-    const chat = document.getElementById('chat-container');
-    const wrapper = document.createElement('div');
-    wrapper.className = `mensagem-wrapper ${tipo}-wrapper`;
-
-    const hora = new Date().toLocaleTimeString('pt-BR', { 
-        hour: '2-digit', 
-        minute: '2-digit' 
-    });
-
-    let conteudo = texto;
-    if (renderMarkdown && tipo === 'cici') {
-        try {
-            conteudo = marked.parse(texto);
-        } catch (e) {
-            console.error('Erro ao processar markdown:', e);
-            conteudo = texto.replace(/\n/g, '<br>');
-        }
-    } else {
-        conteudo = texto.replace(/\n/g, '<br>');
-    }
-
-    wrapper.innerHTML = `
-        <div class="mensagem ${tipo}">
-            ${conteudo}
-            <div class="mensagem-hora">${hora}</div>
-            ${tipo === 'cici' ? `
-            <div class="mensagem-acoes">
-                <button class="btn-acao" onclick="copiarTexto(this, '${escapeTexto(texto)}')">
-                    📋 Copiar
-                </button>
-                <button class="btn-acao" onclick="falar('${escapeTexto(texto)}')" ${!estado.somAtivado ? 'disabled' : ''}>
-                    🔊 Ouvir
-                </button>
-            </div>
-            ` : ''}
-        </div>
-    `;
-
-    chat.appendChild(wrapper);
-    chat.scrollTop = chat.scrollHeight;
-
-    // Aplicar syntax highlighting para código
-    wrapper.querySelectorAll('pre code').forEach((block) => {
-        hljs.highlightElement(block);
-        
-        // Adicionar botão de copiar para blocos de código
-        const pre = block.closest('pre');
-        if (pre && !pre.querySelector('.code-header')) {
-            const header = document.createElement('div');
-            header.className = 'code-header';
-            header.innerHTML = `
-                <span class="code-language">${block.className.replace('language-', '') || 'code'}</span>
-                <button class="code-copy-btn" onclick="copiarCodigo(this)">Copiar</button>
+            toast.innerHTML = `
+                <span style="font-size:1.4em">${icones[tipo]}</span>
+                <span>${mensagem}</span>
             `;
-            pre.insertBefore(header, pre.firstChild);
-        }
-    });
-}
-
-function escapeTexto(texto) {
-    return texto.replace(/'/g, "\\'").replace(/\n/g, '\\n').replace(/"/g, '\\"');
-}
-
-function mostrarDigitando() {
-    const chat = document.getElementById('chat-container');
-    const wrapper = document.createElement('div');
-    wrapper.className = 'mensagem-wrapper cici-wrapper';
-    wrapper.id = 'digitando-indicator';
-    wrapper.innerHTML = `
-        <div class="mensagem cici">
-            <div class="typing-indicator">
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-            </div>
-        </div>
-    `;
-    chat.appendChild(wrapper);
-    chat.scrollTop = chat.scrollHeight;
-}
-
-function removerDigitando() {
-    const indicator = document.getElementById('digitando-indicator');
-    if (indicator) {
-        indicator.remove();
-    }
-}
-
-// ===== AÇÕES DE MENSAGEM =====
-function copiarTexto(botao, texto) {
-    navigator.clipboard.writeText(texto).then(() => {
-        const original = botao.innerHTML;
-        botao.innerHTML = '✅ Copiado!';
-        botao.style.background = 'var(--success)';
-        setTimeout(() => {
-            botao.innerHTML = original;
-            botao.style.background = '';
-        }, 2000);
-    }).catch(err => {
-        mostrarToast('Erro ao copiar texto', 'erro');
-    });
-}
-
-function copiarCodigo(botao) {
-    const codeBlock = botao.closest('.code-header').nextElementSibling;
-    const texto = codeBlock.textContent;
-    copiarTexto(botao, texto);
-}
-
-// ===== GERENCIAMENTO DE CONVERSAS =====
-function carregarHistorico() {
-    // Carregar conversas salvas do localStorage
-    const chaves = Object.keys(localStorage).filter(key => key.startsWith('ciciChat_'));
-    if (chaves.length > 0) {
-        console.log(`${chaves.length} conversas salvas encontradas`);
-    }
-}
-
-function limparChat() {
-    if (confirm('Tem certeza que deseja limpar toda a conversa? Esta ação não pode ser desfeita.')) {
-        document.getElementById('chat-container').innerHTML = '';
-        estado.conversaAtual = [];
-        estado.arquivosAnexados = [];
-        mostrarToast('Conversa limpa', 'sucesso');
-        
-        // Mostrar mensagem de boas-vindas novamente
-        setTimeout(() => mostrarMensagemBoasVindas(), 500);
-    }
-}
-
-function exportarConversa() {
-    const mensagens = Array.from(document.querySelectorAll('.mensagem-wrapper'))
-        .map(wrapper => {
-            const mensagem = wrapper.querySelector('.mensagem');
-            const tipo = wrapper.classList.contains('usuario-wrapper') ? 'Usuário' : 'Cici AI';
-            const hora = wrapper.querySelector('.mensagem-hora')?.textContent || '';
-            const texto = mensagem.childNodes[0].textContent || mensagem.innerText;
-            return `[${hora}] ${tipo}: ${texto}`;
-        })
-        .join('\n\n');
-
-    const blob = new Blob([mensagens], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `cici-chat-${new Date().toISOString().split('T')[0]}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    mostrarToast('Conversa exportada!', 'sucesso');
-}
-
-function compartilharConversa() {
-    if (navigator.share) {
-        const texto = estado.conversaAtual
-            .map(msg => `${msg.role === 'user' ? '👤' : '🤖'} ${msg.content.substring(0, 100)}...`)
-            .join('\n');
-        
-        navigator.share({
-            title: 'Minha conversa com Cici AI',
-            text: texto,
-            url: window.location.href
-        }).then(() => {
-            mostrarToast('Conversa compartilhada!', 'sucesso');
-        }).catch(() => {
-            mostrarToast('Compartilhamento cancelado', 'info');
-        });
-    } else {
-        exportarConversa();
-    }
-}
-
-function imprimirConversa() {
-    const estilo = `
-        <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; }
-            .mensagem { margin: 10px 0; padding: 10px; border-radius: 8px; }
-            .usuario { background: #e3f2fd; margin-left: 20px; }
-            .cici { background: #f5f5f5; margin-right: 20px; }
-            .hora { font-size: 0.8em; color: #666; text-align: right; }
-            @media print {
-                .no-print { display: none; }
-            }
-        </style>
-    `;
-
-    const conteudo = Array.from(document.querySelectorAll('.mensagem-wrapper'))
-        .map(wrapper => {
-            const mensagem = wrapper.querySelector('.mensagem');
-            const tipo = wrapper.classList.contains('usuario-wrapper') ? 'usuario' : 'cici';
-            const hora = wrapper.querySelector('.mensagem-hora')?.textContent || '';
-            const texto = mensagem.childNodes[0].textContent || mensagem.innerText;
             
-            return `
-                <div class="mensagem ${tipo}">
-                    <div>${texto}</div>
-                    <div class="hora">${hora}</div>
-                </div>
-            `;
-        })
-        .join('');
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('mostrar'), 10);
+            
+            setTimeout(() => {
+                toast.classList.remove('mostrar');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
 
-    const janela = window.open('', '_blank');
-    janela.document.write(`
-        <html>
-            <head>
-                <title>Conversa Cici AI</title>
-                ${estilo}
-            </head>
-            <body>
-                <h1>Conversa com Cici AI</h1>
-                <div>${conteudo}</div>
-                <script>
-                    window.onload = () => window.print();
-                </script>
-            </body>
-        </html>
-    `);
-}
-
-// ===== TOAST NOTIFICATIONS =====
-function mostrarToast(mensagem, tipo = 'info') {
-    const container = document.getElementById('toast-container');
-    const toast = document.createElement('div');
-    toast.className = `toast ${tipo}`;
-    toast.innerHTML = `
-        <span>${mensagem}</span>
-    `;
-
-    container.appendChild(toast);
-
-    setTimeout(() => {
-        toast.classList.add('mostrar');
-    }, 100);
-
-    setTimeout(() => {
-        toast.classList.remove('mostrar');
-        setTimeout(() => {
-            if (toast.parentNode) {
-                toast.parentNode.removeChild(toast);
-            }
-        }, 400);
-    }, 4000);
-}
-
-// ===== AJUDA E TUTORIAIS =====
-function mostrarAjuda() {
-    fecharMenu();
-    const ajuda = `# 📚 **Como Usar a Cici AI**
-
-## 💬 **Conversação Básica**
-- Digite suas perguntas no campo de texto
-- Use **Shift+Enter** para nova linha
-- **Enter** para enviar a mensagem
-
-## 🎤 **Reconhecimento de Voz**
-- Clique no microfone para falar
-- Suporta português brasileiro
-- Converte fala em texto automaticamente
-
-## 📎 **Anexar Arquivos**
-- Suporta: PDF, TXT, DOC, imagens
-- Máximo: 10MB por arquivo
-- Análise de texto e conteúdo
-
-## 🎨 **Modos de Conversação**
-- **✨ Criativo**: Respostas imaginativas
-- **🎯 Preciso**: Respostas factuais
-- **💻 Código**: Especialista em programação
-- **🎓 Ensino**: Explicações didáticas
-- **🔬 Análise**: Análises profundas
-
-## ⌨️ **Atalhos de Teclado**
-- **Ctrl+K**: Focar no chat
-- **Ctrl+L**: Limpar conversa
-- **Ctrl+S**: Exportar conversa
-- **Esc**: Fechar menus
-
-Precisa de ajuda com algo específico?`;
-    adicionarMensagem(ajuda, 'cici', true);
-}
-
-function mostrarCapacidades() {
-    fecharMenu();
-    const capacidades = `# 🚀 **O que posso fazer?**
-
-## 💻 **Programação & Tecnologia**
-- Gerar código em Python, JavaScript, Java, C++, etc.
-- Debuggar e explicar código
-- Criar algoritmos e estruturas de dados
-- Explicar conceitos de programação
-- Revisar e otimizar código
-
-## 📚 **Educação & Aprendizado**
-- Explicar conceitos complexos de forma simples
-- Criar resumos e mapas mentais
-- Auxiliar em pesquisas acadêmicas
-- Ensinar idiomas e gramática
-- Preparar materiais de estudo
-
-## 📄 **Análise de Documentos**
-- Ler e resumir textos longos
-- Extrair informações principais
-- Analisar estrutura e conteúdo
-- Comparar documentos
-- Identificar pontos-chave
-
-## 🎨 **Criatividade & Conteúdo**
-- Escrever textos criativos
-- Gerar ideias e brainstorming
-- Criar roteiros e histórias
-- Escrever poemas e letras de música
-- Desenvolver conteúdo para redes sociais
-
-**Qual área gostaria de explorar?**`;
-    adicionarMensagem(capacidades, 'cici', true);
-}
-
-function mostrarAtalhos() {
-    fecharMenu();
-    const atalhos = `# ⌨️ **Atalhos de Teclado**
-
-## 🔧 **Navegação Geral**
-- **Ctrl + K** → Focar no campo de mensagem
-- **Ctrl + L** → Limpar conversa atual
-- **Ctrl + S** → Exportar conversa
-- **Esc** → Fechar menus/diálogos
-
-## 💬 **Campo de Mensagem**
-- **Enter** → Enviar mensagem
-- **Shift + Enter** → Nova linha
-
-## 🔊 **Acessibilidade**
-- **Ctrl + +** → Aumentar fonte
-- **Ctrl + -** → Diminuir fonte
-- **Ctrl + 0** → Fonte padrão
-
-*Dica: Muitas funções também estão acessíveis pelo menu de configurações!*`;
-    adicionarMensagem(atalhos, 'cici', true);
-}
-
-// ===== SERVICE WORKER (PWA) =====
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
+        // Service Worker (PWA)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
             });
-    });
-}
-
-// Inicialização final
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Cici AI inicializada com sucesso!');
-    // Focar no input após carregamento
-    setTimeout(() => {
-        const input = document.getElementById('entradaUsuario');
-        if (input) input.focus();
-    }, 1000);
-});
+        }
+    </script>
+</body>
+</html>
