@@ -1,5 +1,493 @@
-const config = {
-  plugins: ["@tailwindcss/postcss"],
-};
+<!DOCTYPE html>
 
-export default config;
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog e Novidades - Claudinei | AmplaAI</title>
+    <meta name="description" content="Fique por dentro das últimas novidades, atualizações e insights sobre inteligência artificial e o Claudinei">
+    <meta name="robots" content="index, follow">
+
+```
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX"
+ crossorigin="anonymous"></script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.8;
+        color: #2c3e50;
+        background: #f8f9fa;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 15px 0;
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-decoration: none;
+    }
+
+    .logo-img {
+        height: 50px;
+        width: auto;
+    }
+
+    .logo-text {
+        font-size: 1.8em;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 120px 20px 60px;
+        text-align: center;
+    }
+
+    .header h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+    }
+
+    .header p {
+        font-size: 1.3em;
+        opacity: 0.95;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px 80px;
+    }
+
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 40px;
+        margin-bottom: 60px;
+    }
+
+    .blog-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+    }
+
+    .blog-image {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5em;
+        color: white;
+    }
+
+    .blog-content {
+        padding: 30px;
+    }
+
+    .blog-category {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .blog-date {
+        color: #7f8c8d;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+
+    .blog-title {
+        font-size: 1.6em;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+    .blog-excerpt {
+        color: #555;
+        margin-bottom: 20px;
+        line-height: 1.7;
+    }
+
+    .blog-link {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .blog-link:hover {
+        color: #764ba2;
+    }
+
+    .categories-filter {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .categories-filter h3 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .category-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .category-btn {
+        padding: 10px 25px;
+        border: 2px solid #667eea;
+        background: transparent;
+        color: #667eea;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+        background: #667eea;
+        color: white;
+    }
+
+    .newsletter-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 60px;
+        border-radius: 20px;
+        text-align: center;
+        margin-top: 60px;
+    }
+
+    .newsletter-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .newsletter-section p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        opacity: 0.95;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 15px;
+        max-width: 600px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .newsletter-input {
+        flex: 1;
+        min-width: 250px;
+        padding: 15px 25px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1em;
+    }
+
+    .newsletter-btn {
+        padding: 15px 40px;
+        background: white;
+        color: #667eea;
+        border: none;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1em;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .newsletter-btn:hover {
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+        .header h1 {
+            font-size: 2em;
+        }
+
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .newsletter-section {
+            padding: 40px 20px;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-container">
+                <img src="https://i.imgur.com/nRacyKQ.png" alt="Claudinei Logo" class="logo-img">
+                <div class="logo-text">Claudinei</div>
+            </a>
+        </div>
+    </nav>
+
+```
+<!-- Header -->
+<div class="header">
+    <h1>Blog e Novidades</h1>
+    <p>Insights sobre IA, atualizações do Claudinei e tendências tecnológicas</p>
+</div>
+
+<div class="container">
+    <!-- Categories Filter -->
+    <div class="categories-filter">
+        <h3>Filtrar por Categoria</h3>
+        <div class="category-buttons">
+            <button class="category-btn active">Todos</button>
+            <button class="category-btn">Atualizações</button>
+            <button class="category-btn">Tutoriais</button>
+            <button class="category-btn">IA e Tecnologia</button>
+            <button class="category-btn">Casos de Uso</button>
+            <button class="category-btn">Dicas</button>
+        </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid">
+        <!-- Blog Post 1 -->
+        <article class="blog-card">
+            <div class="blog-image">🚀</div>
+            <div class="blog-content">
+                <span class="blog-category">Atualizações</span>
+                <div class="blog-date">10 de Fevereiro, 2024</div>
+                <h2 class="blog-title">Claudinei Agora com Processamento 50% Mais Rápido</h2>
+                <p class="blog-excerpt">
+                    Estamos felizes em anunciar uma grande atualização no motor Hanabi v1.0 que torna as respostas do Claudinei ainda mais rápidas, sem comprometer a qualidade.
+                </p>
+                <a href="#" class="blog-link">Leia mais →</a>
+            </div>
+        </article>
+
+        <!-- Blog Post 2 -->
+        <article class="blog-card">
+            <div class="blog-image">💡</div>
+            <div class="blog-content">
+                <span class="blog-category">Tutoriais</span>
+                <div class="blog-date">5 de Fevereiro, 2024</div>
+                <h2 class="blog-title">10 Formas Criativas de Usar o Claudinei no Seu Dia a Dia</h2>
+                <p class="blog-excerpt">
+                    Descubra maneiras inovadoras de aproveitar ao máximo o Claudinei, desde automação de tarefas até criação de conteúdo personalizado.
+                </p>
+                <a href="#" class="blog-link">Leia mais →</a>
+            </div>
+        </article>
+
+        <!-- Blog Post 3 -->
+        <article class="blog-card">
+            <div class="blog-image">🧠</div>
+            <div class="blog-content">
+                <span class="blog-category">IA e Tecnologia</span>
+                <div class="blog-date">1 de Fevereiro, 2024</div>
+                <h2 class="blog-title">Como o Hanabi v1.0 Entende Português Brasileiro</h2>
+                <p class="blog-excerpt">
+                    Um mergulho profundo na tecnologia por trás do Claudinei e como desenvolvemos um motor de IA específico para nosso idioma.
+                </p>
+                <a href="#" class="blog-link">Leia mais →</a>
+            </div>
+        </article>
+
+        <!-- Blog Post 4 -->
+        <article class="blog-card">
+            <div class="blog-image">📊</div>
+            <div class="blog-content">
+                <span class="blog-category">Casos de Uso</span>
+                <div class="blog-date">28 de Janeiro, 2024</div>
+                <h2 class="blog-title">Como Empresas Estão Usando IA para Aumentar Produtividade</h2>
+                <p class="blog-excerpt">
+                    Cases reais de empresas brasileiras que transformaram seus processos com a ajuda do Claudinei.
+                </p>
+                <a href="#" class="blog-link">Leia mais →</a>
+            </div>
+        </article>
+
+        <!-- Blog Post 5 -->
+        <article class="blog-card">
+            <div class="blog-image">✍️</div>
+            <div class="blog-content">
+                <span class="blog-category">Dicas</span>
+                <div class="blog-date">25 de Janeiro, 2024</div>
+                <h2 class="blog-title">Como Escrever Prompts Eficazes para IA</h2>
+                <p class="blog-excerpt">
+                    Aprenda técnicas comprovadas para obter as melhores respostas do Claudinei através de prompts bem elaborados.
+                </p>
+                <a href="#" class="blog-link">Leia mais →</a>
+            </div>
+        </article>
+
+        <!-- Blog Post 6 -->
+        <article class="blog-card">
+            <div class="blog-image">🔐</div>
+            <div class="blog-content">
+                <span class="blog-category">IA e Tecnologia</span>
+                <div class="blog-date">20 de Janeiro, 2024</div>
+                <h2 class="blog-title">Privacidade e Segurança em IA: Nosso Compromisso</h2>
+                <p class="blog-excerpt">
+                    Entenda como protegemos seus dados e garantimos que suas interações com o Claudinei sejam seguras e privadas.
+                </p>
+                <a href="#" class="blog-link">Leia mais →</a>
+            </div>
+        </article>
+
+        <!-- Blog Post 7 -->
+        <article class="blog-card">
+            <div class="blog-image">🎯</div>
+            <div class="blog-content">
+                <span class="blog-category">Tutoriais</span>
+                <div class="blog-date">15 de Janeiro, 2024</div>
+                <h2 class="blog-title">Integrando o Claudinei em Seus Projetos</h2>
+                <p class="blog-excerpt">
+                    Guia completo para desenvolvedores sobre como integrar o Claudinei em aplicações usando nossa API.
+                </p>
+                <a href="#" class="blog-link">Leia mais →</a>
+            </div>
+        </article>
+
+        <!-- Blog Post 8 -->
+        <article class="blog-card">
+            <div class="blog-image">🌟</div>
+            <div class="blog-content">
+                <span class="blog-category">Atualizações</span>
+                <div class="blog-date">10 de Janeiro, 2024</div>
+                <h2 class="blog-title">Novos Recursos: Análise de Documentos e Muito Mais</h2>
+                <p class="blog-excerpt">
+                    Conheça as últimas funcionalidades adicionadas ao Claudinei, incluindo análise avançada de documentos.
+                </p>
+                <a href="#" class="blog-link">Leia mais →</a>
+            </div>
+        </article>
+
+        <!-- Blog Post 9 -->
+        <article class="blog-card">
+            <div class="blog-image">📚</div>
+            <div class="blog-content">
+                <span class="blog-category">Dicas</span>
+                <div class="blog-date">5 de Janeiro, 2024</div>
+                <h2 class="blog-title">IA na Educação: Transformando o Aprendizado</h2>
+                <p class="blog-excerpt">
+                    Como educadores e estudantes estão usando o Claudinei para potencializar o processo de ensino e aprendizagem.
+                </p>
+                <a href="#" class="blog-link">Leia mais →</a>
+            </div>
+        </article>
+    </div>
+
+    <!-- AdSense Display Ad -->
+    <div style="padding: 40px 20px; text-align: center; background: white; border-radius: 20px; margin: 60px 0;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="newsletter-section">
+        <h2>📬 Receba Novidades por Email</h2>
+        <p>Fique por dentro das últimas atualizações, tutoriais e insights sobre IA</p>
+        <form class="newsletter-form" onsubmit="return subscribeNewsletter(event)">
+            <input 
+                type="email" 
+                class="newsletter-input" 
+                placeholder="Seu melhor email" 
+                required
+            >
+            <button type="submit" class="newsletter-btn">Inscrever-se</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Category filter functionality
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            // Aqui você pode adicionar lógica para filtrar os posts
+        });
+    });
+
+    // Newsletter subscription
+    function subscribeNewsletter(event) {
+        event.preventDefault();
+        const email = event.target.querySelector('input[type="email"]').value;
+        alert('Obrigado por se inscrever! Em breve você receberá nossas novidades em: ' + email);
+        event.target.reset();
+        return false;
+    }
+</script>
+```
+
+</body>
+</html>
