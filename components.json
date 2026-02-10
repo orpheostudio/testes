@@ -1,21 +1,613 @@
-{
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "new-york",
-  "rsc": true,
-  "tsx": true,
-  "tailwind": {
-    "config": "",
-    "css": "app/globals.css",
-    "baseColor": "zinc",
-    "cssVariables": true,
-    "prefix": ""
-  },
-  "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
-  },
-  "iconLibrary": "lucide"
-}
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Claudinei | AmplaAI Platforms</title>
+    <meta name="description" content="Conheça a história da AmplaAI Platforms e como desenvolvemos o Claudinei, o assistente de IA mais avançado em português brasileiro">
+    <meta name="robots" content="index, follow">
+
+```
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX"
+ crossorigin="anonymous"></script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.8;
+        color: #2c3e50;
+        background: #f8f9fa;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 15px 0;
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-decoration: none;
+    }
+
+    .logo-img {
+        height: 50px;
+        width: auto;
+    }
+
+    .logo-text {
+        font-size: 1.8em;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 120px 20px 60px;
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .header h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+    }
+
+    .header p {
+        font-size: 1.3em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px 80px;
+    }
+
+    .section {
+        background: white;
+        padding: 60px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
+    }
+
+    .section h2 {
+        color: #2c3e50;
+        font-size: 2.5em;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #667eea;
+    }
+
+    .section h3 {
+        color: #34495e;
+        font-size: 1.8em;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    .section p {
+        color: #555;
+        font-size: 1.1em;
+        margin-bottom: 20px;
+        line-height: 1.9;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 50px;
+        margin-top: 40px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 50px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -58px;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #667eea;
+        border: 4px solid white;
+        box-shadow: 0 0 0 4px #667eea;
+    }
+
+    .timeline-date {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: #667eea;
+        margin-bottom: 10px;
+    }
+
+    .timeline-content h4 {
+        font-size: 1.4em;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .timeline-content p {
+        color: #666;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .value-card {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .value-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .value-icon {
+        font-size: 3em;
+        margin-bottom: 20px;
+    }
+
+    .value-card h3 {
+        font-size: 1.5em;
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+    }
+
+    .value-card p {
+        color: #555;
+        font-size: 1em;
+        margin: 0;
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .team-member {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+        transform: translateY(-5px);
+    }
+
+    .team-avatar {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5em;
+        color: white;
+    }
+
+    .team-info {
+        padding: 25px;
+        text-align: center;
+    }
+
+    .team-info h4 {
+        font-size: 1.3em;
+        color: #2c3e50;
+        margin-bottom: 5px;
+    }
+
+    .team-info .role {
+        color: #667eea;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .team-info p {
+        color: #666;
+        font-size: 0.95em;
+        margin: 0;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+    }
+
+    .stat-card {
+        text-align: center;
+        padding: 30px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px;
+    }
+
+    .stat-number {
+        font-size: 3em;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 1.1em;
+        opacity: 0.95;
+    }
+
+    .cta-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 60px;
+        border-radius: 20px;
+        text-align: center;
+        margin-top: 60px;
+    }
+
+    .cta-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        border: none;
+        padding: 0;
+        color: white;
+    }
+
+    .cta-section p {
+        font-size: 1.3em;
+        margin-bottom: 30px;
+        opacity: 0.95;
+        color: white;
+    }
+
+    .btn-primary {
+        background: white;
+        color: #667eea;
+        padding: 18px 40px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1em;
+        display: inline-block;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 768px) {
+        .header h1 {
+            font-size: 2em;
+        }
+
+        .section {
+            padding: 30px 20px;
+        }
+
+        .section h2 {
+            font-size: 1.8em;
+        }
+
+        .timeline {
+            padding-left: 30px;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-container">
+                <img src="https://i.imgur.com/nRacyKQ.png" alt="Claudinei Logo" class="logo-img">
+                <div class="logo-text">Claudinei</div>
+            </a>
+        </div>
+    </nav>
+
+```
+<!-- Header -->
+<div class="header">
+    <h1>Sobre a AmplaAI Platforms</h1>
+    <p>Pioneiros em Inteligência Artificial em Português Brasileiro</p>
+</div>
+
+<div class="container">
+    <!-- Nossa História -->
+    <div class="section">
+        <h2>Nossa História</h2>
+        <p>
+            A AmplaAI Platforms nasceu de uma visão ousada: criar a melhor experiência em inteligência artificial para o mercado brasileiro. Reconhecendo a lacuna entre as tecnologias de IA disponíveis e as necessidades específicas dos falantes de português brasileiro, nossa equipe se comprometeu a desenvolver soluções que realmente entendem nossa cultura, contexto e forma de comunicação.
+        </p>
+        <p>
+            Em um mercado dominado por soluções internacionais, vimos a oportunidade de criar algo verdadeiramente nacional - não apenas traduzindo tecnologias existentes, mas desenvolvendo desde a base um sistema que compreende as nuances, expressões e particularidades do português brasileiro.
+        </p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2023 - Início</div>
+                <div class="timeline-content">
+                    <h4>Fundação da AmplaAI</h4>
+                    <p>Reunimos uma equipe de especialistas em IA, linguística computacional e desenvolvimento de software com uma missão clara: revolucionar a IA em português.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024 - Desenvolvimento</div>
+                <div class="timeline-content">
+                    <h4>Criação do Motor Hanabi v1.0</h4>
+                    <p>Após meses de pesquisa e desenvolvimento, lançamos o motor Hanabi v1.0, especificamente otimizado para o português brasileiro com compreensão contextual profunda.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024 - Lançamento</div>
+                <div class="timeline-content">
+                    <h4>Claudinei Entra em Operação</h4>
+                    <p>Apresentamos ao mercado o Claudinei, nosso assistente de IA que combina tecnologia de ponta com profundo entendimento da língua e cultura brasileiras.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2024 - Expansão</div>
+                <div class="timeline-content">
+                    <h4>Crescimento e Inovação</h4>
+                    <p>Continuamos expandindo as capacidades do Claudinei, adicionando novos recursos e aprimorando constantemente a experiência do usuário.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AdSense Display Ad -->
+    <div style="padding: 40px 20px; text-align: center;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <!-- Estatísticas -->
+    <div class="section">
+        <h2>Claudinei em Números</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Usuários Ativos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1M+</div>
+                <div class="stat-label">Conversas Processadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Disponibilidade</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Suporte Online</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Missão, Visão e Valores -->
+    <div class="section">
+        <h2>Nossa Missão e Visão</h2>
+        
+        <h3>🎯 Missão</h3>
+        <p>
+            Democratizar o acesso à inteligência artificial de alta qualidade no Brasil, desenvolvendo tecnologias que realmente compreendem e atendem às necessidades dos usuários brasileiros. Nosso compromisso é fornecer ferramentas de IA que sejam acessíveis, eficientes e culturalmente relevantes.
+        </p>
+
+        <h3>🔭 Visão</h3>
+        <p>
+            Ser reconhecida como a principal referência em soluções de inteligência artificial em português brasileiro, expandindo nosso impacto para toda a América Latina e comunidades lusófonas ao redor do mundo. Queremos transformar a forma como as pessoas interagem com tecnologia através de IA verdadeiramente inteligente e contextual.
+        </p>
+
+        <h3>💎 Nossos Valores</h3>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🚀</div>
+                <h3>Inovação</h3>
+                <p>Buscamos constantemente novas formas de melhorar e evoluir nossa tecnologia.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3>Compromisso</h3>
+                <p>Dedicados a entregar a melhor experiência possível aos nossos usuários.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">🎓</div>
+                <h3>Excelência</h3>
+                <p>Padrões elevados de qualidade em tudo que desenvolvemos.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">🌟</div>
+                <h3>Transparência</h3>
+                <p>Comunicação clara e honesta com nossa comunidade.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">🔒</div>
+                <h3>Segurança</h3>
+                <p>Proteção rigorosa dos dados e privacidade dos usuários.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">🌍</div>
+                <h3>Acessibilidade</h3>
+                <p>IA de qualidade acessível para todos os brasileiros.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tecnologia -->
+    <div class="section">
+        <h2>Tecnologia Hanabi v1.0</h2>
+        <p>
+            O motor Hanabi v1.0 representa anos de pesquisa e desenvolvimento em inteligência artificial. Não é apenas uma adaptação de tecnologias existentes - é uma solução proprietária desenvolvida especificamente para o português brasileiro.
+        </p>
+
+        <h3>🔬 Diferenciais Tecnológicos</h3>
+        <p><strong>Compreensão Contextual Profunda:</strong> O Hanabi não apenas processa palavras, mas entende o contexto completo das conversas, incluindo nuances culturais, gírias regionais e referências brasileiras.</p>
+
+        <p><strong>Processamento de Linguagem Natural Avançado:</strong> Utilizamos arquiteturas de deep learning de última geração, treinadas especificamente em português brasileiro com milhões de exemplos de conversações reais.</p>
+
+        <p><strong>Aprendizado Contínuo:</strong> O sistema evolui constantemente, aprendendo com cada interação para fornecer respostas cada vez mais precisas e relevantes.</p>
+
+        <p><strong>Otimização para Baixa Latência:</strong> Respostas instantâneas sem comprometer a qualidade, graças à nossa infraestrutura otimizada e algoritmos eficientes.</p>
+
+        <p><strong>Segurança e Privacidade:</strong> Implementamos as melhores práticas de segurança, incluindo criptografia end-to-end e conformidade com a LGPD.</p>
+    </div>
+
+    <!-- AdSense In-Article Ad -->
+    <div style="padding: 40px 20px; text-align: center; background: white; border-radius: 20px; margin: 40px 0;">
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-layout="in-article"
+             data-ad-format="fluid"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <!-- Equipe -->
+    <div class="section">
+        <h2>Nossa Equipe</h2>
+        <p>
+            Por trás do Claudinei está uma equipe multidisciplinar de especialistas apaixonados por tecnologia e inovação. Reunimos talentos em inteligência artificial, desenvolvimento de software, linguística computacional e design de experiência do usuário.
+        </p>
+
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-avatar">👨‍💻</div>
+                <div class="team-info">
+                    <h4>Equipe de IA</h4>
+                    <p class="role">Pesquisa e Desenvolvimento</p>
+                    <p>Especialistas em machine learning e processamento de linguagem natural.</p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="team-avatar">👩‍💻</div>
+                <div class="team-info">
+                    <h4>Equipe de Engenharia</h4>
+                    <p class="role">Desenvolvimento de Software</p>
+                    <p>Constroem e mantêm a infraestrutura que suporta o Claudinei.</p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="team-avatar">🎨</div>
+                <div class="team-info">
+                    <h4>Equipe de Design</h4>
+                    <p class="role">UX/UI Design</p>
+                    <p>Criam experiências intuitivas e agradáveis para os usuários.</p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="team-avatar">📊</div>
+                <div class="team-info">
+                    <h4>Equipe de Produto</h4>
+                    <p class="role">Gestão de Produto</p>
+                    <p>Definem a visão e estratégia do Claudinei.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Compromisso -->
+    <div class="section">
+        <h2>Nosso Compromisso com Você</h2>
+        <p>
+            Na AmplaAI Platforms, acreditamos que a inteligência artificial deve ser uma ferramenta que amplia as capacidades humanas, não que as substitui. Por isso, nos comprometemos a:
+        </p>
+
+        <ul style="margin-left: 30px; margin-top: 20px;">
+            <li style="margin-bottom: 15px;"><strong>Desenvolver IA Responsável:</strong> Seguimos princípios éticos rigorosos no desenvolvimento de todas as nossas tecnologias.</li>
+            <li style="margin-bottom: 15px;"><strong>Proteger sua Privacidade:</strong> Seus dados são seus. Implementamos as mais altas medidas de segurança e conformidade com a LGPD.</li>
+            <li style="margin-bottom: 15px;"><strong>Ser Transparentes:</strong> Comunicamos claramente como nossa tecnologia funciona e suas limitações.</li>
+            <li style="margin-bottom: 15px;"><strong>Evoluir Constantemente:</strong> Investimos continuamente em pesquisa e desenvolvimento para melhorar o Claudinei.</li>
+            <li style="margin-bottom: 15px;"><strong>Ouvir Nossa Comunidade:</strong> Valorizamos o feedback dos usuários e o incorporamos no desenvolvimento do produto.</li>
+        </ul>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2>Faça Parte da Nossa Jornada</h2>
+        <p>Junte-se a milhares de usuários que já descobriram o poder do Claudinei</p>
+        <a href="/" class="btn-primary">Experimentar Claudinei</a>
+    </div>
+</div>
+```
+
+</body>
+</html>
